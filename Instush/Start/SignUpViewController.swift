@@ -51,12 +51,14 @@ class SignUpViewController: UIViewController {
     }
     
     @IBOutlet weak var imgProfile: UIImageView! {
-        didSet {
+        didSet{
+            /*
             imgProfile.layer.borderWidth = 1.5
             imgProfile.layer.masksToBounds = false
             imgProfile.layer.borderColor = UIColor.black.cgColor
             imgProfile.layer.cornerRadius = imgProfile.frame.height/2
             imgProfile.clipsToBounds = true
+            */
         }
     }
     

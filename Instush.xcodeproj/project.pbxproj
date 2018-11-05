@@ -8,19 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		0526F5E3218F15F10028F1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E2218F15F10028F1D9 /* AppDelegate.swift */; };
-		0526F5E8218F15F10028F1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F5E6218F15F10028F1D9 /* Main.storyboard */; };
+		0526F5E8218F15F10028F1D9 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F5E6218F15F10028F1D9 /* Start.storyboard */; };
 		0526F5EB218F15F10028F1D9 /* Instush.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E9218F15F10028F1D9 /* Instush.xcdatamodeld */; };
 		0526F5ED218F15F10028F1D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0526F5EC218F15F10028F1D9 /* Assets.xcassets */; };
 		0526F5F0218F15F10028F1D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F5EE218F15F10028F1D9 /* LaunchScreen.storyboard */; };
 		0526F5F8218F29B50028F1D9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5F7218F29B50028F1D9 /* SignInViewController.swift */; };
 		0526F5FA218F2BFA0028F1D9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5F9218F2BFA0028F1D9 /* GradientView.swift */; };
 		0526F5FE218F3E100028F1D9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5FD218F3E100028F1D9 /* SignUpViewController.swift */; };
+		0526F60021904E700028F1D9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5FF21904E700028F1D9 /* SearchViewController.swift */; };
+		0526F60221904E860028F1D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F60121904E860028F1D9 /* HomeViewController.swift */; };
+		0526F60421904E910028F1D9 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F60321904E910028F1D9 /* ActivityViewController.swift */; };
+		0526F60621904EB60028F1D9 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F60521904EB60028F1D9 /* CameraViewController.swift */; };
+		0526F60821904EC20028F1D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F60721904EC20028F1D9 /* ProfileViewController.swift */; };
+		0526F60B21905FAA0028F1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F60921905FAA0028F1D9 /* Main.storyboard */; };
+		0526F60E219062AD0028F1D9 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F60C219062AD0028F1D9 /* Home.storyboard */; };
+		0526F610219062C40028F1D9 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F60F219062C40028F1D9 /* Search.storyboard */; };
+		0526F613219062D20028F1D9 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F611219062D20028F1D9 /* Camera.storyboard */; };
+		0526F615219062E60028F1D9 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F614219062E60028F1D9 /* Activity.storyboard */; };
+		0526F618219062F90028F1D9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F616219062F90028F1D9 /* Profile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0526F5DF218F15F10028F1D9 /* Instush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0526F5E2218F15F10028F1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0526F5E7218F15F10028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0526F5E7218F15F10028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
 		0526F5EA218F15F10028F1D9 /* Instush.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Instush.xcdatamodel; sourceTree = "<group>"; };
 		0526F5EC218F15F10028F1D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0526F5EF218F15F10028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -28,6 +39,17 @@
 		0526F5F7218F29B50028F1D9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0526F5F9218F2BFA0028F1D9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		0526F5FD218F3E100028F1D9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		0526F5FF21904E700028F1D9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0526F60121904E860028F1D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0526F60321904E910028F1D9 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		0526F60521904EB60028F1D9 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		0526F60721904EC20028F1D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0526F60A21905FAA0028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instush/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0526F60D219062AD0028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instush/Instush/Base.lproj/Home.storyboard; sourceTree = "<group>"; };
+		0526F60F219062C40028F1D9 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		0526F612219062D20028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instush/Instush/Base.lproj/Camera.storyboard; sourceTree = "<group>"; };
+		0526F614219062E60028F1D9 /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
+		0526F617219062F90028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instush/Instush/Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +82,84 @@
 		0526F5E1218F15F10028F1D9 /* Instush */ = {
 			isa = PBXGroup;
 			children = (
-				0526F5E2218F15F10028F1D9 /* AppDelegate.swift */,
-				0526F5E6218F15F10028F1D9 /* Main.storyboard */,
-				0526F5EC218F15F10028F1D9 /* Assets.xcassets */,
-				0526F5EE218F15F10028F1D9 /* LaunchScreen.storyboard */,
-				0526F5F1218F15F10028F1D9 /* Info.plist */,
+				0526F620219065D00028F1D9 /* Utils */,
+				0526F61A2190637D0028F1D9 /* Home */,
+				0526F61F2190640A0028F1D9 /* Camera */,
+				0526F61E219063F70028F1D9 /* Search */,
+				0526F61D219063DE0028F1D9 /* Activity */,
+				0526F61C219063BD0028F1D9 /* Profile */,
+				0526F61B219063950028F1D9 /* Start */,
 				0526F5E9218F15F10028F1D9 /* Instush.xcdatamodeld */,
-				0526F5F7218F29B50028F1D9 /* SignInViewController.swift */,
-				0526F5FD218F3E100028F1D9 /* SignUpViewController.swift */,
-				0526F5F9218F2BFA0028F1D9 /* GradientView.swift */,
+				0526F5E2218F15F10028F1D9 /* AppDelegate.swift */,
+				0526F5EC218F15F10028F1D9 /* Assets.xcassets */,
+				0526F5F1218F15F10028F1D9 /* Info.plist */,
 			);
 			path = Instush;
+			sourceTree = "<group>";
+		};
+		0526F61A2190637D0028F1D9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0526F60121904E860028F1D9 /* HomeViewController.swift */,
+				0526F60C219062AD0028F1D9 /* Home.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0526F61B219063950028F1D9 /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				0526F5F7218F29B50028F1D9 /* SignInViewController.swift */,
+				0526F5FD218F3E100028F1D9 /* SignUpViewController.swift */,
+				0526F5E6218F15F10028F1D9 /* Start.storyboard */,
+				0526F60921905FAA0028F1D9 /* Main.storyboard */,
+				0526F5EE218F15F10028F1D9 /* LaunchScreen.storyboard */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		0526F61C219063BD0028F1D9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0526F60721904EC20028F1D9 /* ProfileViewController.swift */,
+				0526F616219062F90028F1D9 /* Profile.storyboard */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		0526F61D219063DE0028F1D9 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				0526F614219062E60028F1D9 /* Activity.storyboard */,
+				0526F60321904E910028F1D9 /* ActivityViewController.swift */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		0526F61E219063F70028F1D9 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0526F5FF21904E700028F1D9 /* SearchViewController.swift */,
+				0526F60F219062C40028F1D9 /* Search.storyboard */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		0526F61F2190640A0028F1D9 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				0526F60521904EB60028F1D9 /* CameraViewController.swift */,
+				0526F611219062D20028F1D9 /* Camera.storyboard */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		0526F620219065D00028F1D9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0526F5F9218F2BFA0028F1D9 /* GradientView.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,8 +221,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0526F5F0218F15F10028F1D9 /* LaunchScreen.storyboard in Resources */,
+				0526F613219062D20028F1D9 /* Camera.storyboard in Resources */,
+				0526F60E219062AD0028F1D9 /* Home.storyboard in Resources */,
 				0526F5ED218F15F10028F1D9 /* Assets.xcassets in Resources */,
-				0526F5E8218F15F10028F1D9 /* Main.storyboard in Resources */,
+				0526F5E8218F15F10028F1D9 /* Start.storyboard in Resources */,
+				0526F610219062C40028F1D9 /* Search.storyboard in Resources */,
+				0526F618219062F90028F1D9 /* Profile.storyboard in Resources */,
+				0526F60B21905FAA0028F1D9 /* Main.storyboard in Resources */,
+				0526F615219062E60028F1D9 /* Activity.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,23 +239,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0526F60021904E700028F1D9 /* SearchViewController.swift in Sources */,
 				0526F5E3218F15F10028F1D9 /* AppDelegate.swift in Sources */,
+				0526F60821904EC20028F1D9 /* ProfileViewController.swift in Sources */,
 				0526F5EB218F15F10028F1D9 /* Instush.xcdatamodeld in Sources */,
+				0526F60421904E910028F1D9 /* ActivityViewController.swift in Sources */,
 				0526F5FA218F2BFA0028F1D9 /* GradientView.swift in Sources */,
 				0526F5F8218F29B50028F1D9 /* SignInViewController.swift in Sources */,
+				0526F60221904E860028F1D9 /* HomeViewController.swift in Sources */,
 				0526F5FE218F3E100028F1D9 /* SignUpViewController.swift in Sources */,
+				0526F60621904EB60028F1D9 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0526F5E6218F15F10028F1D9 /* Main.storyboard */ = {
+		0526F5E6218F15F10028F1D9 /* Start.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				0526F5E7218F15F10028F1D9 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Start.storyboard;
 			sourceTree = "<group>";
 		};
 		0526F5EE218F15F10028F1D9 /* LaunchScreen.storyboard */ = {
@@ -169,6 +269,38 @@
 				0526F5EF218F15F10028F1D9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		0526F60921905FAA0028F1D9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0526F60A21905FAA0028F1D9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0526F60C219062AD0028F1D9 /* Home.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0526F60D219062AD0028F1D9 /* Base */,
+			);
+			name = Home.storyboard;
+			sourceTree = "<group>";
+		};
+		0526F611219062D20028F1D9 /* Camera.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0526F612219062D20028F1D9 /* Base */,
+			);
+			name = Camera.storyboard;
+			sourceTree = "<group>";
+		};
+		0526F616219062F90028F1D9 /* Profile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0526F617219062F90028F1D9 /* Base */,
+			);
+			name = Profile.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
