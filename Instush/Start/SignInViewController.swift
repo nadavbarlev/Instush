@@ -8,16 +8,16 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Outlets
     @IBOutlet weak var textFieldEmail: UITextField! {
         didSet {
             textFieldEmail.backgroundColor = UIColor(white: 1, alpha: 0.2)
             guard let textPlaceHolder = textFieldEmail.placeholder else { return }
-            textFieldEmail.attributedPlaceholder =
-                NSAttributedString(string: textPlaceHolder,
-                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            textFieldEmail.attributedPlaceholder = NSAttributedString(string: textPlaceHolder,
+                                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            textFieldEmail.delegate = self
         }
     }
     
@@ -25,9 +25,9 @@ class SignInViewController: UIViewController {
         didSet {
             textFieldPassword.backgroundColor = UIColor(white: 1, alpha: 0.2)
             guard let textPlaceHolder = textFieldPassword.placeholder else { return }
-            textFieldPassword.attributedPlaceholder =
-                NSAttributedString(string: textPlaceHolder,
-                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            textFieldPassword.attributedPlaceholder = NSAttributedString(string: textPlaceHolder,
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            textFieldPassword.delegate = self
         }
     }
     
@@ -47,6 +47,17 @@ class SignInViewController: UIViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dismissKeyboardOnTapAround()
+    }
+    
+    // MARK: TextField Methods
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == textFieldEmail {
+            textFieldPassword.becomeFirstResponder()
+            return false
+        }
+        textField.resignFirstResponder()
+        return false
     }
 
 }

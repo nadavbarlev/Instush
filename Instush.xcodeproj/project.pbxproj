@@ -26,6 +26,7 @@
 		0526F613219062D20028F1D9 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F611219062D20028F1D9 /* Camera.storyboard */; };
 		0526F615219062E60028F1D9 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F614219062E60028F1D9 /* Activity.storyboard */; };
 		0526F618219062F90028F1D9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F616219062F90028F1D9 /* Profile.storyboard */; };
+		0526F622219090620028F1D9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F621219090620028F1D9 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		0526F612219062D20028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instush/Instush/Base.lproj/Camera.storyboard; sourceTree = "<group>"; };
 		0526F614219062E60028F1D9 /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		0526F617219062F90028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instush/Instush/Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
+		0526F621219090620028F1D9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				0526F5F9218F2BFA0028F1D9 /* GradientView.swift */,
+				0526F621219090620028F1D9 /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				0526F5F8218F29B50028F1D9 /* SignInViewController.swift in Sources */,
 				0526F60221904E860028F1D9 /* HomeViewController.swift in Sources */,
 				0526F5FE218F3E100028F1D9 /* SignUpViewController.swift in Sources */,
+				0526F622219090620028F1D9 /* Extensions.swift in Sources */,
 				0526F60621904EB60028F1D9 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

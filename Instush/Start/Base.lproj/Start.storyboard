@@ -30,13 +30,13 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jw2-wp-fk1">
                                         <rect key="frame" x="16" y="90" width="343" height="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E4O-Ez-0VQ">
                                         <rect key="frame" x="16" y="130" width="343" height="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6O-o0-oo6">
@@ -122,7 +122,6 @@
         <!--Sign Up View Controller-->
         <scene sceneID="koa-2J-V9C">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="D41-Dt-SgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Ufr-DB-a5D" customClass="SignUpViewController" customModule="Instush" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vuH-sI-h1R" userLabel="GradientView" customClass="GradientView" customModule="Instush" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -139,7 +138,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdN-yo-Qlj" userLabel="CenterView">
-                                <rect key="frame" x="0.0" y="196" width="375" height="295"/>
+                                <rect key="frame" x="0.0" y="176" width="375" height="335"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="Ik8-cv-CAG">
                                         <rect key="frame" x="142.5" y="20" width="90" height="90"/>
@@ -150,24 +149,24 @@
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rjJ-zF-55q">
                                         <rect key="frame" x="16" y="122" width="343" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GE1-OW-YRb">
                                         <rect key="frame" x="16" y="162" width="343" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Efs-Fp-Wpt">
                                         <rect key="frame" x="16" y="202" width="343" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCH-6j-E6l">
-                                        <rect key="frame" x="16" y="242" width="343" height="33"/>
+                                        <rect key="frame" x="16" y="282" width="343" height="33"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -177,6 +176,12 @@
                                             <segue destination="Bst-pf-WDJ" kind="presentation" id="s00-Eq-ipn"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qwK-ai-2YV">
+                                        <rect key="frame" x="16" y="242" width="343" height="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -184,13 +189,16 @@
                                     <constraint firstItem="rjJ-zF-55q" firstAttribute="top" secondItem="Ik8-cv-CAG" secondAttribute="bottom" constant="12" id="3Ls-xh-o6B"/>
                                     <constraint firstItem="rjJ-zF-55q" firstAttribute="leading" secondItem="LdN-yo-Qlj" secondAttribute="leading" constant="16" id="49f-yv-hKb"/>
                                     <constraint firstItem="UCH-6j-E6l" firstAttribute="leading" secondItem="LdN-yo-Qlj" secondAttribute="leading" constant="16" id="4sE-MF-ZtJ"/>
+                                    <constraint firstItem="UCH-6j-E6l" firstAttribute="top" secondItem="qwK-ai-2YV" secondAttribute="bottom" constant="10" id="5J9-ZS-Unf"/>
                                     <constraint firstAttribute="bottom" secondItem="UCH-6j-E6l" secondAttribute="bottom" constant="20" id="9Rq-Jf-1uE"/>
                                     <constraint firstItem="Efs-Fp-Wpt" firstAttribute="leading" secondItem="LdN-yo-Qlj" secondAttribute="leading" constant="16" id="BLG-tB-Veb"/>
-                                    <constraint firstItem="UCH-6j-E6l" firstAttribute="top" secondItem="Efs-Fp-Wpt" secondAttribute="bottom" constant="10" id="Rbt-3C-A3d"/>
+                                    <constraint firstItem="qwK-ai-2YV" firstAttribute="top" secondItem="Efs-Fp-Wpt" secondAttribute="bottom" constant="10" id="WBY-JW-2EB"/>
                                     <constraint firstItem="Ik8-cv-CAG" firstAttribute="centerX" secondItem="LdN-yo-Qlj" secondAttribute="centerX" id="bBr-A7-Sta"/>
                                     <constraint firstAttribute="trailing" secondItem="Efs-Fp-Wpt" secondAttribute="trailing" constant="16" id="d7p-93-y3p"/>
                                     <constraint firstAttribute="trailing" secondItem="UCH-6j-E6l" secondAttribute="trailing" constant="16" id="eUl-9P-wAo"/>
+                                    <constraint firstItem="qwK-ai-2YV" firstAttribute="leading" secondItem="LdN-yo-Qlj" secondAttribute="leading" constant="16" id="nHy-34-k0W"/>
                                     <constraint firstItem="GE1-OW-YRb" firstAttribute="top" secondItem="rjJ-zF-55q" secondAttribute="bottom" constant="10" id="nNm-iD-ecV"/>
+                                    <constraint firstAttribute="trailing" secondItem="qwK-ai-2YV" secondAttribute="trailing" constant="16" id="vWb-fT-yJ6"/>
                                     <constraint firstItem="GE1-OW-YRb" firstAttribute="leading" secondItem="LdN-yo-Qlj" secondAttribute="leading" constant="16" id="wSZ-kw-dVe"/>
                                     <constraint firstAttribute="trailing" secondItem="GE1-OW-YRb" secondAttribute="trailing" constant="16" id="xwq-yj-u0W"/>
                                     <constraint firstItem="Ik8-cv-CAG" firstAttribute="top" secondItem="LdN-yo-Qlj" secondAttribute="top" constant="20" id="yi8-lI-rwX"/>
@@ -232,13 +240,15 @@
                     <connections>
                         <outlet property="buttonSignUp" destination="UCH-6j-E6l" id="MhI-cK-IIn"/>
                         <outlet property="imgProfile" destination="Ik8-cv-CAG" id="duF-zm-dnl"/>
+                        <outlet property="textFieldConfirmPassword" destination="qwK-ai-2YV" id="V4Q-nZ-KtM"/>
                         <outlet property="textFieldEmail" destination="GE1-OW-YRb" id="JEV-xQ-i2f"/>
                         <outlet property="textFieldPassword" destination="Efs-Fp-Wpt" id="nK7-Vh-xOx"/>
                         <outlet property="textFieldUsername" destination="rjJ-zF-55q" id="BG4-oC-Wpn"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D41-Dt-SgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1644" y="151"/>
+            <point key="canvasLocation" x="-1644" y="150.67466266866569"/>
         </scene>
         <!--Main-->
         <scene sceneID="fJ0-uC-b9g">
@@ -253,6 +263,6 @@
         <image name="placeholderImg" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="25L-4p-RSd"/>
+        <segue reference="s00-Eq-ipn"/>
     </inferredMetricsTieBreakers>
 </document>

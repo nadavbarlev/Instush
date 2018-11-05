@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Outlets
     @IBOutlet weak var textFieldUsername: UITextField! {
@@ -16,8 +16,9 @@ class SignUpViewController: UIViewController {
             textFieldUsername.backgroundColor = UIColor(white: 1, alpha: 0.2)
             guard let textPlaceHolder = textFieldUsername.placeholder else { return }
             textFieldUsername.attributedPlaceholder =
-                NSAttributedString(string: textPlaceHolder,
-                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                        NSAttributedString(string: textPlaceHolder,
+                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            textFieldUsername.delegate = self
         }
     }
     
@@ -26,8 +27,9 @@ class SignUpViewController: UIViewController {
             textFieldEmail.backgroundColor = UIColor(white: 1, alpha: 0.2)
             guard let textPlaceHolder = textFieldEmail.placeholder else { return }
             textFieldEmail.attributedPlaceholder =
-                NSAttributedString(string: textPlaceHolder,
-                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                        NSAttributedString(string: textPlaceHolder,
+                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            textFieldEmail.delegate = self
         }
     }
     
@@ -36,8 +38,20 @@ class SignUpViewController: UIViewController {
             textFieldPassword.backgroundColor = UIColor(white: 1, alpha: 0.2)
             guard let textPlaceHolder = textFieldPassword.placeholder else { return }
             textFieldPassword.attributedPlaceholder =
-                NSAttributedString(string: textPlaceHolder,
-                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                    NSAttributedString(string: textPlaceHolder,
+                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            textFieldPassword.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var textFieldConfirmPassword: UITextField! {
+        didSet {
+            textFieldConfirmPassword.backgroundColor = UIColor(white: 1, alpha: 0.2)
+            guard let textPlaceHolder = textFieldConfirmPassword.placeholder else { return }
+            textFieldConfirmPassword.attributedPlaceholder =
+                            NSAttributedString(string: textPlaceHolder,
+                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            textFieldConfirmPassword.delegate = self
         }
     }
     
@@ -73,5 +87,21 @@ class SignUpViewController: UIViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dismissKeyboardOnTapAround()
+    }
+    
+    // MARK: TextField Methods
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case textFieldUsername:
+           textFieldEmail.becomeFirstResponder()
+        case textFieldEmail:
+            textFieldPassword.becomeFirstResponder()
+        case textFieldPassword:
+            textFieldConfirmPassword.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        return false
     }
 }
