@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		0526F5E3218F15F10028F1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E2218F15F10028F1D9 /* AppDelegate.swift */; };
-		0526F5E5218F15F10028F1D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E4218F15F10028F1D9 /* ViewController.swift */; };
 		0526F5E8218F15F10028F1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F5E6218F15F10028F1D9 /* Main.storyboard */; };
 		0526F5EB218F15F10028F1D9 /* Instush.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E9218F15F10028F1D9 /* Instush.xcdatamodeld */; };
 		0526F5ED218F15F10028F1D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0526F5EC218F15F10028F1D9 /* Assets.xcassets */; };
 		0526F5F0218F15F10028F1D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F5EE218F15F10028F1D9 /* LaunchScreen.storyboard */; };
+		0526F5F8218F29B50028F1D9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5F7218F29B50028F1D9 /* SignInViewController.swift */; };
+		0526F5FA218F2BFA0028F1D9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5F9218F2BFA0028F1D9 /* GradientView.swift */; };
+		0526F5FE218F3E100028F1D9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5FD218F3E100028F1D9 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0526F5DF218F15F10028F1D9 /* Instush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0526F5E2218F15F10028F1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0526F5E4218F15F10028F1D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0526F5E7218F15F10028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0526F5EA218F15F10028F1D9 /* Instush.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Instush.xcdatamodel; sourceTree = "<group>"; };
 		0526F5EC218F15F10028F1D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0526F5EF218F15F10028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0526F5F1218F15F10028F1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0526F5F7218F29B50028F1D9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		0526F5F9218F2BFA0028F1D9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		0526F5FD218F3E100028F1D9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				0526F5E2218F15F10028F1D9 /* AppDelegate.swift */,
-				0526F5E4218F15F10028F1D9 /* ViewController.swift */,
 				0526F5E6218F15F10028F1D9 /* Main.storyboard */,
 				0526F5EC218F15F10028F1D9 /* Assets.xcassets */,
 				0526F5EE218F15F10028F1D9 /* LaunchScreen.storyboard */,
 				0526F5F1218F15F10028F1D9 /* Info.plist */,
 				0526F5E9218F15F10028F1D9 /* Instush.xcdatamodeld */,
+				0526F5F7218F29B50028F1D9 /* SignInViewController.swift */,
+				0526F5FD218F3E100028F1D9 /* SignUpViewController.swift */,
+				0526F5F9218F2BFA0028F1D9 /* GradientView.swift */,
 			);
 			path = Instush;
 			sourceTree = "<group>";
@@ -138,9 +144,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0526F5E5218F15F10028F1D9 /* ViewController.swift in Sources */,
 				0526F5E3218F15F10028F1D9 /* AppDelegate.swift in Sources */,
 				0526F5EB218F15F10028F1D9 /* Instush.xcdatamodeld in Sources */,
+				0526F5FA218F2BFA0028F1D9 /* GradientView.swift in Sources */,
+				0526F5F8218F29B50028F1D9 /* SignInViewController.swift in Sources */,
+				0526F5FE218F3E100028F1D9 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +297,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54XQLGWFP9;
 				INFOPLIST_FILE = Instush/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,6 +316,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54XQLGWFP9;
 				INFOPLIST_FILE = Instush/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
