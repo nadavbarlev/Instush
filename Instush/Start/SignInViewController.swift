@@ -42,12 +42,26 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Actions
     @IBAction func signIn(_ sender: UIButton) {
+        guard let email = textFieldEmail.text, !email.isEmpty else { return }
+        guard let password = textFieldPassword.text, !password.isEmpty else { return }
+        ServiceManager.auth.signIn(withEmail: email, password: password, onSuccess: {
+            self.performSegue(withIdentifier: "signInToMainSegue", sender: nil)
+        }, onError: { (error: Error) in
+            print(error.localizedDescription)
+        })
     }
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dismissKeyboardOnTapAround()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if ServiceManager.auth.isUserSignedIn() {
+            self.performSegue(withIdentifier: "signInToMainSegue", sender: nil)
+        }
     }
     
     // MARK: TextField Methods

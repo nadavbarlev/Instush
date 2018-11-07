@@ -13,7 +13,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SignInViewController" customModule="Instush" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" id="BYZ-38-t0r" customClass="SignInViewController" customModule="Instush" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GradientView" customModule="Instush" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,7 +47,6 @@
                                         </state>
                                         <connections>
                                             <action selector="signIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lI4-Wq-crp"/>
-                                            <segue destination="Bst-pf-WDJ" kind="presentation" id="25L-4p-RSd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -113,6 +112,7 @@
                         <outlet property="buttonSignIn" destination="P6O-o0-oo6" id="RO5-Bf-k9b"/>
                         <outlet property="textFieldEmail" destination="Jw2-wp-fk1" id="TLE-nf-xhg"/>
                         <outlet property="textFieldPassword" destination="E4O-Ez-0VQ" id="noF-DD-PAR"/>
+                        <segue destination="Bst-pf-WDJ" kind="presentation" identifier="signInToMainSegue" id="z57-N3-aKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -138,46 +138,45 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdN-yo-Qlj" userLabel="CenterView">
-                                <rect key="frame" x="0.0" y="176" width="375" height="335"/>
+                                <rect key="frame" x="0.0" y="171" width="375" height="345"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="Ik8-cv-CAG">
-                                        <rect key="frame" x="142.5" y="20" width="90" height="90"/>
+                                        <rect key="frame" x="137.5" y="20" width="100" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="Lly-go-XFk"/>
-                                            <constraint firstAttribute="height" constant="90" id="gg8-XS-AUr"/>
+                                            <constraint firstAttribute="width" constant="100" id="Lly-go-XFk"/>
+                                            <constraint firstAttribute="height" constant="100" id="gg8-XS-AUr"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rjJ-zF-55q">
-                                        <rect key="frame" x="16" y="122" width="343" height="30"/>
+                                        <rect key="frame" x="16" y="132" width="343" height="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GE1-OW-YRb">
-                                        <rect key="frame" x="16" y="162" width="343" height="30"/>
+                                        <rect key="frame" x="16" y="172" width="343" height="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Efs-Fp-Wpt">
-                                        <rect key="frame" x="16" y="202" width="343" height="30"/>
+                                        <rect key="frame" x="16" y="212" width="343" height="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCH-6j-E6l">
-                                        <rect key="frame" x="16" y="282" width="343" height="33"/>
+                                        <rect key="frame" x="16" y="292" width="343" height="33"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="signUp:" destination="Ufr-DB-a5D" eventType="touchUpInside" id="MpM-Lf-ENo"/>
-                                            <segue destination="Bst-pf-WDJ" kind="presentation" id="s00-Eq-ipn"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qwK-ai-2YV">
-                                        <rect key="frame" x="16" y="242" width="343" height="30"/>
+                                        <rect key="frame" x="16" y="252" width="343" height="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -213,7 +212,7 @@
                             <constraint firstItem="LdN-yo-Qlj" firstAttribute="leading" secondItem="b09-cu-fQA" secondAttribute="leading" id="V3t-rY-cvo"/>
                             <constraint firstItem="b09-cu-fQA" firstAttribute="trailing" secondItem="Jbf-IZ-eMh" secondAttribute="trailing" constant="16" id="kTn-1P-6lI"/>
                             <constraint firstItem="b09-cu-fQA" firstAttribute="trailing" secondItem="LdN-yo-Qlj" secondAttribute="trailing" id="ojP-9a-8GB"/>
-                            <constraint firstItem="LdN-yo-Qlj" firstAttribute="centerY" secondItem="b09-cu-fQA" secondAttribute="centerY" id="qK7-Hj-hcg"/>
+                            <constraint firstItem="LdN-yo-Qlj" firstAttribute="centerY" secondItem="b09-cu-fQA" secondAttribute="centerY" priority="750" id="qK7-Hj-hcg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b09-cu-fQA"/>
                         <userDefinedRuntimeAttributes>
@@ -244,6 +243,7 @@
                         <outlet property="textFieldEmail" destination="GE1-OW-YRb" id="JEV-xQ-i2f"/>
                         <outlet property="textFieldPassword" destination="Efs-Fp-Wpt" id="nK7-Vh-xOx"/>
                         <outlet property="textFieldUsername" destination="rjJ-zF-55q" id="BG4-oC-Wpn"/>
+                        <segue destination="Bst-pf-WDJ" kind="presentation" identifier="signUpToMainSegue" id="NiT-c4-QHR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D41-Dt-SgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -263,6 +263,6 @@
         <image name="placeholderImg" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="s00-Eq-ipn"/>
+        <segue reference="z57-N3-aKD"/>
     </inferredMetricsTieBreakers>
 </document>
