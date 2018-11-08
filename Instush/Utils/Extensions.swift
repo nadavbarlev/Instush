@@ -8,8 +8,11 @@
 
 import UIKit
 import Foundation
+import Toast_Swift
 
+// MARK: Keyboard
 extension UIViewController {
+    
     func dismissKeyboardOnTapAround() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tapGestureRecognizer.cancelsTouchesInView = false
@@ -18,5 +21,65 @@ extension UIViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+// MARK: Spinner
+extension UIViewController {
+    
+    func spinnerOn(_ onView: UIView, withText text: String) -> UIView {
+        let viewWithSpinner = UIView.init(frame: onView.bounds)
+        viewWithSpinner.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.7)
+        
+        let activityIndicator = UIActivityIndicatorView.init(style: .whiteLarge)
+        activityIndicator.center = viewWithSpinner.center
+        activityIndicator.startAnimating()
+        
+        let labelMsg = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
+        labelMsg.text = text
+        labelMsg.font = .systemFont(ofSize: 20, weight: .bold)
+        labelMsg.textColor = UIColor(white: 1, alpha: 0.9)
+        labelMsg.center = viewWithSpinner.center
+        labelMsg.translatesAutoresizingMaskIntoConstraints = false
+
+        DispatchQueue.main.async {
+            viewWithSpinner.addSubview(activityIndicator)
+            viewWithSpinner.addSubview(labelMsg)
+            labelMsg.topAnchor.constraint(equalTo: activityIndicator.bottomAnchor, constant: 8.0).isActive = true
+            labelMsg.centerXAnchor.constraint(equalTo: viewWithSpinner.centerXAnchor, constant: 0).isActive = true
+            onView.addSubview(viewWithSpinner)
+        }
+ 
+        return viewWithSpinner
+    }
+    
+    func spinnerOff(_ spinner: UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
+    }
+}
+
+// MARK: Toasts
+extension UIViewController {
+
+    var toastStyle: ToastStyle {
+        var style = ToastStyle()
+        style.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.6)
+        style.messageColor = .white
+        style.messageAlignment = .center
+        return style
+    }
+    
+    func showTopToast(onView view: UIView, withMessage message: String, duration: Double) {
+        view.makeToast(message, duration: duration, position: .top, style: toastStyle)
+    }
+    
+    func showBottomToast(onView view: UIView, withMessage message: String, duration: Double) {
+        view.makeToast(message, duration: duration, position: .bottom, style: toastStyle)
+    }
+    
+    func getDurationBy(messageLength length: Int) -> Double {
+        return Double(length) * 0.035
     }
 }

@@ -85,20 +85,41 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUp(_ sender: UIButton) {
-        guard let username = textFieldUsername.text, !username.isEmpty else { return }
-        guard let email = textFieldEmail.text, !email.isEmpty else { return }
-        guard let password = textFieldPassword.text, !password.isEmpty else { return }
-        guard let confirmPassword = textFieldConfirmPassword.text, !confirmPassword.isEmpty else { return }
-        guard let profileImgData = imgProfile.image?.jpegData(compressionQuality: 0.2) else { return }
-        
+        guard let username = textFieldUsername.text, !username.isEmpty else {
+            self.showTopToast(onView: view, withMessage: "Please enter your username", duration: 1)
+            return
+        }
+        guard let email = textFieldEmail.text, !email.isEmpty else {
+            self.showTopToast(onView: view, withMessage: "Please enter your email address", duration: 1)
+            return
+        }
+        guard let password = textFieldPassword.text, !password.isEmpty else {
+            self.showTopToast(onView: view, withMessage: "Please enter your password", duration: 1)
+            return
+        }
+        guard let confirmPassword = textFieldConfirmPassword.text, !confirmPassword.isEmpty else {
+            self.showTopToast(onView: view, withMessage: "Password does not match the confirm password", duration: 1)
+            return
+        }
+        guard let profileImgData = imgProfile.image?.jpegData(compressionQuality: 0.2) else{
+            self.showTopToast(onView: view, withMessage: "Please choose profile image", duration: 1)
+            return
+        }
         if password != confirmPassword {
-            // TODO: Create PopUp - Unmatch passwords
+            self.showTopToast(onView: view, withMessage: "Password does not match the confirm password", duration: 1)
             return
         }
        
+        let spinnerView = self.spinnerOn(self.view, withText: "Sign Up...")
         ServiceManager.auth.signUp(withEmail: email, password: password, username: username, imageData: profileImgData, onSuccess: {
             self.performSegue(withIdentifier: "signInToMainSegue", sender: nil)
-        }, onError: { (error) in print(error) })
+            self.spinnerOff(spinnerView)
+        }, onError: { (error: Error) in
+            self.spinnerOff(spinnerView)
+            self.showTopToast(onView: self.view, withMessage: error.localizedDescription,
+                              duration: self.getDurationBy(messageLength: error.localizedDescription.count))
+            print(error)
+        })
     }
     
     // MARK: LifeCycle

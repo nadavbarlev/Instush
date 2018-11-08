@@ -42,12 +42,23 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Actions
     @IBAction func signIn(_ sender: UIButton) {
-        guard let email = textFieldEmail.text, !email.isEmpty else { return }
-        guard let password = textFieldPassword.text, !password.isEmpty else { return }
+        guard let email = textFieldEmail.text, !email.isEmpty else {
+            self.showTopToast(onView: view, withMessage: "Please enter your email address", duration: 1)
+            return
+        }
+        guard let password = textFieldPassword.text, !password.isEmpty else {
+            self.showTopToast(onView: view, withMessage: "Please enter your password", duration: 1)
+            return
+        }
+        
+        let spinnerView = self.spinnerOn(self.view, withText:"Sign In...")
         ServiceManager.auth.signIn(withEmail: email, password: password, onSuccess: {
             self.performSegue(withIdentifier: "signInToMainSegue", sender: nil)
+            self.spinnerOff(spinnerView)
         }, onError: { (error: Error) in
-            print(error.localizedDescription)
+            self.spinnerOff(spinnerView)
+            self.showTopToast(onView: self.view, withMessage: error.localizedDescription,
+                              duration: self.getDurationBy(messageLength: error.localizedDescription.count))
         })
     }
     

@@ -10,21 +10,18 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    // MARK: Actions
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        ServiceManager.auth.signOut(onSuccess: {
+            let storyboardStart = UIStoryboard(name: "Start", bundle: nil)
+            let signInVC = storyboardStart.instantiateViewController(withIdentifier: "SignInViewController")
+            self.present(signInVC, animated: true, completion: nil)
+        }, onError: { (error: Error) in
+            print(error.localizedDescription)
+        })
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    */
-
 }
