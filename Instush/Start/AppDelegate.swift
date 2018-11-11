@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // Set the color of all tab bar items to black
-        UITabBar.appearance().tintColor = .black
+        UITabBar.appearance().tintColor = UIColor.purple
         
         return true
     }

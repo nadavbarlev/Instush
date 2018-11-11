@@ -39,6 +39,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             buttonSignIn.layer.borderColor = UIColor.white.cgColor
         }
     }
+    @IBOutlet weak var consScrollViewBottom: NSLayoutConstraint!
     
     // MARK: Actions
     @IBAction func signIn(_ sender: UIButton) {
@@ -68,6 +69,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         self.dismissKeyboardOnTapAround()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.registerKeyboardNotifications(willShowSelector: #selector(keyboardWillShow),
+                                           willHideSelector: #selector(keyboardWillHide))
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if ServiceManager.auth.isUserSignedIn() {
@@ -84,5 +90,24 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return false
     }
+}
 
+// MARK: Extension - Keyboard Events
+extension SignInViewController {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        guard let keyboardHeight = keyboardFrame?.cgRectValue.height else { return }
+        UIView.animate(withDuration: 0.3, animations: {
+            self.consScrollViewBottom.constant = keyboardHeight - 60
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.consScrollViewBottom.constant = 0
+            self.view.layoutIfNeeded()
+        })
+    }
 }

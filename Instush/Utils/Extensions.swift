@@ -22,6 +22,18 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+
+    func registerKeyboardNotifications(willShowSelector: Selector, willHideSelector: Selector)
+    {
+        NotificationCenter.default.addObserver(self, selector: willShowSelector, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: willHideSelector, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func unregisterKeyboardNotifications()
+    {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
 }
 
 // MARK: Spinner
@@ -37,7 +49,7 @@ extension UIViewController {
         
         let labelMsg = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
         labelMsg.text = text
-        labelMsg.font = .systemFont(ofSize: 20, weight: .bold)
+        labelMsg.font = .systemFont(ofSize: 20, weight: .medium)
         labelMsg.textColor = UIColor(white: 1, alpha: 0.9)
         labelMsg.center = viewWithSpinner.center
         labelMsg.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +92,6 @@ extension UIViewController {
     }
     
     func getDurationBy(messageLength length: Int) -> Double {
-        return Double(length) * 0.035
+        return Double(length) * 0.04
     }
 }

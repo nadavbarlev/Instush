@@ -44,17 +44,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBOutlet weak var textFieldConfirmPassword: UITextField! {
-        didSet {
-            textFieldConfirmPassword.delegate = self
-            textFieldConfirmPassword.backgroundColor = UIColor(white: 1, alpha: 0.2)
-            guard let textPlaceHolder = textFieldConfirmPassword.placeholder else { return }
-            textFieldConfirmPassword.attributedPlaceholder =
-                            NSAttributedString(string: textPlaceHolder,
-                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        }
-    }
-    
     @IBOutlet weak var buttonSignUp: UIButton! {
         didSet {
             buttonSignUp.backgroundColor = .clear 
@@ -68,7 +57,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         didSet{
             imgProfile.layer.borderWidth = 1.5
             imgProfile.layer.masksToBounds = false
-            imgProfile.layer.borderColor = UIColor.white.cgColor
+            imgProfile.layer.borderColor = UIColor.lightGray.cgColor
             imgProfile.layer.cornerRadius = imgProfile.frame.height/2
             imgProfile.clipsToBounds = true
  
@@ -78,6 +67,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             imgProfile.isUserInteractionEnabled = true
         }
     }
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var buttonHaveAccount: UIButton!
+    @IBOutlet weak var consScrollViewBottom: NSLayoutConstraint!
     
     // MARK: Actions
     @IBAction func haveAccount(_ sender: UIButton) {
@@ -97,16 +89,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             self.showTopToast(onView: view, withMessage: "Please enter your password", duration: 1)
             return
         }
-        guard let confirmPassword = textFieldConfirmPassword.text, !confirmPassword.isEmpty else {
-            self.showTopToast(onView: view, withMessage: "Password does not match the confirm password", duration: 1)
-            return
-        }
         guard let profileImgData = imgProfile.image?.jpegData(compressionQuality: 0.2) else{
             self.showTopToast(onView: view, withMessage: "Please choose profile image", duration: 1)
-            return
-        }
-        if password != confirmPassword {
-            self.showTopToast(onView: view, withMessage: "Password does not match the confirm password", duration: 1)
             return
         }
        
@@ -128,6 +112,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.dismissKeyboardOnTapAround()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.registerKeyboardNotifications(willShowSelector: #selector(keyboardWillShow),
+                                           willHideSelector: #selector(keyboardWillHide))
+    }
+    
     // MARK: TextField Methods
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
@@ -135,8 +124,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
            textFieldEmail.becomeFirstResponder()
         case textFieldEmail:
             textFieldPassword.becomeFirstResponder()
-        case textFieldPassword:
-            textFieldConfirmPassword.becomeFirstResponder()
         default:
             textField.resignFirstResponder()
         }
@@ -144,7 +131,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-// MARK: Extension for Choose Image Profile
+// MARK: Extension - Image Picker
 extension SignUpViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @objc func onProfileImageClicked() {
@@ -158,5 +145,25 @@ extension SignUpViewController : UIImagePickerControllerDelegate, UINavigationCo
             imgProfile.image = imgProfileSelected
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: Extension - Keyboard Events
+extension SignUpViewController {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        guard let keyboardHeight = keyboardFrame?.cgRectValue.height else { return }
+        UIView.animate(withDuration: 0.3, animations: {
+            self.consScrollViewBottom.constant = keyboardHeight - 30
+            self.view.layoutIfNeeded()
+        })
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.consScrollViewBottom.constant = 0
+            self.view.layoutIfNeeded()
+        })
     }
 }
