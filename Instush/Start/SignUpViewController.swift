@@ -62,9 +62,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             imgProfile.clipsToBounds = true
  
             // Enable onClick on imageView
-            let tapGestureImgProfile = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.onProfileImageClicked))
-            imgProfile.addGestureRecognizer(tapGestureImgProfile)
-            imgProfile.isUserInteractionEnabled = true
+            imgProfile.onClick(target: self,
+                               action: #selector(SignUpViewController.onProfileImageClicked))
         }
     }
     @IBOutlet weak var scrollView: UIScrollView!
@@ -89,14 +88,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             self.showTopToast(onView: view, withMessage: "Please enter your password", duration: 1)
             return
         }
-        guard let profileImgData = imgProfile.image?.jpegData(compressionQuality: 0.2) else{
+        guard let profileImgData = imgProfile.image?.jpegData(compressionQuality: 0.2) else {
             self.showTopToast(onView: view, withMessage: "Please choose profile image", duration: 1)
             return
         }
        
         let spinnerView = self.spinnerOn(self.view, withText: "Sign Up...")
         ServiceManager.auth.signUp(withEmail: email, password: password, username: username, imageData: profileImgData, onSuccess: {
-            self.performSegue(withIdentifier: "signInToMainSegue", sender: nil)
+            self.performSegue(withIdentifier: "signUpToMainSegue", sender: nil)
             self.spinnerOff(spinnerView)
         }, onError: { (error: Error) in
             self.spinnerOff(spinnerView)
@@ -131,7 +130,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-// MARK: Extension - Image Picker
+// MARK: Extension - Image Picker Events
 extension SignUpViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @objc func onProfileImageClicked() {

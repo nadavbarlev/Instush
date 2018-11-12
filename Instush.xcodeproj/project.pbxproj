@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051BCEB821997CE400820B93 /* UIImageViewExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCEB721997CE400820B93 /* UIImageViewExtenstions.swift */; };
 		0526F5E3218F15F10028F1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E2218F15F10028F1D9 /* AppDelegate.swift */; };
 		0526F5E8218F15F10028F1D9 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F5E6218F15F10028F1D9 /* Start.storyboard */; };
 		0526F5EB218F15F10028F1D9 /* Instush.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E9218F15F10028F1D9 /* Instush.xcdatamodeld */; };
@@ -26,7 +27,7 @@
 		0526F613219062D20028F1D9 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F611219062D20028F1D9 /* Camera.storyboard */; };
 		0526F615219062E60028F1D9 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F614219062E60028F1D9 /* Activity.storyboard */; };
 		0526F618219062F90028F1D9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F616219062F90028F1D9 /* Profile.storyboard */; };
-		0526F622219090620028F1D9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F621219090620028F1D9 /* Extensions.swift */; };
+		0526F622219090620028F1D9 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F621219090620028F1D9 /* UIViewControllerExtensions.swift */; };
 		058BCAC32191B11000FACA3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 058BCAC22191B10F00FACA3F /* GoogleService-Info.plist */; };
 		058BCAC52192E84B00FACA3F /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BCAC42192E84B00FACA3F /* ServiceManager.swift */; };
 		058BCAC72192F86300FACA3F /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BCAC62192F86300FACA3F /* FirebaseManager.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		038301CAC50DD33DCC813FE4 /* Pods_Instush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instush.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		051BCEB721997CE400820B93 /* UIImageViewExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtenstions.swift; sourceTree = "<group>"; };
 		0526F5DF218F15F10028F1D9 /* Instush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0526F5E2218F15F10028F1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0526F5E7218F15F10028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
@@ -56,7 +58,7 @@
 		0526F612219062D20028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instush/Instush/Base.lproj/Camera.storyboard; sourceTree = "<group>"; };
 		0526F614219062E60028F1D9 /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		0526F617219062F90028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instush/Instush/Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
-		0526F621219090620028F1D9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0526F621219090620028F1D9 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		058BCAC22191B10F00FACA3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		058BCAC42192E84B00FACA3F /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		058BCAC62192F86300FACA3F /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -76,6 +78,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		051BCEB421997C6900820B93 /* Extenstions */ = {
+			isa = PBXGroup;
+			children = (
+				0526F621219090620028F1D9 /* UIViewControllerExtensions.swift */,
+				051BCEB721997CE400820B93 /* UIImageViewExtenstions.swift */,
+			);
+			path = Extenstions;
+			sourceTree = "<group>";
+		};
 		0526F5D6218F15F10028F1D9 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +108,7 @@
 		0526F5E1218F15F10028F1D9 /* Instush */ = {
 			isa = PBXGroup;
 			children = (
+				051BCEB421997C6900820B93 /* Extenstions */,
 				0526F620219065D00028F1D9 /* Utils */,
 				0526F61A2190637D0028F1D9 /* Home */,
 				0526F61F2190640A0028F1D9 /* Camera */,
@@ -174,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				0526F5F9218F2BFA0028F1D9 /* GradientView.swift */,
-				0526F621219090620028F1D9 /* Extensions.swift */,
 				058BCAC42192E84B00FACA3F /* ServiceManager.swift */,
 				058BCAC62192F86300FACA3F /* FirebaseManager.swift */,
 			);
@@ -344,7 +355,8 @@
 				0526F5F8218F29B50028F1D9 /* SignInViewController.swift in Sources */,
 				0526F60221904E860028F1D9 /* HomeViewController.swift in Sources */,
 				0526F5FE218F3E100028F1D9 /* SignUpViewController.swift in Sources */,
-				0526F622219090620028F1D9 /* Extensions.swift in Sources */,
+				051BCEB821997CE400820B93 /* UIImageViewExtenstions.swift in Sources */,
+				0526F622219090620028F1D9 /* UIViewControllerExtensions.swift in Sources */,
 				0526F60621904EB60028F1D9 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

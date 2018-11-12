@@ -16,6 +16,7 @@ class ServiceManager {
 
 // MARK: Protocols
 protocol AuthService {
+    func getUserID() -> String?
     func isUserSignedIn() -> Bool
     func signIn(withEmail email: String, password: String, onSuccess:(()->(Void))?, onError:((Error)->(Void))?)
     func signUp(withEmail email: String, password: String, username: String, imageData: Data, onSuccess:(()->(Void))?, onError:((Error)->(Void))?)
@@ -23,10 +24,11 @@ protocol AuthService {
 }
 
 protocol DatabaseService {
-    func setValue(for userID: String, path: String, data: [String:String]) 
+    func getUniqueId(forPath path: String) -> String?
+    func setValue(path: String, dataID: String, data: [String:String], completion: @escaping (Error?)->Void)
 }
 
 protocol StorageService {
-    func save(for userID: String, path: String, data: Data, onSuccess: ((URL)->(Void))?, onError: ((Error)->(Void))?)
+    func save(path: String, dataID: String, data: Data, onSuccess: ((URL)->(Void))?, onError: ((Error)->(Void))?)
 }
 

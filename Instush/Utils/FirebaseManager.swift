@@ -13,6 +13,10 @@ import FirebaseAuth
 
 class FirebaseAuthService : AuthService {
     
+    func getUserID() -> String? {
+        return Auth.auth().currentUser?.uid
+    }
+    
     func isUserSignedIn() -> Bool {
         if Auth.auth().currentUser != nil { return true }
         return false
@@ -43,12 +47,15 @@ class FirebaseAuthService : AuthService {
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if error != nil { onError?(error!); return }
             guard let userID = authResult?.user.uid else { return }
-            ServiceManager.storage.save(for: userID, path: "profile_images", data: imageData, onSuccess: { (url:URL) in
+            ServiceManager.storage.save(path: "profile_images", dataID: userID, data: imageData,
+            onSuccess: { (url:URL) in
                 let dataToSave = ["username": username, "email": email, "profileImagePath": url.absoluteString]
-                ServiceManager.database.setValue(for: userID, path: "users", data: dataToSave)
-                onSuccess?()
-            }, onError: { (error) in
-                print(error)
+                ServiceManager.database.setValue(path: "users", dataID: userID, data: dataToSave) { (error) in
+                    if error != nil { onError?(error!); return }
+                     onSuccess?()}
+            },
+            onError: { (error) in
+                onError?(error)
             })
         }
     }
@@ -59,9 +66,15 @@ class FirebaseDatabaseService: DatabaseService {
     // MARK: Properties
     let dbRef = Database.database().reference()
     
-    func setValue(for userID: String, path: String, data: [String:String]) {
-        let fullPathDatabaseRef = dbRef.child(path).child(userID)
-        fullPathDatabaseRef.setValue(data)
+    func setValue(path: String, dataID: String, data: [String:String], completion: @escaping (Error?)->Void) {
+        let fullPathDatabaseRef = dbRef.child(path).child(dataID)
+        fullPathDatabaseRef.setValue(data) { (error, dbRef) in
+            completion(error)
+        }
+    }
+    
+    func getUniqueId(forPath path: String) -> String? {
+        return dbRef.child(path).childByAutoId().key
     }
 }
 
@@ -71,8 +84,8 @@ class FirebaseStorageService: StorageService {
     let storageRef = Storage.storage().reference()
    
     // MARK: Methods
-    func save(for userID: String, path: String, data: Data, onSuccess: ((URL)->(Void))?, onError: ((Error)->(Void))?) {
-        let fullPathStorageRef = storageRef.child(path).child(userID)
+    func save(path: String, dataID: String, data: Data, onSuccess: ((URL)->(Void))?, onError: ((Error)->(Void))?) {
+        let fullPathStorageRef = storageRef.child(path).child(dataID)
         fullPathStorageRef.putData(data, metadata: nil) { (metadata: StorageMetadata?, error: Error?) in
             if error != nil { onError?(error!); return }
             fullPathStorageRef.downloadURL { (url: URL?, error: Error?) in

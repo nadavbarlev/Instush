@@ -164,7 +164,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdN-yo-Qlj" userLabel="CenterView">
                                                 <rect key="frame" x="0.0" y="170.5" width="375" height="285"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="Ik8-cv-CAG">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder-ProfileImg" translatesAutoresizingMaskIntoConstraints="NO" id="Ik8-cv-CAG">
                                                         <rect key="frame" x="137.5" y="20" width="100" height="100"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="Lly-go-XFk"/>
@@ -296,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D41-Dt-SgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1644" y="150.67466266866569"/>
+            <point key="canvasLocation" x="-1658" y="151"/>
         </scene>
         <!--Main-->
         <scene sceneID="fJ0-uC-b9g">
@@ -308,7 +308,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="placeholderImg" width="48" height="48"/>
+        <image name="Placeholder-ProfileImg" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NiT-c4-QHR"/>

@@ -21,7 +21,7 @@
                         <viewLayoutGuide key="safeArea" id="4eT-ET-q4F"/>
                     </view>
                     <navigationItem key="navigationItem" title="Instush" id="Y3z-ys-Ock">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" style="plain" id="8Uu-NC-bA2">
+                        <barButtonItem key="leftBarButtonItem" title="ToDo" style="plain" id="8Uu-NC-bA2">
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <action selector="logout:" destination="V4E-bO-gnB" id="thU-nj-JOb"/>
