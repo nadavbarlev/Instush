@@ -69,6 +69,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
   - Toast-Swift (4.0.0)
 
 DEPENDENCIES:
@@ -76,6 +79,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - SDWebImage (~> 4.0)
   - Toast-Swift (~> 4.0.0)
 
 SPEC REPOS:
@@ -93,6 +97,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - SDWebImage
     - Toast-Swift
 
 SPEC CHECKSUMS:
@@ -109,8 +114,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
 
-PODFILE CHECKSUM: 30fe6c4b61d2f30f1e0d49c3b0c96935b6a184d4
+PODFILE CHECKSUM: 2c3436ea03d24de210f31889d4a85353c330d996
 
 COCOAPODS: 1.5.3

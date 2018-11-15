@@ -13,6 +13,14 @@ extension UIImageView {
     
     func onClick(target: Any?, action: Selector?) {
         let tapGestureImg = UITapGestureRecognizer(target: target, action: action)
+        tapGestureImg.numberOfTapsRequired = 1
+        self.addGestureRecognizer(tapGestureImg)
+        self.isUserInteractionEnabled = true
+    }
+    
+    func onDoubleClick(target: Any?, action: Selector?) {
+        let tapGestureImg = UITapGestureRecognizer(target: target, action: action)
+        tapGestureImg.numberOfTapsRequired = 2
         self.addGestureRecognizer(tapGestureImg)
         self.isUserInteractionEnabled = true
     }
