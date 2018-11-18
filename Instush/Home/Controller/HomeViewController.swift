@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
    
     // MARK: Actions
     @IBAction func logout(_ sender: UIBarButtonItem) {
+        /*
         ServiceManager.auth.signOut(onSuccess: {
             let storyboardStart = UIStoryboard(name: "Start", bundle: nil)
             let signInVC = storyboardStart.instantiateViewController(withIdentifier: "SignInViewController")
@@ -33,14 +34,18 @@ class HomeViewController: UIViewController {
         }, onError: { (error: Error) in
             print(error.localizedDescription)
         })
+ */
+        // self.performSegue(withIdentifier: "HomeToCommentsSegue", sender: nil)
     }
     
-    // MARK: LifrCycle
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        indicatorView.startAnimating()
         
-        // Gets all Posts and corresponding Users
+        /* Start indicator (appears just on animation) */
+        indicatorView.startAnimating()
+
+        /* Gets all Posts and corresponding Users */
         PostService.shared.listener { [weak self] (newPost: Post) in
             UserService.shared.getUser(by: newPost.userID) { [weak self] (user: User) in
                 self?.users.append(user)
@@ -48,6 +53,20 @@ class HomeViewController: UIViewController {
                 self?.indicatorView.stopAnimating()
                 self?.tableViewPosts.reloadData()
             }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "HomeToCommentsSegue" {
+            guard let postID = sender as? String else { return }
+            guard let commentsVC = segue.destination as? CommentsViewController else { return }
+            commentsVC.currentPostID = postID
         }
     }
 }
@@ -63,6 +82,8 @@ extension HomeViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
         let postViewModel = PostViewModel(post: posts[indexPath.row], user: users[indexPath.row])
         cell.updateUI(with: postViewModel)
+        cell.postID = posts[indexPath.row].postID
+        cell.homeVC = self
         return cell
     }
 }

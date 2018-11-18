@@ -83,11 +83,15 @@ extension UIViewController {
         return style
     }
     
-    func showTopToast(onView view: UIView, withMessage message: String, duration: Double) {
+    func showTopToast(onView view: UIView, withMessage message: String) {
+        let estimatedDuration = getDurationBy(messageLength: message.count)
+        let duration = estimatedDuration > 1.0 ? estimatedDuration : 1.0
         view.makeToast(message, duration: duration, position: .top, style: toastStyle)
     }
     
-    func showBottomToast(onView view: UIView, withMessage message: String, duration: Double) {
+    func showBottomToast(onView view: UIView, withMessage message: String) {
+        let estimatedDuration = getDurationBy(messageLength: message.count)
+        let duration = estimatedDuration > 1.0 ? estimatedDuration : 1.0
         view.makeToast(message, duration: duration, position: .bottom, style: toastStyle)
     }
     

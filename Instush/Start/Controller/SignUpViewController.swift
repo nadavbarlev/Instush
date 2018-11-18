@@ -77,19 +77,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func signUp(_ sender: UIButton) {
         guard let username = textFieldUsername.text, !username.isEmpty else {
-            self.showTopToast(onView: view, withMessage: "Please enter your username", duration: 1)
+            self.showTopToast(onView: view, withMessage: "Please enter your username")
             return
         }
         guard let email = textFieldEmail.text, !email.isEmpty else {
-            self.showTopToast(onView: view, withMessage: "Please enter your email address", duration: 1)
+            self.showTopToast(onView: view, withMessage: "Please enter your email address")
             return
         }
         guard let password = textFieldPassword.text, !password.isEmpty else {
-            self.showTopToast(onView: view, withMessage: "Please enter your password", duration: 1)
+            self.showTopToast(onView: view, withMessage: "Please enter your password")
             return
         }
         guard let profileImgData = imgProfile.image?.jpegData(compressionQuality: 0.2) else {
-            self.showTopToast(onView: view, withMessage: "Please choose profile image", duration: 1)
+            self.showTopToast(onView: view, withMessage: "Please choose profile image")
             return
         }
        
@@ -99,8 +99,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             self.spinnerOff(spinnerView)
         }, onError: { (error: Error) in
             self.spinnerOff(spinnerView)
-            self.showTopToast(onView: self.view, withMessage: error.localizedDescription,
-                              duration: self.getDurationBy(messageLength: error.localizedDescription.count))
+            self.showTopToast(onView: self.view, withMessage: error.localizedDescription)
             print(error)
         })
     }
@@ -112,8 +111,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.registerKeyboardNotifications(willShowSelector: #selector(keyboardWillShow),
                                            willHideSelector: #selector(keyboardWillHide))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.unregisterKeyboardNotifications()
     }
     
     // MARK: TextField Methods

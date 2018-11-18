@@ -32,58 +32,40 @@ class CameraViewController: UIViewController {
         
         /* Some Validations */
         guard let uploadImg = imageView.image, uploadImg != UIImage(named: "Placeholder-UplaodImg") else {
-            self.showBottomToast(onView: view, withMessage: "Please choose image to share", duration: 1)
+            self.showBottomToast(onView: view, withMessage: "Please choose image to share")
             return
         }
         guard let caption = textViewCaption.text, caption != placeholderCaption else {
-            self.showBottomToast(onView: view, withMessage: "Please write a caption", duration: 1)
+            self.showBottomToast(onView: view, withMessage: "Please write a caption")
             return
         }
         guard let uploadImgData = uploadImg.jpegData(compressionQuality: 0.2) else {
             let errorMsg = "An error has occurred. Please try again"
-            self.showBottomToast(onView: view, withMessage: errorMsg, duration: getDurationBy(messageLength: errorMsg.count))
+            self.showBottomToast(onView: view, withMessage: errorMsg)
             return
         }
-        guard let userID = ServiceManager.auth.getUserID() else {
+        guard let userID = UserService.shared.getCurrentUserID() else {
             let errorMsg = "An error has occurred. Please Sign out and Sign in again"
-            self.showBottomToast(onView: view, withMessage: errorMsg, duration: getDurationBy(messageLength: errorMsg.count))
+            self.showBottomToast(onView: view, withMessage: errorMsg)
             return
         }
         
         let spinnerView = self.spinnerOn(self.view, withText: "Sharing...")
         let photoID = NSUUID().uuidString
-        ServiceManager.storage.save(path: "posts", dataID: photoID, data: uploadImgData, onSuccess: { (imgUrl:URL) in
-            
-            /* Case: Storage - Sucesses */
-            let dataToSave = ["photoURL": imgUrl.absoluteString, "caption": caption, "userID": userID]
-            guard let postID = ServiceManager.database.getUniqueId(forPath: "posts") else { return }
-            ServiceManager.database.setValue(path: "posts", dataID: postID, data: dataToSave) { (error: Error?) in
-                
-                /* Case: Storgae - Sucesses, Database - Sucesses */
-                guard let errorMsg = error?.localizedDescription else {
-                    self.spinnerOff(spinnerView)
-                    self.showBottomToast(onView: self.view, withMessage: "Post shared successfully", duration: 1.0)
-                    self.setDefaultComponentsValue()
-                    return
-                }
-                
-                /* Case: Storgae - Sucesses, Database - Failed */
-                self.spinnerOff(spinnerView)
-                self.showBottomToast(onView: self.view, withMessage: errorMsg, duration: self.getDurationBy(messageLength: errorMsg.count))
-            }
-            
-        /* Case: Storage - Failed */
-        }, onError: { (error: Error) in
-            let errorMsg = error.localizedDescription
+        
+        PostService.shared.sharePost(imgPostID: photoID, imgPostData: uploadImgData, userID: userID, caption: caption, onSuccess: {
             self.spinnerOff(spinnerView)
-            self.showBottomToast(onView: self.view, withMessage: errorMsg, duration: self.getDurationBy(messageLength: errorMsg.count))
+            self.showBottomToast(onView: self.view, withMessage: "Post shared successfully")
+            self.setDefaultComponentsValue()
+        }, onError: { (errorMsg: String) in
+            self.spinnerOff(spinnerView)
+            self.showBottomToast(onView: self.view, withMessage: errorMsg)
         })
     }
     
     @IBAction func clearUI(_ sender: UIBarButtonItem) {
         self.setDefaultComponentsValue()
     }
-    
     
     // MARK: LifeCycle
     override func viewDidLoad() {

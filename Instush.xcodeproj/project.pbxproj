@@ -39,6 +39,11 @@
 		05B74791219D79D9000FC9F7 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B74790219D79D9000FC9F7 /* FirebaseAuthService.swift */; };
 		05B74794219D7A33000FC9F7 /* FirebaseDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B74793219D7A33000FC9F7 /* FirebaseDatabaseService.swift */; };
 		05B74796219D7A6A000FC9F7 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B74795219D7A6A000FC9F7 /* FirebaseStorageService.swift */; };
+		05B74798219D93AB000FC9F7 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B74797219D93AB000FC9F7 /* CommentsViewController.swift */; };
+		05B7479A219D93CB000FC9F7 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B74799219D93CB000FC9F7 /* CommentTableViewCell.swift */; };
+		05B7479C219DA0DF000FC9F7 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B7479B219DA0DF000FC9F7 /* CommentService.swift */; };
+		05B7479E219E1DE2000FC9F7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B7479D219E1DE2000FC9F7 /* Comment.swift */; };
+		05B747A0219EC759000FC9F7 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B7479F219EC759000FC9F7 /* CommentViewModel.swift */; };
 		BF36150566A49BED32C4ECD9 /* Pods_Instush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038301CAC50DD33DCC813FE4 /* Pods_Instush.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +83,11 @@
 		05B74790219D79D9000FC9F7 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		05B74793219D7A33000FC9F7 /* FirebaseDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseService.swift; sourceTree = "<group>"; };
 		05B74795219D7A6A000FC9F7 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
+		05B74797219D93AB000FC9F7 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		05B74799219D93CB000FC9F7 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		05B7479B219DA0DF000FC9F7 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		05B7479D219E1DE2000FC9F7 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		05B7479F219EC759000FC9F7 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		8FF334CC0820913C9A7B6019 /* Pods-Instush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instush.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instush/Pods-Instush.debug.xcconfig"; sourceTree = "<group>"; };
 		CFACE21F0ACB44FCBFA5EF6E /* Pods-Instush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instush.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instush/Pods-Instush.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,8 +134,9 @@
 		0526F5E1218F15F10028F1D9 /* Instush */ = {
 			isa = PBXGroup;
 			children = (
-				051BCEB421997C6900820B93 /* Extenstions */,
 				0526F620219065D00028F1D9 /* Utils */,
+				05B747822199D389000FC9F7 /* Model */,
+				051BCEB421997C6900820B93 /* Extenstions */,
 				0526F61A2190637D0028F1D9 /* Home */,
 				0526F61F2190640A0028F1D9 /* Camera */,
 				0526F61E219063F70028F1D9 /* Search */,
@@ -143,7 +154,7 @@
 		0526F61A2190637D0028F1D9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				05B747822199D389000FC9F7 /* Model */,
+				05B747A321A16D2B000FC9F7 /* Model */,
 				05B747812199D37E000FC9F7 /* Controller */,
 				05B747802199D378000FC9F7 /* View */,
 			);
@@ -153,12 +164,8 @@
 		0526F61B219063950028F1D9 /* Start */ = {
 			isa = PBXGroup;
 			children = (
-				0526F5E2218F15F10028F1D9 /* AppDelegate.swift */,
-				0526F5F7218F29B50028F1D9 /* SignInViewController.swift */,
-				0526F5FD218F3E100028F1D9 /* SignUpViewController.swift */,
-				0526F5E6218F15F10028F1D9 /* Start.storyboard */,
-				0526F60921905FAA0028F1D9 /* Main.storyboard */,
-				0526F5EE218F15F10028F1D9 /* LaunchScreen.storyboard */,
+				05B747A221A16CC7000FC9F7 /* View */,
+				05B747A121A16CB0000FC9F7 /* Controller */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -166,8 +173,8 @@
 		0526F61C219063BD0028F1D9 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				0526F60721904EC20028F1D9 /* ProfileViewController.swift */,
-				0526F616219062F90028F1D9 /* Profile.storyboard */,
+				05B747A721A17133000FC9F7 /* View */,
+				05B747A621A17125000FC9F7 /* Controller */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -175,8 +182,8 @@
 		0526F61D219063DE0028F1D9 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
-				0526F614219062E60028F1D9 /* Activity.storyboard */,
-				0526F60321904E910028F1D9 /* ActivityViewController.swift */,
+				05B747A921A17146000FC9F7 /* Controller */,
+				05B747A821A1713E000FC9F7 /* View */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -184,8 +191,8 @@
 		0526F61E219063F70028F1D9 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				0526F5FF21904E700028F1D9 /* SearchViewController.swift */,
-				0526F60F219062C40028F1D9 /* Search.storyboard */,
+				05B747AB21A1715F000FC9F7 /* View */,
+				05B747AA21A17155000FC9F7 /* Controller */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -193,8 +200,8 @@
 		0526F61F2190640A0028F1D9 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				0526F60521904EB60028F1D9 /* CameraViewController.swift */,
-				0526F611219062D20028F1D9 /* Camera.storyboard */,
+				05B747A521A17105000FC9F7 /* View */,
+				05B747A421A170F9000FC9F7 /* Controller */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -202,9 +209,9 @@
 		0526F620219065D00028F1D9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				05B7478F219D79AC000FC9F7 /* FirebaseManager */,
 				0526F5F9218F2BFA0028F1D9 /* GradientView.swift */,
 				058BCAC42192E84B00FACA3F /* ServiceManager.swift */,
+				05B7478F219D79AC000FC9F7 /* FirebaseManager */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -222,6 +229,8 @@
 			children = (
 				0526F60121904E860028F1D9 /* HomeViewController.swift */,
 				05B74787219AE6CC000FC9F7 /* PostTableViewCell.swift */,
+				05B74797219D93AB000FC9F7 /* CommentsViewController.swift */,
+				05B74799219D93CB000FC9F7 /* CommentTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -230,10 +239,11 @@
 			isa = PBXGroup;
 			children = (
 				05B7477E2199D269000FC9F7 /* Post.swift */,
-				05B74785219AD05C000FC9F7 /* PostService.swift */,
 				05B74789219B17DD000FC9F7 /* User.swift */,
+				05B7479D219E1DE2000FC9F7 /* Comment.swift */,
+				05B74785219AD05C000FC9F7 /* PostService.swift */,
 				05B7478B219B1D3F000FC9F7 /* UserService.swift */,
-				05B7478D219B24DE000FC9F7 /* PostViewModel.swift */,
+				05B7479B219DA0DF000FC9F7 /* CommentService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -246,6 +256,99 @@
 				05B74795219D7A6A000FC9F7 /* FirebaseStorageService.swift */,
 			);
 			path = FirebaseManager;
+			sourceTree = "<group>";
+		};
+		05B747A121A16CB0000FC9F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0526F5E2218F15F10028F1D9 /* AppDelegate.swift */,
+				0526F5FD218F3E100028F1D9 /* SignUpViewController.swift */,
+				0526F5F7218F29B50028F1D9 /* SignInViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		05B747A221A16CC7000FC9F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0526F60921905FAA0028F1D9 /* Main.storyboard */,
+				0526F5E6218F15F10028F1D9 /* Start.storyboard */,
+				0526F5EE218F15F10028F1D9 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		05B747A321A16D2B000FC9F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				05B7478D219B24DE000FC9F7 /* PostViewModel.swift */,
+				05B7479F219EC759000FC9F7 /* CommentViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		05B747A421A170F9000FC9F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0526F60521904EB60028F1D9 /* CameraViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		05B747A521A17105000FC9F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0526F611219062D20028F1D9 /* Camera.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		05B747A621A17125000FC9F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0526F60721904EC20028F1D9 /* ProfileViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		05B747A721A17133000FC9F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0526F616219062F90028F1D9 /* Profile.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		05B747A821A1713E000FC9F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0526F614219062E60028F1D9 /* Activity.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		05B747A921A17146000FC9F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0526F60321904E910028F1D9 /* ActivityViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		05B747AA21A17155000FC9F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0526F5FF21904E700028F1D9 /* SearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		05B747AB21A1715F000FC9F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0526F60F219062C40028F1D9 /* Search.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		80D4463829BC4CFE432435AA /* Frameworks */ = {
@@ -410,16 +513,21 @@
 				0526F5E3218F15F10028F1D9 /* AppDelegate.swift in Sources */,
 				0526F60821904EC20028F1D9 /* ProfileViewController.swift in Sources */,
 				0526F5EB218F15F10028F1D9 /* Instush.xcdatamodeld in Sources */,
+				05B7479C219DA0DF000FC9F7 /* CommentService.swift in Sources */,
 				0526F60421904E910028F1D9 /* ActivityViewController.swift in Sources */,
 				0526F5FA218F2BFA0028F1D9 /* GradientView.swift in Sources */,
 				05B74786219AD05C000FC9F7 /* PostService.swift in Sources */,
 				0526F5F8218F29B50028F1D9 /* SignInViewController.swift in Sources */,
 				05B7477F2199D269000FC9F7 /* Post.swift in Sources */,
 				05B74791219D79D9000FC9F7 /* FirebaseAuthService.swift in Sources */,
+				05B74798219D93AB000FC9F7 /* CommentsViewController.swift in Sources */,
 				0526F60221904E860028F1D9 /* HomeViewController.swift in Sources */,
 				05B74794219D7A33000FC9F7 /* FirebaseDatabaseService.swift in Sources */,
+				05B747A0219EC759000FC9F7 /* CommentViewModel.swift in Sources */,
 				05B7478C219B1D3F000FC9F7 /* UserService.swift in Sources */,
 				0526F5FE218F3E100028F1D9 /* SignUpViewController.swift in Sources */,
+				05B7479A219D93CB000FC9F7 /* CommentTableViewCell.swift in Sources */,
+				05B7479E219E1DE2000FC9F7 /* Comment.swift in Sources */,
 				05B7478A219B17DD000FC9F7 /* User.swift in Sources */,
 				051BCEB821997CE400820B93 /* UIImageViewExtenstions.swift in Sources */,
 				0526F622219090620028F1D9 /* UIViewControllerExtensions.swift in Sources */,

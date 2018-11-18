@@ -44,11 +44,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     // MARK: Actions
     @IBAction func signIn(_ sender: UIButton) {
         guard let email = textFieldEmail.text, !email.isEmpty else {
-            self.showTopToast(onView: view, withMessage: "Please enter your email address", duration: 1)
+            self.showTopToast(onView: view, withMessage: "Please enter your email address")
             return
         }
         guard let password = textFieldPassword.text, !password.isEmpty else {
-            self.showTopToast(onView: view, withMessage: "Please enter your password", duration: 1)
+            self.showTopToast(onView: view, withMessage: "Please enter your password")
             return
         }
         
@@ -58,8 +58,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             self.spinnerOff(spinnerView)
         }, onError: { (error: Error) in
             self.spinnerOff(spinnerView)
-            self.showTopToast(onView: self.view, withMessage: error.localizedDescription,
-                              duration: self.getDurationBy(messageLength: error.localizedDescription.count))
+            self.showTopToast(onView: self.view, withMessage: error.localizedDescription)
         })
     }
     
@@ -70,6 +69,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.registerKeyboardNotifications(willShowSelector: #selector(keyboardWillShow),
                                            willHideSelector: #selector(keyboardWillHide))
     }
@@ -79,6 +79,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         if ServiceManager.auth.isUserSignedIn() {
             self.performSegue(withIdentifier: "signInToMainSegue", sender: nil)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.unregisterKeyboardNotifications()
     }
     
     // MARK: TextField Methods

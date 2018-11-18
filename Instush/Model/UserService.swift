@@ -17,6 +17,10 @@ class UserService {
     private init() {}
     
     // MARK: Methods
+    func getCurrentUserID() -> String? {
+        return ServiceManager.auth.getUserID()
+    }
+    
     func getUser(by id: String, completion: @escaping (User)->Void) {
         ServiceManager.database.getValue(path: "users/" + id) { (data: Dictionary<String, Any>?) in
             guard let dicUser = data else { return }

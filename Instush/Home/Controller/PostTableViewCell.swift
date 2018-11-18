@@ -11,9 +11,12 @@ import SDWebImage
 
 class PostTableViewCell: UITableViewCell {
 
+    // MARK: Properties
+    var homeVC: HomeViewController?
+    var postID: String?
+    
     // MARK: Outlets
     @IBOutlet weak var labelUsername: UILabel!
-    @IBOutlet weak var imageViewComment: UIImageView!
     @IBOutlet weak var labelLikes: UILabel!
     @IBOutlet weak var labelCaption: UILabel!
     @IBOutlet weak var imageViewProfile: UIImageView! {
@@ -29,6 +32,12 @@ class PostTableViewCell: UITableViewCell {
                                         action: #selector(onPhotoDoubleClicked))
         }
     }
+    @IBOutlet weak var imageViewComment: UIImageView! {
+        didSet {
+            imageViewComment.onClick(target: self,
+                                     action: #selector(onCommmentClicked))
+        }
+    }
     @IBOutlet weak var imageViewLike: UIImageView!{
         didSet {
             imageViewLike.onClick(target: self,
@@ -37,6 +46,10 @@ class PostTableViewCell: UITableViewCell {
     }
     
     // MARK: Actions and Events
+    @objc func onCommmentClicked() {
+        homeVC?.performSegue(withIdentifier: "HomeToCommentsSegue", sender: postID)
+    }
+    
     @objc func onLikeClicked() {
         print("Click")
     }

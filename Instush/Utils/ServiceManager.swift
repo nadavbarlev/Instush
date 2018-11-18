@@ -26,8 +26,11 @@ protocol AuthService {
 protocol DatabaseService {
     func getUniqueId(forPath path: String) -> String?
     func setValue(path: String, dataID: String, data: [String:String], completion: @escaping (Error?)->Void)
+    func setValue(path: String, dataID: String, data: String, completion: @escaping (Error?)->Void)
     func getValue(path: String, completion: @escaping (Dictionary<String,Any>?)->Void)
-    func listen(toPath path: String, listener: @escaping (Dictionary<String,Any>?)->Void)
+    func listenToValue(toPath path: String, listener: @escaping (Dictionary<String,Any>?)->Void)
+    func listenToKey(toPath path: String, listener: @escaping (String)->Void)
+    func listenToValueAndKey(toPath path: String, listener: @escaping (String, Dictionary<String,Any>?)->Void)
 }
 
 protocol StorageService {
