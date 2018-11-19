@@ -37,12 +37,7 @@ class FirebaseAuthService : AuthService {
         catch let error { onError?(error) }
     }
     
-    func signUp(withEmail email: String,
-                password: String,
-                username: String,
-                imageData: Data,
-                onSuccess:(()->(Void))?,
-                onError:((Error)->(Void))?) {
+    func signUp(withEmail email: String, password: String, username: String, imageData: Data, onSuccess:(()->(Void))?, onError:((Error)->(Void))?) {
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if error != nil { onError?(error!); return }
             guard let userID = authResult?.user.uid else { return }
@@ -52,8 +47,7 @@ class FirebaseAuthService : AuthService {
                     if error != nil { onError?(error!); return }
                     onSuccess?()
                 }
-            },
-            onError: { (error) in
+            }, onError: { (error:Error) in
                 onError?(error)
             })
         }

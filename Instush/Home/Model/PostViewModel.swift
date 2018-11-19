@@ -15,19 +15,16 @@ class PostViewModel {
     var profileImgURL: String
     var postImgURL: String
     var caption : String
+    var likeCount: String
+    var isUserLiked: Bool
     
-    // MARK: Constructors
-    init(username: String, profileImgURL: String, postImgURL: String, caption: String) {
-        self.username = username
-        self.profileImgURL = profileImgURL
-        self.postImgURL = postImgURL
-        self.caption = caption
-    }
-    
-    init(post: Post, user: User) {
+    // MARK: Constructor
+    init(post: Post, user: User, userID: String) {
         self.username = user.username
         self.profileImgURL = user.profileImgURL
         self.postImgURL = post.photoURL
         self.caption = post.caption
+        self.likeCount = String(post.likesCount)
+        self.isUserLiked = post.usersLike[userID] != nil
     }
 }

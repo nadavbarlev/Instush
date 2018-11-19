@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class FirebaseDatabaseService: DatabaseService {
     
-    // MARK: Properties
+    // MARK: Computed Properties
     let dbRef = Database.database().reference()
     
     // MARK: API Methods
@@ -59,5 +59,22 @@ class FirebaseDatabaseService: DatabaseService {
         fullPathDatabaseRef.setValue(data) { (error, dbRef) in
             completion(error)
         }
+    }
+    
+    func update(path: String, updateDataBlock: @escaping ([String:Any])->([String:Any]),
+                              onSuccess: @escaping ([String:Any])->Void,
+                              onError: ((Error)->(Void))?) {
+        var changedData = [String:Any]()
+        dbRef.child(path).runTransactionBlock({ (currentData: MutableData) in
+            guard let data = currentData.value as? [String:Any] else {
+                return TransactionResult.success(withValue: currentData)
+            }
+            changedData = updateDataBlock(data)
+            currentData.value = changedData
+            return TransactionResult.success(withValue: currentData)
+        }, andCompletionBlock: { (error: Error?, commited: Bool, snapshot: DataSnapshot?) in
+            guard let error = error else { onSuccess(changedData); return }
+            onError?(error)
+        })
     }
 }

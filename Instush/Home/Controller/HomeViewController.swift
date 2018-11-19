@@ -8,9 +8,10 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, PostTableViewCellDelegate {
 
     // MARK: Properties
+    var userID = UserService.shared.getCurrentUserID()
     var posts = Array<Post>()
     var users = Array<User>()
     
@@ -26,7 +27,6 @@ class HomeViewController: UIViewController {
    
     // MARK: Actions
     @IBAction func logout(_ sender: UIBarButtonItem) {
-        /*
         ServiceManager.auth.signOut(onSuccess: {
             let storyboardStart = UIStoryboard(name: "Start", bundle: nil)
             let signInVC = storyboardStart.instantiateViewController(withIdentifier: "SignInViewController")
@@ -34,8 +34,6 @@ class HomeViewController: UIViewController {
         }, onError: { (error: Error) in
             print(error.localizedDescription)
         })
- */
-        // self.performSegue(withIdentifier: "HomeToCommentsSegue", sender: nil)
     }
     
     // MARK: LifeCycle
@@ -58,7 +56,6 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Segue
@@ -68,6 +65,13 @@ class HomeViewController: UIViewController {
             guard let commentsVC = segue.destination as? CommentsViewController else { return }
             commentsVC.currentPostID = postID
         }
+    }
+    
+    // PostTableViewCellDelegate - Implementation
+    func onUpdate(post: Post) {
+        let updatedPost = posts.first { $0.postID == post.postID }
+        updatedPost?.likesCount = post.likesCount
+        updatedPost?.usersLike = post.usersLike
     }
 }
 
@@ -80,9 +84,11 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
-        let postViewModel = PostViewModel(post: posts[indexPath.row], user: users[indexPath.row])
+        guard let currUserID = userID else { return cell }
+        let postViewModel = PostViewModel(post: posts[indexPath.row], user: users[indexPath.row], userID: currUserID)
         cell.updateUI(with: postViewModel)
         cell.postID = posts[indexPath.row].postID
+        cell.delegate = self
         cell.homeVC = self
         return cell
     }

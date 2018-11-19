@@ -31,6 +31,7 @@ protocol DatabaseService {
     func listenToValue(toPath path: String, listener: @escaping (Dictionary<String,Any>?)->Void)
     func listenToKey(toPath path: String, listener: @escaping (String)->Void)
     func listenToValueAndKey(toPath path: String, listener: @escaping (String, Dictionary<String,Any>?)->Void)
+    func update(path: String, updateDataBlock: @escaping ([String:Any])->([String:Any]), onSuccess: @escaping ([String:Any])->Void, onError: ((Error)->(Void))?)
 }
 
 protocol StorageService {
