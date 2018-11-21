@@ -20,7 +20,6 @@ class CommentService {
     func listener(to postID: String, onGetNewComment: @escaping (Comment)->Void) {
         let postCommentsPath = String(format: "post-comments/%@", postID)
         ServiceManager.database.listenToKey(toPath: postCommentsPath) { (commentID: String) in
-            print(commentID)
             let commentPath = String(format: "comments/%@", commentID)
             ServiceManager.database.getValue(path: commentPath, completion: { (data: Dictionary<String, Any>?) in
                 guard let dicComment = data else { return }

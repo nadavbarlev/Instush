@@ -19,7 +19,7 @@ class PostService {
     // MARK: Constructor
     private init() {}
     
-    // MARK: Methods
+    // MARK: API Methods
     func listener(onGetNewPost: @escaping (Post)->Void) {
         ServiceManager.database.listenToValueAndKey(toPath: "posts") { (key: String, data: Dictionary<String, Any>?) in
             guard let dicPost = data else { return }
@@ -28,15 +28,29 @@ class PostService {
         }
     }
     
+    func getPosts(ofUser userID: String, onGetNewPost: @escaping (Post)->Void) {
+        let userPostsPath = String(format: "user-posts/%@", userID)
+        ServiceManager.database.listenToKey(toPath: userPostsPath) { (postID: String) in
+            let postPath = String(format: "posts/%@", postID)
+            ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
+                guard let dicPost = data else { return }
+                guard let newPost = Post.transform(from: dicPost, id: postID) else { return }
+                onGetNewPost(newPost)
+            })
+        }
+    }
+    
     func share(imgPostID: String, imgPostData: Data, userID: String, caption: String, onSuccess:(()->(Void))?, onError:((String)->(Void))?) {
         ServiceManager.storage.save(path: "posts", dataID: imgPostID, data: imgPostData, onSuccess: { (imgUrl:URL) in
             guard let postID = ServiceManager.database.getUniqueId(forPath: "posts") else { return }
             let dicPost = ["photoURL": imgUrl.absoluteString, "caption": caption, "userID": userID]
             ServiceManager.database.setValue(path: "posts", dataID: postID, data: dicPost) { (error: Error?) in
-                guard let errorMsg = error?.localizedDescription else {
-                    onSuccess?(); return
-                }
-                onError?(errorMsg)
+                if error != nil { onError?(error!.localizedDescription); return  }
+                ServiceManager.database.setValue(path: "user-posts/" + userID, dataID: postID, data: "true", completion: { (error: Error?) in
+                    if error != nil { onError?(error!.localizedDescription); return }
+                    onSuccess?()
+                    return
+                })
             }
         }, onError: { (error: Error) in
             onError?(error.localizedDescription)
@@ -55,8 +69,9 @@ class PostService {
             print(error.localizedDescription)
         })
     }
-    
-    func updatePostLike(userID: String, postData: [String:Any]) -> [String:Any] {
+   
+    // MARK: Methods
+    private func updatePostLike(userID: String, postData: [String:Any]) -> [String:Any] {
         var changedPostData = postData
         var likes = postData["likes"] as? [String : Bool] ?? [:]
         var likesCount = postData["likesCount"] as? Int ?? 0
@@ -68,7 +83,6 @@ class PostService {
             likesCount += 1
             likes[userID] = true
         }
-        
         changedPostData["likesCount"] = likesCount as Any?
         changedPostData["likes"] = likes as Any?
         return changedPostData
