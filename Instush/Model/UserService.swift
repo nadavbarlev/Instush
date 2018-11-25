@@ -24,8 +24,10 @@ class UserService {
     func getUser(by id: String, completion: @escaping (User)->Void) {
         ServiceManager.database.getValue(path: "users/" + id) { (data: Dictionary<String, Any>?) in
             guard let dicUser = data else { return }
-            guard let userToReturn = User.transform(from: dicUser) else { return }
-            completion(userToReturn)
+            FollowService.shared.isAppUserFollowing(after: id) { (isFollowing: Bool) in
+                guard let userToReturn = User.transform(from: dicUser, key: id, isFollowing: isFollowing) else { return }
+                completion(userToReturn)
+            }
         }
     }
     

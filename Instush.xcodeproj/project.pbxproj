@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		051BCEB821997CE400820B93 /* UIImageViewExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCEB721997CE400820B93 /* UIImageViewExtenstions.swift */; };
+		051BCEB821997CE400820B93 /* UIViewExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCEB721997CE400820B93 /* UIViewExtenstions.swift */; };
 		0526F5E3218F15F10028F1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E2218F15F10028F1D9 /* AppDelegate.swift */; };
 		0526F5E8218F15F10028F1D9 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F5E6218F15F10028F1D9 /* Start.storyboard */; };
 		0526F5EB218F15F10028F1D9 /* Instush.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E9218F15F10028F1D9 /* Instush.xcdatamodeld */; };
@@ -46,12 +46,16 @@
 		05B747A0219EC759000FC9F7 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B7479F219EC759000FC9F7 /* CommentViewModel.swift */; };
 		05B747AD21A4344A000FC9F7 /* HeaderProfileCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B747AC21A4344A000FC9F7 /* HeaderProfileCollectionReusableView.swift */; };
 		05B747AF21A4686D000FC9F7 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B747AE21A4686D000FC9F7 /* PhotoCollectionViewCell.swift */; };
+		05B747B121A58284000FC9F7 /* Follow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B747B021A58284000FC9F7 /* Follow.storyboard */; };
+		05B747B321A588F0000FC9F7 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B747B221A588F0000FC9F7 /* FollowViewController.swift */; };
+		05B747B521A58C12000FC9F7 /* FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B747B421A58C12000FC9F7 /* FollowTableViewCell.swift */; };
+		05B747B721A5A385000FC9F7 /* FollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B747B621A5A385000FC9F7 /* FollowService.swift */; };
 		BF36150566A49BED32C4ECD9 /* Pods_Instush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038301CAC50DD33DCC813FE4 /* Pods_Instush.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		038301CAC50DD33DCC813FE4 /* Pods_Instush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instush.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		051BCEB721997CE400820B93 /* UIImageViewExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtenstions.swift; sourceTree = "<group>"; };
+		051BCEB721997CE400820B93 /* UIViewExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtenstions.swift; sourceTree = "<group>"; };
 		0526F5DF218F15F10028F1D9 /* Instush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0526F5E2218F15F10028F1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0526F5E7218F15F10028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
@@ -92,6 +96,10 @@
 		05B7479F219EC759000FC9F7 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		05B747AC21A4344A000FC9F7 /* HeaderProfileCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderProfileCollectionReusableView.swift; sourceTree = "<group>"; };
 		05B747AE21A4686D000FC9F7 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		05B747B021A58284000FC9F7 /* Follow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Follow.storyboard; sourceTree = "<group>"; };
+		05B747B221A588F0000FC9F7 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
+		05B747B421A58C12000FC9F7 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
+		05B747B621A5A385000FC9F7 /* FollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowService.swift; sourceTree = "<group>"; };
 		8FF334CC0820913C9A7B6019 /* Pods-Instush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instush.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instush/Pods-Instush.debug.xcconfig"; sourceTree = "<group>"; };
 		CFACE21F0ACB44FCBFA5EF6E /* Pods-Instush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instush.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instush/Pods-Instush.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				0526F621219090620028F1D9 /* UIViewControllerExtensions.swift */,
-				051BCEB721997CE400820B93 /* UIImageViewExtenstions.swift */,
+				051BCEB721997CE400820B93 /* UIViewExtenstions.swift */,
 			);
 			path = Extenstions;
 			sourceTree = "<group>";
@@ -139,8 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				0526F620219065D00028F1D9 /* Utils */,
-				05B747822199D389000FC9F7 /* Model */,
 				051BCEB421997C6900820B93 /* Extenstions */,
+				05B747822199D389000FC9F7 /* Model */,
 				0526F61A2190637D0028F1D9 /* Home */,
 				0526F61F2190640A0028F1D9 /* Camera */,
 				0526F61E219063F70028F1D9 /* Search */,
@@ -248,6 +256,7 @@
 				05B74785219AD05C000FC9F7 /* PostService.swift */,
 				05B7478B219B1D3F000FC9F7 /* UserService.swift */,
 				05B7479B219DA0DF000FC9F7 /* CommentService.swift */,
+				05B747B621A5A385000FC9F7 /* FollowService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -313,6 +322,8 @@
 				0526F60721904EC20028F1D9 /* ProfileViewController.swift */,
 				05B747AC21A4344A000FC9F7 /* HeaderProfileCollectionReusableView.swift */,
 				05B747AE21A4686D000FC9F7 /* PhotoCollectionViewCell.swift */,
+				05B747B221A588F0000FC9F7 /* FollowViewController.swift */,
+				05B747B421A58C12000FC9F7 /* FollowTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -321,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				0526F616219062F90028F1D9 /* Profile.storyboard */,
+				05B747B021A58284000FC9F7 /* Follow.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -437,6 +449,7 @@
 				0526F5F0218F15F10028F1D9 /* LaunchScreen.storyboard in Resources */,
 				0526F613219062D20028F1D9 /* Camera.storyboard in Resources */,
 				0526F60E219062AD0028F1D9 /* Home.storyboard in Resources */,
+				05B747B121A58284000FC9F7 /* Follow.storyboard in Resources */,
 				0526F5ED218F15F10028F1D9 /* Assets.xcassets in Resources */,
 				0526F5E8218F15F10028F1D9 /* Start.storyboard in Resources */,
 				0526F610219062C40028F1D9 /* Search.storyboard in Resources */,
@@ -529,15 +542,18 @@
 				05B74798219D93AB000FC9F7 /* CommentsViewController.swift in Sources */,
 				0526F60221904E860028F1D9 /* HomeViewController.swift in Sources */,
 				05B74794219D7A33000FC9F7 /* FirebaseDatabaseService.swift in Sources */,
+				05B747B721A5A385000FC9F7 /* FollowService.swift in Sources */,
 				05B747AF21A4686D000FC9F7 /* PhotoCollectionViewCell.swift in Sources */,
 				05B747A0219EC759000FC9F7 /* CommentViewModel.swift in Sources */,
+				05B747B521A58C12000FC9F7 /* FollowTableViewCell.swift in Sources */,
 				05B7478C219B1D3F000FC9F7 /* UserService.swift in Sources */,
 				0526F5FE218F3E100028F1D9 /* SignUpViewController.swift in Sources */,
 				05B7479A219D93CB000FC9F7 /* CommentTableViewCell.swift in Sources */,
 				05B7479E219E1DE2000FC9F7 /* Comment.swift in Sources */,
 				05B7478A219B17DD000FC9F7 /* User.swift in Sources */,
 				05B747AD21A4344A000FC9F7 /* HeaderProfileCollectionReusableView.swift in Sources */,
-				051BCEB821997CE400820B93 /* UIImageViewExtenstions.swift in Sources */,
+				051BCEB821997CE400820B93 /* UIViewExtenstions.swift in Sources */,
+				05B747B321A588F0000FC9F7 /* FollowViewController.swift in Sources */,
 				0526F622219090620028F1D9 /* UIViewControllerExtensions.swift in Sources */,
 				0526F60621904EB60028F1D9 /* CameraViewController.swift in Sources */,
 			);

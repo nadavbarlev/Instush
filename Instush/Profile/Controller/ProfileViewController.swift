@@ -11,7 +11,11 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     // MARK: Properties
-    var user: User?
+    var user: User? {
+        didSet {
+            self.navigationItem.title = user?.username
+        }
+    }
     var userPosts = [Post]()
     
     // MARK: Outlets
@@ -21,7 +25,6 @@ class ProfileViewController: UIViewController {
             collectionView.delegate = self
         }
     }
-    
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -37,6 +40,18 @@ class ProfileViewController: UIViewController {
         PostService.shared.getPosts(ofUser: userID) { [weak self] in
             self?.userPosts.append($0)
             self?.collectionView.reloadData()
+        }
+    }
+    
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ProfileToFollowersSegue" {
+            let followVC = segue.destination as! FollowViewController
+            followVC.isFollowers = true
+        }
+        else if segue.identifier == "ProfileToFollowingSegue" {
+            let followVC = segue.destination as! FollowViewController
+            followVC.isFollowers = false
         }
     }
 }
@@ -60,6 +75,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
                                                                              withReuseIdentifier: "HeaderProfileCollection",
                                                                              for: indexPath) as! HeaderProfileCollectionReusableView
         guard let user = user else { return headerViewCell }
+        headerViewCell.profileVC = self
         headerViewCell.updateUI(user: user)
         return headerViewCell
     }
@@ -70,12 +86,13 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         let edgeCell = collectionView.frame.width / 3 - 1
         return CGSize(width: edgeCell, height: edgeCell)
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                                                            minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                                                            minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 2
     }
-    
 }

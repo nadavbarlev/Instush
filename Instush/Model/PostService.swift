@@ -48,8 +48,11 @@ class PostService {
                 if error != nil { onError?(error!.localizedDescription); return  }
                 ServiceManager.database.setValue(path: "user-posts/" + userID, dataID: postID, data: "true", completion: { (error: Error?) in
                     if error != nil { onError?(error!.localizedDescription); return }
-                    onSuccess?()
-                    return
+                    ServiceManager.database.setValue(path: "feed/" + userID, dataID: postID, data: "true", completion: { (error: Error?) in
+                        if error != nil { onError?(error!.localizedDescription); return }
+                        onSuccess?()
+                        return
+                    })
                 })
             }
         }, onError: { (error: Error) in
@@ -69,8 +72,23 @@ class PostService {
             print(error.localizedDescription)
         })
     }
+    
+    func getFeedPosts(ofUser userID: String, onAddPost: @escaping (Post)->Void, onRemovePost: @escaping (String)->Void) {
+        let userFeedPostsPath = String(format: "feed/%@", userID)
+        ServiceManager.database.listenToKey(toPath: userFeedPostsPath) { (postID: String) in
+            let postPath = String(format: "posts/%@", postID)
+            ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
+                guard let dicPost = data else { return }
+                guard let newPost = Post.transform(from: dicPost, id: postID) else { return }
+                onAddPost(newPost)
+            })
+        }
+        ServiceManager.database.listenForRemoveKey(toPath: userFeedPostsPath) { (postID: String) in
+            onRemovePost(postID)
+        }
+    }
    
-    // MARK: Methods
+    // MARK: Private Methods
     private func updatePostLike(userID: String, postData: [String:Any]) -> [String:Any] {
         var changedPostData = postData
         var likes = postData["likes"] as? [String : Bool] ?? [:]

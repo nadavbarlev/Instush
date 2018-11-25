@@ -43,15 +43,22 @@ class HomeViewController: UIViewController, PostTableViewCellDelegate {
         /* Start indicator (appears just on animation) */
         indicatorView.startAnimating()
 
-        /* Gets all Posts and corresponding Users */
-        PostService.shared.listener { [weak self] (newPost: Post) in
+        /* Listen for add and remove FEED posts */
+        guard let userID = userID else { return }
+        PostService.shared.getFeedPosts(ofUser: userID, onAddPost: { [weak self] (newPost: Post) in
             UserService.shared.getUser(by: newPost.userID) { [weak self] (user: User) in
                 self?.users.append(user)
                 self?.posts.append(newPost)
                 self?.indicatorView.stopAnimating()
                 self?.tableViewPosts.reloadData()
             }
-        }
+        }, onRemovePost: { (postID: String) in
+            if let indexToRemove = self.posts.firstIndex(where: { $0.postID == postID }) {
+                self.posts.remove(at: indexToRemove)
+                self.users.remove(at: indexToRemove)
+                self.tableViewPosts.reloadData()
+            }
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {

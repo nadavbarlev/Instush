@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UIImageView {
+extension UIView {
     
     func onClick(target: Any?, action: Selector?) {
         let tapGestureImg = UITapGestureRecognizer(target: target, action: action)

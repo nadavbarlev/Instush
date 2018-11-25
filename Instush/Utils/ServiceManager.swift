@@ -25,11 +25,18 @@ protocol AuthService {
 
 protocol DatabaseService {
     func getUniqueId(forPath path: String) -> String?
+    func isExist(path: String, completion: @escaping (Bool)->Void)
     func setValue(path: String, dataID: String, data: [String:String], completion: @escaping (Error?)->Void)
     func setValue(path: String, dataID: String, data: String, completion: @escaping (Error?)->Void)
     func getValue(path: String, completion: @escaping (Dictionary<String,Any>?)->Void)
+    func getValue(path: String, completion: @escaping (String?)->Void)
+    func getKeys(path: String, completion: @escaping ([String])->Void)
+    func getKeyandValue(path: String, completion: @escaping (String, Dictionary<String,Any>?)->Void) 
+    func removeValue(path: String, dataID: String, completion: @escaping (Error?)->Void)
+    func removeAllValues(path: String, dataIDs: [String], onSuccess: ()->(Void), onError: @escaping (Error)->Void)
     func listenToValue(toPath path: String, listener: @escaping (Dictionary<String,Any>?)->Void)
     func listenToKey(toPath path: String, listener: @escaping (String)->Void)
+    func listenForRemoveKey(toPath path: String, listener: @escaping (String)->Void)
     func listenToValueAndKey(toPath path: String, listener: @escaping (String, Dictionary<String,Any>?)->Void)
     func update(path: String, updateDataBlock: @escaping ([String:Any])->([String:Any]), onSuccess: @escaping ([String:Any])->Void, onError: ((Error)->(Void))?)
 }

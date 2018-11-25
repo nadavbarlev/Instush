@@ -159,7 +159,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJZ-6U-nF1">
-                                            <rect key="frame" x="2" y="174" width="371" height="1"/>
+                                            <rect key="frame" x="0.0" y="174" width="375" height="1"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="A8Z-Yz-eT6"/>
@@ -170,13 +170,13 @@
                                         <constraint firstAttribute="bottom" secondItem="LJZ-6U-nF1" secondAttribute="bottom" id="2UD-7W-i9s"/>
                                         <constraint firstItem="OVI-jE-2tW" firstAttribute="leading" secondItem="E67-Gv-8ec" secondAttribute="leading" constant="15" id="6kx-ON-F95"/>
                                         <constraint firstItem="DXX-jz-nQZ" firstAttribute="centerY" secondItem="OVI-jE-2tW" secondAttribute="centerY" id="93g-Cz-Iyw"/>
-                                        <constraint firstAttribute="trailing" secondItem="LJZ-6U-nF1" secondAttribute="trailing" constant="2" id="IEK-d9-bjr"/>
+                                        <constraint firstAttribute="trailing" secondItem="LJZ-6U-nF1" secondAttribute="trailing" id="IEK-d9-bjr"/>
                                         <constraint firstItem="JO0-KB-gdC" firstAttribute="top" secondItem="OVI-jE-2tW" secondAttribute="bottom" constant="12" id="Nty-kB-72D"/>
                                         <constraint firstItem="AaN-uC-tnW" firstAttribute="leading" secondItem="JO0-KB-gdC" secondAttribute="leading" id="P5x-hb-0Jo"/>
                                         <constraint firstItem="JO0-KB-gdC" firstAttribute="leading" secondItem="OVI-jE-2tW" secondAttribute="leading" id="PtD-uF-o6g"/>
                                         <constraint firstItem="DXX-jz-nQZ" firstAttribute="leading" secondItem="OVI-jE-2tW" secondAttribute="trailing" constant="20" id="fHM-tC-V5F"/>
                                         <constraint firstItem="AaN-uC-tnW" firstAttribute="top" secondItem="JO0-KB-gdC" secondAttribute="bottom" constant="4" id="fO4-KC-bDg"/>
-                                        <constraint firstItem="LJZ-6U-nF1" firstAttribute="leading" secondItem="E67-Gv-8ec" secondAttribute="leading" constant="2" id="gLQ-2g-nDo"/>
+                                        <constraint firstItem="LJZ-6U-nF1" firstAttribute="leading" secondItem="E67-Gv-8ec" secondAttribute="leading" id="gLQ-2g-nDo"/>
                                         <constraint firstAttribute="trailing" secondItem="AaN-uC-tnW" secondAttribute="trailing" constant="15" id="gbm-xl-QRu"/>
                                         <constraint firstItem="LJZ-6U-nF1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AaN-uC-tnW" secondAttribute="bottom" id="plK-aU-xFH"/>
                                         <constraint firstAttribute="trailing" secondItem="JO0-KB-gdC" secondAttribute="trailing" constant="15" id="pxR-6s-xVd"/>
@@ -199,9 +199,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="pND-9g-LEU"/>
                     </view>
-                    <navigationItem key="navigationItem" title="nadav.bar.lev" id="ZYM-Kr-PE1"/>
+                    <navigationItem key="navigationItem" title="nadav.bar.lev" id="ZYM-Kr-PE1">
+                        <barButtonItem key="backBarButtonItem" title=" " id="nml-lN-U47"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="E9c-50-rnL" id="2bg-NO-RgP"/>
+                        <segue destination="2Ha-eU-2zR" kind="show" identifier="ProfileToFollowersSegue" id="6xf-bR-H5X"/>
+                        <segue destination="2Ha-eU-2zR" kind="show" identifier="ProfileToFollowingSegue" id="qEq-S9-wRy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eFd-FE-Dym" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -232,10 +236,22 @@
             </objects>
             <point key="canvasLocation" x="1086" y="606"/>
         </scene>
+        <!--Follow-->
+        <scene sceneID="GWN-S3-zO4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Follow" id="2Ha-eU-2zR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rjI-Dy-FO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2514" y="389"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Placeholder-ProfileImg" width="48" height="48"/>
         <image name="Profile" width="20" height="21"/>
         <image name="Profile_Selected" width="20" height="21"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="qEq-S9-wRy"/>
+    </inferredMetricsTieBreakers>
+    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
 </document>

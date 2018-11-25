@@ -10,12 +10,14 @@ import UIKit
 
 class HeaderProfileCollectionReusableView: UICollectionReusableView {
     
+    // MARK: Properties
+    var profileVC: ProfileViewController?
+    var userID = UserService.shared.getCurrentUserID()
+    
     // MARK: Outlets
     @IBOutlet weak var labelUsername: UILabel!
     @IBOutlet weak var labelProfileCaption: UILabel!
     @IBOutlet weak var labelPostCount: UILabel!
-    @IBOutlet weak var labelFollowersCount: UILabel!
-    @IBOutlet weak var labelFollowingCount: UILabel!
     @IBOutlet weak var imageViewProfile: UIImageView! {
         didSet {
             imageViewProfile.layer.cornerRadius = imageViewProfile.frame.height/2
@@ -29,9 +31,40 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             buttonEditProfile.layer.borderColor = UIColor.lightGray.cgColor
         }
     }
+    @IBOutlet weak var labelFollowersCount: UILabel! {
+        didSet {
+           
+            labelFollowersCount.onClick(target: self, action: #selector(showFollowers))
+        }
+    }
+    @IBOutlet weak var labelFollowingCount: UILabel! {
+        didSet {
+            labelFollowingCount.onClick(target: self, action: #selector(showFollowing))
+        }
+    }
     
-    // MARK: Actions
+    override func awakeFromNib() {
+        /*
+ 
+         guard let appUserID = userID else { return }
+         FollowService.shared.getFollowingCount(of: appUserID) { [weak self] (followingCount) in
+         self?.labelFollowingCount.text = String(followingCount)
+         }
+         
+         */
+        print("dsasdasd")
+    }
+    
+    // MARK: Actions and Events
     @IBAction func editProfile(_ sender: UIButton) {
+    }
+    
+    @objc func showFollowers() {
+        profileVC?.performSegue(withIdentifier: "ProfileToFollowersSegue", sender: self)
+    }
+    
+    @objc func showFollowing() {
+        profileVC?.performSegue(withIdentifier: "ProfileToFollowingSegue", sender: self)
     }
     
     // MARK: Methods

@@ -19,6 +19,13 @@ class FirebaseDatabaseService: DatabaseService {
         return dbRef.child(path).childByAutoId().key
     }
     
+    func isExist(path: String, completion: @escaping (Bool)->Void) {
+        dbRef.child(path).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+            if snapshot.exists() { completion(true); return }
+            completion(false)
+        }
+    }
+    
     func listenToValue(toPath path: String, listener: @escaping (Dictionary<String,Any>?)->Void) {
         dbRef.child(path).observe(.childAdded) { (snapshot: DataSnapshot) in
             let dicToReturn = snapshot.value as? [String:Any]
@@ -40,10 +47,42 @@ class FirebaseDatabaseService: DatabaseService {
         }
     }
     
+    func listenForRemoveKey(toPath path: String, listener: @escaping (String)->Void) {
+        dbRef.child(path).observe(.childRemoved) { (snapshot: DataSnapshot) in
+            listener(snapshot.key)
+        }
+    }
+    
     func getValue(path: String, completion: @escaping (Dictionary<String,Any>?)->Void) {
         dbRef.child(path).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
             let dicToReturn = snapshot.value as? [String:Any]
             completion(dicToReturn)
+        }
+    }
+    
+    func getValue(path: String, completion: @escaping (String?)->Void) {
+        dbRef.child(path).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+            let valToReturn = snapshot.value as? String
+            completion(valToReturn)
+        }
+    }
+    
+    func getKeys(path: String, completion: @escaping ([String])->Void) {
+        var keys = [String]()
+        dbRef.child(path).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+            for child in snapshot.children {
+                let ketToAdd = (child as! DataSnapshot).key
+                keys.append(ketToAdd)
+            }
+            completion(keys)
+        }
+    }
+    
+    func getKeyandValue(path: String, completion: @escaping (String, Dictionary<String,Any>?)->Void) {
+        dbRef.child(path).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+            let dicKey = snapshot.key
+            let dicToReturn = snapshot.value as? [String:Any]
+            completion(dicKey, dicToReturn)
         }
     }
     
@@ -59,6 +98,29 @@ class FirebaseDatabaseService: DatabaseService {
         fullPathDatabaseRef.setValue(data) { (error, dbRef) in
             completion(error)
         }
+    }
+    
+    func removeValue(path: String, dataID: String, completion: @escaping (Error?)->Void) {
+        let fullPathDatabaseRef = dbRef.child(path).child(dataID)
+        fullPathDatabaseRef.removeValue { (error, dbRef) in
+            completion(error)
+        }
+    }
+    
+    func removeAllValues(path: String, dataIDs: [String], onSuccess: ()->(Void), onError: @escaping (Error)->Void) {
+        var isErrorOccured = false
+        for dataID in dataIDs {
+            var fullPathDatabaseRef = dbRef.child(path).child(dataID)
+            fullPathDatabaseRef.removeValue { (error, dbRef) in
+                if (error != nil) {
+                    onError(error!);
+                    isErrorOccured = true
+                    return
+                }
+            }
+        }
+        
+        defer { if (!isErrorOccured) { onSuccess() } }
     }
     
     func update(path: String, updateDataBlock: @escaping ([String:Any])->([String:Any]),
