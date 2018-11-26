@@ -30,7 +30,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Rv-WJ-xkF" userLabel="Top View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder-ProfileImg" translatesAutoresizingMaskIntoConstraints="NO" id="BXS-fs-X3n">
                                                             <rect key="frame" x="15" y="12" width="40" height="40"/>
@@ -40,7 +40,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nadav.bar.lev" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqt-YJ-06B">
-                                                            <rect key="frame" x="67" y="23" width="328" height="18"/>
+                                                            <rect key="frame" x="67" y="23" width="289" height="18"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -57,13 +57,13 @@
                                                     </constraints>
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d1f-ji-Cef" userLabel="Post ImageView">
-                                                    <rect key="frame" x="0.0" y="62" width="414" height="320"/>
+                                                    <rect key="frame" x="0.0" y="62" width="375" height="320"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="320" id="7gM-sC-Jhy"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zMM-bL-yhD" userLabel="Post Reaction View">
-                                                    <rect key="frame" x="0.0" y="382" width="414" height="34"/>
+                                                    <rect key="frame" x="0.0" y="382" width="375" height="34"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="4Ky-wG-hnN">
                                                             <rect key="frame" x="15" y="12" width="22" height="22"/>
@@ -90,13 +90,13 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Be the first to like this photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vV-fI-hqV" userLabel="Likes Label">
-                                                    <rect key="frame" x="15" y="428" width="384" height="16"/>
+                                                    <rect key="frame" x="15" y="428" width="345" height="16"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8N-MU-vU2" userLabel="Caption Label">
-                                                    <rect key="frame" x="15" y="454" width="387" height="17"/>
+                                                    <rect key="frame" x="15" y="454" width="348" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="CTn-9Z-m72"/>
                                                     </constraints>
@@ -105,7 +105,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tfy-hU-g2h" userLabel="Seperator View">
-                                                    <rect key="frame" x="8" y="494" width="398" height="1"/>
+                                                    <rect key="frame" x="8" y="494" width="359" height="1"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="xMs-H3-v9i"/>
@@ -149,14 +149,22 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nhF-95-E6r">
                                 <rect key="frame" x="177.5" y="331" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Posts to Show" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8F-b6-Ruj">
+                                <rect key="frame" x="117.5" y="330.5" width="140" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4eT-ET-q4F" firstAttribute="bottom" secondItem="mQa-8A-OAc" secondAttribute="bottom" id="2dj-W2-V9a"/>
                             <constraint firstItem="nhF-95-E6r" firstAttribute="centerY" secondItem="4eT-ET-q4F" secondAttribute="centerY" id="Cn9-yn-FdH"/>
+                            <constraint firstItem="F8F-b6-Ruj" firstAttribute="centerY" secondItem="mQa-8A-OAc" secondAttribute="centerY" id="LM4-1x-dEa"/>
                             <constraint firstItem="nhF-95-E6r" firstAttribute="centerX" secondItem="4eT-ET-q4F" secondAttribute="centerX" id="NMB-pC-kcq"/>
                             <constraint firstItem="mQa-8A-OAc" firstAttribute="leading" secondItem="4eT-ET-q4F" secondAttribute="leading" id="hEC-n9-ijQ"/>
                             <constraint firstItem="4eT-ET-q4F" firstAttribute="top" secondItem="mQa-8A-OAc" secondAttribute="top" id="rGK-Xa-naJ"/>
+                            <constraint firstItem="F8F-b6-Ruj" firstAttribute="centerX" secondItem="mQa-8A-OAc" secondAttribute="centerX" id="xCt-JR-ESa"/>
                             <constraint firstItem="4eT-ET-q4F" firstAttribute="trailing" secondItem="mQa-8A-OAc" secondAttribute="trailing" id="zx5-dZ-iqM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4eT-ET-q4F"/>
@@ -172,6 +180,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="indicatorView" destination="nhF-95-E6r" id="5Tz-Ws-ltX"/>
+                        <outlet property="labelNoFeed" destination="F8F-b6-Ruj" id="GrT-js-cFy"/>
                         <outlet property="tableViewPosts" destination="mQa-8A-OAc" id="HYM-Ps-xvg"/>
                         <segue destination="rkZ-LW-YV1" kind="show" identifier="HomeToCommentsSegue" id="Nmk-Fc-k8p"/>
                     </connections>

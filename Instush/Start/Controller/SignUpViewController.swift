@@ -94,7 +94,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
        
         let spinnerView = self.spinnerOn(self.view, withText: "Sign Up...")
-        ServiceManager.auth.signUp(withEmail: email, password: password, username: username, imageData: profileImgData, onSuccess: {
+        UserService.shared.signUp(withEmail: email, password: password, username: username, imageData: profileImgData, onSuccess: {
             self.performSegue(withIdentifier: "signUpToMainSegue", sender: nil)
             self.spinnerOff(spinnerView)
         }, onError: { (error: Error) in

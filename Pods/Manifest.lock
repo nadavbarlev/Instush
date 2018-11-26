@@ -1,4 +1,5 @@
 PODS:
+  - CarbonKit (2.2.2)
   - Firebase/Auth (5.8.1):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.4)
@@ -75,6 +76,7 @@ PODS:
   - Toast-Swift (4.0.0)
 
 DEPENDENCIES:
+  - CarbonKit
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -84,6 +86,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - CarbonKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -101,6 +104,7 @@ SPEC REPOS:
     - Toast-Swift
 
 SPEC CHECKSUMS:
+  CarbonKit: 0dec4738fa489b4c043a5f850c27fd0dbefb57cc
   Firebase: a870ed114d769b424021a0c8ddb0c86c3250a0c5
   FirebaseAnalytics: 361594968a84a04d9598ef0f2e769d3735cd03de
   FirebaseAuth: 504b198ceb3472dca5c65bb95544ea44cfc9439e
@@ -117,6 +121,6 @@ SPEC CHECKSUMS:
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
 
-PODFILE CHECKSUM: 2c3436ea03d24de210f31889d4a85353c330d996
+PODFILE CHECKSUM: 99f0d87413828aaf4d30a6442b539281457a4dae
 
 COCOAPODS: 1.5.3

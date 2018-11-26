@@ -42,7 +42,7 @@ class FirebaseAuthService : AuthService {
             if error != nil { onError?(error!); return }
             guard let userID = authResult?.user.uid else { return }
             ServiceManager.storage.save(path: "profile_images", dataID: userID, data: imageData, onSuccess: { (url:URL) in
-                let dataToSave = ["username": username, "email": email, "profileImagePath": url.absoluteString]
+                let dataToSave = ["username": username, "username_lowercase": username.lowercased() ,"email": email, "profileImagePath": url.absoluteString]
                 ServiceManager.database.setValue(path: "users", dataID: userID, data: dataToSave) { (error) in
                     if error != nil { onError?(error!); return }
                     onSuccess?()

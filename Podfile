@@ -8,5 +8,6 @@ target 'Instush' do
   pod 'Firebase/Storage'
   pod 'Toast-Swift', '~> 4.0.0'
   pod 'SDWebImage', '~> 4.0'
+  pod 'CarbonKit'
   
 end

@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, PostTableViewCellDelegate {
     var users = Array<User>()
     
     // MARK: Outlets
+    @IBOutlet weak var labelNoFeed: UILabel!
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet weak var tableViewPosts: UITableView! {
         didSet {
@@ -27,7 +28,7 @@ class HomeViewController: UIViewController, PostTableViewCellDelegate {
    
     // MARK: Actions
     @IBAction func logout(_ sender: UIBarButtonItem) {
-        ServiceManager.auth.signOut(onSuccess: {
+        UserService.shared.signOut(onSuccess: {
             let storyboardStart = UIStoryboard(name: "Start", bundle: nil)
             let signInVC = storyboardStart.instantiateViewController(withIdentifier: "SignInViewController")
             self.present(signInVC, animated: true, completion: nil)
@@ -41,15 +42,22 @@ class HomeViewController: UIViewController, PostTableViewCellDelegate {
         super.viewDidLoad()
         
         /* Start indicator (appears just on animation) */
+        labelNoFeed.isHidden = true
         indicatorView.startAnimating()
 
         /* Listen for add and remove FEED posts */
         guard let userID = userID else { return }
-        PostService.shared.getFeedPosts(ofUser: userID, onAddPost: { [weak self] (newPost: Post) in
-            UserService.shared.getUser(by: newPost.userID) { [weak self] (user: User) in
-                self?.users.append(user)
-                self?.posts.append(newPost)
+        PostService.shared.getFeedPosts(ofUser: userID, onAddPost: { [weak self] (newPost: Post?) in
+            guard let feedPost = newPost else {
                 self?.indicatorView.stopAnimating()
+                self?.labelNoFeed.isHidden = false
+                return
+            }
+            UserService.shared.getUser(by: feedPost.userID) { [weak self] (user: User) in
+                self?.users.append(user)
+                self?.posts.append(feedPost)
+                self?.indicatorView.stopAnimating()
+                self?.labelNoFeed.isHidden = true
                 self?.tableViewPosts.reloadData()
             }
         }, onRemovePost: { (postID: String) in

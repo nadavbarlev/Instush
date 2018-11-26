@@ -39,6 +39,7 @@ protocol DatabaseService {
     func listenForRemoveKey(toPath path: String, listener: @escaping (String)->Void)
     func listenToValueAndKey(toPath path: String, listener: @escaping (String, Dictionary<String,Any>?)->Void)
     func update(path: String, updateDataBlock: @escaping ([String:Any])->([String:Any]), onSuccess: @escaping ([String:Any])->Void, onError: ((Error)->(Void))?)
+    func search(for text: String, in path: String, orderBy field: String, maxResults: Int, completion: @escaping (String,[String:Any])->Void)
 }
 
 protocol StorageService {

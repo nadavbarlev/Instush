@@ -139,4 +139,17 @@ class FirebaseDatabaseService: DatabaseService {
             onError?(error)
         })
     }
+    
+     func search(for text: String, in path: String, orderBy field: String, maxResults: Int,
+                 completion: @escaping (String,[String:Any])->Void){
+        dbRef.child(path).queryOrdered(byChild: field).queryStarting(atValue: text).queryEnding(atValue: text+"\u{f8ff}")
+            .queryLimited(toFirst: UInt(maxResults)).observeSingleEvent(of: .value) { (snapshot) in
+                snapshot.children.forEach{ (snapshotChild) in
+                    let child = snapshotChild as! DataSnapshot
+                    let key  = child.key
+                    guard let data = child.value as? [String:Any] else { return }
+                    completion(key, data)
+                }
+        }
+    }
 }

@@ -53,7 +53,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
         
         let spinnerView = self.spinnerOn(self.view, withText:"Sign In...")
-        ServiceManager.auth.signIn(withEmail: email, password: password, onSuccess: {
+        UserService.shared.signIn(withEmail: email, password: password, onSuccess: {
             self.performSegue(withIdentifier: "signInToMainSegue", sender: nil)
             self.spinnerOff(spinnerView)
         }, onError: { (error: Error) in
@@ -76,7 +76,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if ServiceManager.auth.isUserSignedIn() {
+        if UserService.shared.isUserSignedIn() {
             self.performSegue(withIdentifier: "signInToMainSegue", sender: nil)
         }
     }

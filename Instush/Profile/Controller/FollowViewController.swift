@@ -21,6 +21,7 @@ class FollowViewController: UIViewController {
     @IBOutlet weak var tableViewFollow: UITableView! {
         didSet {
             tableViewFollow.dataSource = self
+            tableViewFollow.keyboardDismissMode = .onDrag
         }
     }
     

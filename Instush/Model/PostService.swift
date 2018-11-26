@@ -73,18 +73,21 @@ class PostService {
         })
     }
     
-    func getFeedPosts(ofUser userID: String, onAddPost: @escaping (Post)->Void, onRemovePost: @escaping (String)->Void) {
+    func getFeedPosts(ofUser userID: String, onAddPost: @escaping (Post?)->Void, onRemovePost: @escaping (String)->Void) {
         let userFeedPostsPath = String(format: "feed/%@", userID)
-        ServiceManager.database.listenToKey(toPath: userFeedPostsPath) { (postID: String) in
-            let postPath = String(format: "posts/%@", postID)
-            ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
-                guard let dicPost = data else { return }
-                guard let newPost = Post.transform(from: dicPost, id: postID) else { return }
-                onAddPost(newPost)
-            })
-        }
-        ServiceManager.database.listenForRemoveKey(toPath: userFeedPostsPath) { (postID: String) in
-            onRemovePost(postID)
+        ServiceManager.database.isExist(path: userFeedPostsPath) { (isPathExist: Bool) in
+            if (!isPathExist) { onAddPost(nil) }
+            ServiceManager.database.listenToKey(toPath: userFeedPostsPath) { (postID: String) in
+                let postPath = String(format: "posts/%@", postID)
+                ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
+                    guard let dicPost = data else { return }
+                    guard let newPost = Post.transform(from: dicPost, id: postID) else { return }
+                    onAddPost(newPost)
+                })
+            }
+            ServiceManager.database.listenForRemoveKey(toPath: userFeedPostsPath) { (postID: String) in
+                onRemovePost(postID)
+            }
         }
     }
    

@@ -21,7 +21,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aft-OE-8mg">
                                 <rect key="frame" x="10" y="32" width="355" height="30"/>
                                 <color key="backgroundColor" red="0.91509107212523699" green="0.90973742347363196" blue="0.93818786331844817" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
