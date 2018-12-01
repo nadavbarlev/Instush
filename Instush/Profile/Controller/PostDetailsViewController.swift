@@ -1,26 +1,18 @@
 //
-//  PostTableViewCell.swift
+//  PostDetailsViewController.swift
 //  Instush
 //
-//  Created by Nadav Bar Lev on 13/11/2018.
+//  Created by Nadav Bar Lev on 29/11/2018.
 //  Copyright © 2018 Nadav Bar Lev. All rights reserved.
 //
 
 import UIKit
-import SDWebImage
 
-protocol PostTableViewCellDelegate {
-    func onUpdate(post: Post) -> ()
-    func onCommentPostClicked(postID: String)
-    func onUsernameClicked(userID: String)
-}
-
-class PostTableViewCell: UITableViewCell {
+class PostDetailsViewController: UIViewController {
 
     // MARK: Properties
     var post: Post?
     var user: User?
-    var delegate: PostTableViewCellDelegate?
     
     // MARK: Outlets
     @IBOutlet weak var labelCaption: UILabel!
@@ -56,21 +48,30 @@ class PostTableViewCell: UITableViewCell {
     // MARK: Actions and Events
     @objc func onCommmentClicked() {
         guard let post = post else { return }
-        delegate?.onCommentPostClicked(postID: post.postID)
+        let storyboardHome = UIStoryboard(name: "Home", bundle: nil)
+        let commentsVC = storyboardHome.instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
+        commentsVC.currentPostID = post.postID
+        self.show(commentsVC, sender: self)
     }
     
     @objc func onUsernameClicked() {
         guard let post = post else { return }
-        delegate?.onUsernameClicked(userID: post.userID)
+        if post.userID == ServiceManager.auth.getUserID() {
+            let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+            self.show(profileVC, sender: self)
+        } else {
+            let storyboardSearch = UIStoryboard(name: "Search", bundle: nil)
+            let otherProfileVC = storyboardSearch.instantiateViewController(withIdentifier: "OtherProfileViewController") as! OtherProfileViewController
+            self.show(otherProfileVC, sender: self)
+        }
     }
     
     @objc func onLikeClicked() {
         guard let post = post else { return}
         PostService.shared.Like(postID: post.postID) { (post: Post) in
-            guard let id = self.user?.userID else { return }
+            guard let id = ServiceManager.auth.getUserID() else { return }
             let isLikedByUser = post.usersLike[id] != nil
             self.updateLikeUI(count: String(post.likesCount), isUserLiked: isLikedByUser)
-            self.delegate?.onUpdate(post: post)
         }
     }
     
@@ -79,16 +80,20 @@ class PostTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        guard let postID = post?.postID else { return }
-        PostService.shared.listener(to: postID) { [weak self] (changedPost: Post) in
+    override func viewDidLoad() {
+        guard let post = post else { return }
+        self.navigationItem.title = "photo"
+        UserService.shared.getUser(by: post.userID) { [weak self] in
+            self?.user = $0
+            self?.updateUI()
+        }
+        PostService.shared.listener(to: post.postID) { [weak self] (changedPost: Post) in
             self?.post = changedPost
             self?.updateUI()
         }
     }
     
-    // MARK: Methods
+    // MARK: Private methods
     func updateUI() {
         guard let post = post else { return }
         guard let user = user else { return }
@@ -97,7 +102,7 @@ class PostTableViewCell: UITableViewCell {
             self.labelCaption.text  = post.caption
             self.imageViewPost.sd_setImage(with: URL(string: post.photoURL))
             self.imageViewProfile.sd_setImage(with: URL(string: user.profileImgURL),
-                                         placeholderImage: UIImage(named: "Placeholder-ProfileImg"))
+                                              placeholderImage: UIImage(named: "Placeholder-ProfileImg"))
             let isUserLiked = post.usersLike[user.userID] != nil
             self.updateLikeUI(count: String(post.likesCount), isUserLiked: isUserLiked)
         }
@@ -118,4 +123,5 @@ class PostTableViewCell: UITableViewCell {
             self.imageViewLike.image = UIImage(named: imageName)
         }
     }
+
 }

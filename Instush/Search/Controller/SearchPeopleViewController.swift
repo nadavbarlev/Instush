@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchPeopleViewController: UIViewController, SearchBarLinstener {
+class SearchPeopleViewController: UIViewController {
 
     // MARK: Properties
     var users = [User]()
@@ -18,6 +18,7 @@ class SearchPeopleViewController: UIViewController, SearchBarLinstener {
     @IBOutlet var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
+            tableView.delegate = self
             tableView.keyboardDismissMode = .onDrag
         }
     }
@@ -32,8 +33,32 @@ class SearchPeopleViewController: UIViewController, SearchBarLinstener {
             self.tableView.reloadData()
         }
     }
+}
+
+// MARK: Extension - TableView Data Source
+extension SearchPeopleViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return users.count
+    }
     
-    // MARK: Search Bar Events
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FollowCell", for: indexPath) as! FollowTableViewCell
+        cell.selectionStyle = .none
+        cell.user = users[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let otherProfileVC = storyboard?.instantiateViewController(withIdentifier: "OtherProfileViewController")
+            as! OtherProfileViewController
+        otherProfileVC.user = users[indexPath.row]
+        otherProfileVC.delegate = self
+        self.navigationController?.pushViewController(otherProfileVC, animated: true)
+    }
+}
+
+// MARK: Extension - Search Bar Events
+extension SearchPeopleViewController: SearchBarLinstener {
     func onTextChanged(searchText: String) {
         self.users.removeAll()
         self.tableView.reloadData()
@@ -44,15 +69,9 @@ class SearchPeopleViewController: UIViewController, SearchBarLinstener {
     }
 }
 
-// MARK: Extension - TableView Data Source
-extension SearchPeopleViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FollowCell", for: indexPath) as! FollowTableViewCell
-        cell.user = users[indexPath.row]
-        return cell
+extension SearchPeopleViewController: OtherProfileViewControllerDelegate {
+    func onFollowStateChanged(to isFollowing: Bool, of userID: String) {
+        users.first { $0.userID == userID }?.isAppUserFollowAfterMe = isFollowing
+        tableView.reloadData()
     }
 }

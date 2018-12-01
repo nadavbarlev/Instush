@@ -13,7 +13,7 @@
         <!--Follow View Controller-->
         <scene sceneID="H49-iv-JAS">
             <objects>
-                <viewController id="f2h-Ub-mdM" customClass="FollowViewController" customModule="Instush" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FollowViewController" id="f2h-Ub-mdM" customClass="FollowViewController" customModule="Instush" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wZ9-UP-TQ3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,7 +25,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fYx-gh-xFX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fYx-gh-xFX">
                                 <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -36,7 +36,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder-ProfileImg" translatesAutoresizingMaskIntoConstraints="NO" id="LMk-wI-mDg">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder-ProfileImg" translatesAutoresizingMaskIntoConstraints="NO" id="LMk-wI-mDg">
                                                     <rect key="frame" x="10" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="RaS-ox-tlc"/>
@@ -122,11 +122,20 @@
                         <outlet property="activityIndicator" destination="QvW-pd-bHJ" id="fF5-sS-tI3"/>
                         <outlet property="labelNoContent" destination="MHZ-CH-avp" id="TND-fz-b7P"/>
                         <outlet property="tableViewFollow" destination="fYx-gh-xFX" id="dHP-Fx-3wi"/>
+                        <segue destination="zep-0A-pIN" kind="show" identifier="FollowToOtherProfile" id="EY2-HF-bkz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yai-66-RoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3445.5999999999999" y="296.40179910044981"/>
+        </scene>
+        <!--OtherProfileViewController-->
+        <scene sceneID="KjV-v3-pG2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="OtherProfileViewController" id="zep-0A-pIN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k1x-af-D6z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4070" y="296"/>
         </scene>
     </scenes>
     <resources>

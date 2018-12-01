@@ -72,6 +72,20 @@ class FollowService {
         }
     }
     
+    func getFollowersCount(for userID: String, completion: @escaping (Int)->Void) {
+        let followersPath = String(format: "followers/%@", userID)
+        ServiceManager.database.getChildCount(path: followersPath) { (followersCount: Int) in
+            completion(followersCount)
+        }
+    }
+    
+    func getFollowingCount(for userID: String, completion: @escaping (Int)->Void) {
+        let followingPath = String(format: "following/%@", userID)
+        ServiceManager.database.getChildCount(path: followingPath) { (followingCount: Int) in
+            completion(followingCount)
+        }
+    }
+    
     func isAppUserFollowing(after userID: String, completion: @escaping (Bool)->(Void)) {
         guard let appUserID = UserService.shared.getCurrentUserID() else { return }
         let followingPath = String(format: "following/%@/%@", appUserID, userID)
@@ -79,14 +93,5 @@ class FollowService {
             guard let _ = val else { completion(false); return }
             completion(true)
         }
-    }
-    
-    func getFollowingCount(of userID: String, completion: @escaping (Int)->(Void)) {
-        let followingPath = String(format: "following/%@", userID)
-        ServiceManager.database.getValue(path: followingPath) { ( data: Dictionary<String, Any>?) in
-            guard let data = data else { return }
-            completion(data.count)
-        }
-
     }
 }

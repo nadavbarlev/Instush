@@ -21,6 +21,7 @@ protocol AuthService {
     func signIn(withEmail email: String, password: String, onSuccess:(()->(Void))?, onError:((Error)->(Void))?)
     func signUp(withEmail email: String, password: String, username: String, imageData: Data, onSuccess:(()->(Void))?, onError:((Error)->(Void))?)
     func signOut(onSuccess:(()->(Void))?, onError:((Error)->(Void))?)
+    func updateCurrentUser(email: String, onSuccess:(()->(Void))?, onError:((Error)->(Void))?)
 }
 
 protocol DatabaseService {
@@ -31,13 +32,15 @@ protocol DatabaseService {
     func getValue(path: String, completion: @escaping (Dictionary<String,Any>?)->Void)
     func getValue(path: String, completion: @escaping (String?)->Void)
     func getKeys(path: String, completion: @escaping ([String])->Void)
-    func getKeyandValue(path: String, completion: @escaping (String, Dictionary<String,Any>?)->Void) 
+    func getKeyAndValue(path: String, completion: @escaping (String, Dictionary<String,Any>?)->Void)
+    func getChildCount(path: String, completion: @escaping (Int)->Void)
     func removeValue(path: String, dataID: String, completion: @escaping (Error?)->Void)
     func removeAllValues(path: String, dataIDs: [String], onSuccess: ()->(Void), onError: @escaping (Error)->Void)
     func listenToValue(toPath path: String, listener: @escaping (Dictionary<String,Any>?)->Void)
     func listenToKey(toPath path: String, listener: @escaping (String)->Void)
     func listenForRemoveKey(toPath path: String, listener: @escaping (String)->Void)
     func listenToValueAndKey(toPath path: String, listener: @escaping (String, Dictionary<String,Any>?)->Void)
+    func update(path: String, newValues: [String:Any], onSuccess: (()->Void)?, onError: ((Error)->(Void))?)
     func update(path: String, updateDataBlock: @escaping ([String:Any])->([String:Any]), onSuccess: @escaping ([String:Any])->Void, onError: ((Error)->(Void))?)
     func search(for text: String, in path: String, orderBy field: String, maxResults: Int, completion: @escaping (String,[String:Any])->Void)
 }
@@ -45,4 +48,3 @@ protocol DatabaseService {
 protocol StorageService {
     func save(path: String, dataID: String, data: Data, onSuccess: ((URL)->(Void))?, onError: ((Error)->(Void))?)
 }
-

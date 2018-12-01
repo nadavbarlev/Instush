@@ -28,6 +28,15 @@ class PostService {
         }
     }
     
+    func listener(to postID: String, onPostChanged: @escaping (Post)->Void) {
+        let pathPostID = String(format: "posts/%@", postID)
+        ServiceManager.database.listenToValue(toPath: pathPostID) { (data: Dictionary<String, Any>?) in
+            guard let dicPost = data else { return }
+            guard let postChanged = Post.transform(from: dicPost, id: postID) else { return }
+            onPostChanged(postChanged)
+        }
+    }
+    
     func getPosts(ofUser userID: String, onGetNewPost: @escaping (Post)->Void) {
         let userPostsPath = String(format: "user-posts/%@", userID)
         ServiceManager.database.listenToKey(toPath: userPostsPath) { (postID: String) in
@@ -71,6 +80,13 @@ class PostService {
         onError: {(error: Error) in
             print(error.localizedDescription)
         })
+    }
+    
+    func getPostCount(for userID: String, completion: @escaping (Int)->Void) {
+        let userPostPath = String(format: "user-posts/%@", userID)
+        ServiceManager.database.getChildCount(path: userPostPath) { (postCount: Int) in
+            completion(postCount)
+        }
     }
     
     func getFeedPosts(ofUser userID: String, onAddPost: @escaping (Post?)->Void, onRemovePost: @escaping (String)->Void) {

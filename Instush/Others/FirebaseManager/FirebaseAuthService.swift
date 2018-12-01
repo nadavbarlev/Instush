@@ -52,6 +52,13 @@ class FirebaseAuthService : AuthService {
             })
         }
     }
+    
+    func updateCurrentUser(email: String, onSuccess:(()->(Void))?, onError:((Error)->(Void))?) {
+        Auth.auth().currentUser?.updateEmail(to: email, completion: { (error: Error?) in
+            if (error != nil) { onError?(error!); return }
+            onSuccess?()
+        })
+    }
 }
 
 

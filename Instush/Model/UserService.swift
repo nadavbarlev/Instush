@@ -40,6 +40,24 @@ class UserService {
         ServiceManager.auth.signOut(onSuccess: onSuccess, onError: onError)
     }
     
+    func updateInfo(of userID: String, username: String, email: String, imageData: Data, onSuccess:(()->(Void))?, onError:((Error)->(Void))?) {
+        ServiceManager.auth.updateCurrentUser(email: email, onSuccess: {
+            ServiceManager.storage.save(path: "profile_images", dataID: userID, data: imageData, onSuccess: { (url:URL) in
+                let pathToUpdate = String(format: "users/%@", userID)
+                let dataToUpdate = ["username": username, "username_lowercase": username.lowercased() ,"email": email, "profileImagePath": url.absoluteString]
+                ServiceManager.database.update(path: pathToUpdate, newValues: dataToUpdate, onSuccess: {
+                    onSuccess?()
+                }, onError: { (error:Error) in
+                    onError?(error)
+                })
+            }, onError: { (error:Error) in
+                onError?(error)
+            })
+        }, onError: { (error:Error) in
+            onError?(error)
+        })
+    }
+    
     // MARK: Methods Database
     func getUser(by id: String, completion: @escaping (User)->Void) {
         ServiceManager.database.getValue(path: "users/" + id) { (data: Dictionary<String, Any>?) in

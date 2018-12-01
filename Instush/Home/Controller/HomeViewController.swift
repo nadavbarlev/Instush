@@ -9,9 +9,9 @@
 import UIKit
 
 class HomeViewController: UIViewController, PostTableViewCellDelegate {
-
+   
     // MARK: Properties
-    var userID = UserService.shared.getCurrentUserID()
+    var user: User?
     var posts = Array<Post>()
     var users = Array<User>()
     
@@ -25,28 +25,19 @@ class HomeViewController: UIViewController, PostTableViewCellDelegate {
             tableViewPosts.dataSource = self
         }
     }
-   
-    // MARK: Actions
-    @IBAction func logout(_ sender: UIBarButtonItem) {
-        UserService.shared.signOut(onSuccess: {
-            let storyboardStart = UIStoryboard(name: "Start", bundle: nil)
-            let signInVC = storyboardStart.instantiateViewController(withIdentifier: "SignInViewController")
-            self.present(signInVC, animated: true, completion: nil)
-        }, onError: { (error: Error) in
-            print(error.localizedDescription)
-        })
-    }
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let userID = UserService.shared.getCurrentUserID() else { return }
+        UserService.shared.getUser(by: userID) { self.user = $0 }
         
         /* Start indicator (appears just on animation) */
         labelNoFeed.isHidden = true
         indicatorView.startAnimating()
 
         /* Listen for add and remove FEED posts */
-        guard let userID = userID else { return }
         PostService.shared.getFeedPosts(ofUser: userID, onAddPost: { [weak self] (newPost: Post?) in
             guard let feedPost = newPost else {
                 self?.indicatorView.stopAnimating()
@@ -80,6 +71,15 @@ class HomeViewController: UIViewController, PostTableViewCellDelegate {
             guard let commentsVC = segue.destination as? CommentsViewController else { return }
             commentsVC.currentPostID = postID
         }
+        else if segue.identifier == "HomeToProfileSegue" {
+            guard let user = sender as? User else { return }
+            guard let profileVC = segue.destination as? ProfileViewController else { return }
+            profileVC.user = user
+        } else if segue.identifier == "HomeToOtherProfileSegue" {
+            guard let user = sender as? User else { return }
+            guard let otherProfileVC = segue.destination as? OtherProfileViewController else { return }
+            otherProfileVC.user = user
+        }
     }
     
     // PostTableViewCellDelegate - Implementation
@@ -87,6 +87,22 @@ class HomeViewController: UIViewController, PostTableViewCellDelegate {
         let updatedPost = posts.first { $0.postID == post.postID }
         updatedPost?.likesCount = post.likesCount
         updatedPost?.usersLike = post.usersLike
+    }
+    
+    func onCommentPostClicked(postID: String) {
+        self.performSegue(withIdentifier: "HomeToCommentsSegue", sender: postID)
+    }
+    
+    func onUsernameClicked(userID: String) {
+        if userID == UserService.shared.getCurrentUserID() {
+            let user = users.first { $0.userID == userID }
+            self.performSegue(withIdentifier: "HomeToProfileSegue", sender: user)
+            return
+        }
+        else  {
+            let user = users.first { $0.userID == userID }
+            self.performSegue(withIdentifier: "HomeToOtherProfileSegue", sender: user)
+        }
     }
 }
 
@@ -99,12 +115,10 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
-        guard let currUserID = userID else { return cell }
-        let postViewModel = PostViewModel(post: posts[indexPath.row], user: users[indexPath.row], userID: currUserID)
-        cell.updateUI(with: postViewModel)
-        cell.postID = posts[indexPath.row].postID
+        cell.user = users[indexPath.row]
+        cell.post = posts[indexPath.row]
+        cell.updateUI()
         cell.delegate = self
-        cell.homeVC = self
         return cell
     }
 }

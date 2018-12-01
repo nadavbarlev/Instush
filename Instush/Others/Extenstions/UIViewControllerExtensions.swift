@@ -95,6 +95,12 @@ extension UIViewController {
         view.makeToast(message, duration: duration, position: .bottom, style: toastStyle)
     }
     
+    func showCenterToast(onView view: UIView, withMessage message: String) {
+        let estimatedDuration = getDurationBy(messageLength: message.count)
+        let duration = estimatedDuration > 1.0 ? estimatedDuration : 1.0
+        view.makeToast(message, duration: duration, position: .center, style: toastStyle)
+    }
+    
     func getDurationBy(messageLength length: Int) -> Double {
         return Double(length) * 0.04
     }

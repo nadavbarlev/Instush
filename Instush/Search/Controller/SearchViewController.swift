@@ -18,19 +18,23 @@ class SearchViewController: UIViewController {
     
     // MARK: Outlets
     @IBOutlet weak var viewContent: UIView!
-    @IBOutlet weak var searchBar: UISearchBar! {
-        didSet {
-            searchBar.delegate = self
-        }
-    }
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureSearchBar()
         configureCarbonTabSwipeNavigation()
     }
     
     // MARK: Methods
+    private func configureSearchBar() {
+        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 18))
+        searchBar.searchBarStyle = .minimal
+        searchBar.placeholder = "Search"
+        searchBar.delegate = self
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView:searchBar)
+    }
+    
     private func configureCarbonTabSwipeNavigation() {
         let carbonTabSwipeNavigation = CarbonTabSwipeNavigation(items: navItems, delegate: self)
         let tabWidth = view.frame.width / CGFloat(navItems.count)
@@ -65,11 +69,13 @@ extension SearchViewController: CarbonTabSwipeNavigationDelegate {
                                   viewControllerAt index: UInt) -> UIViewController {
         switch index {
             case 1:
-                let searchHashtagVC = storyboard?.instantiateViewController(withIdentifier: "HashtagSearchViewController") as! HashtagSearchViewController
+                let searchHashtagVC = storyboard?.instantiateViewController(withIdentifier: "HashtagSearchViewController")
+                    as! HashtagSearchViewController
                 navVC.insert(searchHashtagVC, at: Int(index))
                 return searchHashtagVC
             default:
-                let searchPeopleVC = storyboard?.instantiateViewController(withIdentifier: "SearchPeopleViewController") as! SearchPeopleViewController
+                let searchPeopleVC = storyboard?.instantiateViewController(withIdentifier: "SearchPeopleViewController")
+                    as! SearchPeopleViewController
                 navVC.insert(searchPeopleVC, at: Int(index))
                 return searchPeopleVC
         }

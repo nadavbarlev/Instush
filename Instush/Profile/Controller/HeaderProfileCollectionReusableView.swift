@@ -8,10 +8,17 @@
 
 import UIKit
 
+
+protocol HeaderProfileCollectionReusableViewDelegate {
+    func moveToFollowers()
+    func moveToFollowing()
+    func moveToEditProfile()
+}
+
 class HeaderProfileCollectionReusableView: UICollectionReusableView {
     
     // MARK: Properties
-    var profileVC: ProfileViewController?
+    var delegate: HeaderProfileCollectionReusableViewDelegate?
     var userID = UserService.shared.getCurrentUserID()
     
     // MARK: Outlets
@@ -33,7 +40,6 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     }
     @IBOutlet weak var labelFollowersCount: UILabel! {
         didSet {
-           
             labelFollowersCount.onClick(target: self, action: #selector(showFollowers))
         }
     }
@@ -44,31 +50,34 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     }
     
     override func awakeFromNib() {
-        /*
- 
-         guard let appUserID = userID else { return }
-         FollowService.shared.getFollowingCount(of: appUserID) { [weak self] (followingCount) in
-         self?.labelFollowingCount.text = String(followingCount)
-         }
-         
-         */
-        print("dsasdasd")
+        guard let userID = userID else { return }
+        PostService.shared.getPostCount(for: userID) { (postCount: Int) in
+            self.labelPostCount.text = String(postCount)
+        }
+        FollowService.shared.getFollowersCount(for: userID) { (followersCount: Int) in
+              self.labelFollowersCount.text = String(followersCount)            
+        }
+        FollowService.shared.getFollowingCount(for: userID)  { (followingCount: Int) in
+            self.labelFollowingCount.text = String(followingCount)
+        }
     }
     
     // MARK: Actions and Events
     @IBAction func editProfile(_ sender: UIButton) {
+        delegate?.moveToEditProfile()
     }
     
     @objc func showFollowers() {
-        profileVC?.performSegue(withIdentifier: "ProfileToFollowersSegue", sender: self)
+        delegate?.moveToFollowers()
     }
     
     @objc func showFollowing() {
-        profileVC?.performSegue(withIdentifier: "ProfileToFollowingSegue", sender: self)
+        delegate?.moveToFollowing()
     }
     
     // MARK: Methods
     func updateUI(user: User) {
+         guard let userID = userID else { return }
         labelUsername.text = user.username
         imageViewProfile.sd_setImage(with: URL(string: user.profileImgURL))
     }

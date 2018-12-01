@@ -27,7 +27,7 @@ class FirebaseDatabaseService: DatabaseService {
     }
     
     func listenToValue(toPath path: String, listener: @escaping (Dictionary<String,Any>?)->Void) {
-        dbRef.child(path).observe(.childAdded) { (snapshot: DataSnapshot) in
+        dbRef.child(path).observe(.value) { (snapshot: DataSnapshot) in
             let dicToReturn = snapshot.value as? [String:Any]
             listener(dicToReturn)
         }
@@ -71,18 +71,24 @@ class FirebaseDatabaseService: DatabaseService {
         var keys = [String]()
         dbRef.child(path).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
             for child in snapshot.children {
-                let ketToAdd = (child as! DataSnapshot).key
-                keys.append(ketToAdd)
+                let keyToAdd = (child as! DataSnapshot).key
+                keys.append(keyToAdd)
             }
             completion(keys)
         }
     }
     
-    func getKeyandValue(path: String, completion: @escaping (String, Dictionary<String,Any>?)->Void) {
+    func getKeyAndValue(path: String, completion: @escaping (String, Dictionary<String,Any>?)->Void) {
         dbRef.child(path).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
             let dicKey = snapshot.key
             let dicToReturn = snapshot.value as? [String:Any]
             completion(dicKey, dicToReturn)
+        }
+    }
+    
+    func getChildCount(path: String, completion: @escaping (Int)->Void) {
+        dbRef.child(path).observe(.value) { (snapshot: DataSnapshot) in
+            completion(Int(snapshot.childrenCount))
         }
     }
     
@@ -121,6 +127,13 @@ class FirebaseDatabaseService: DatabaseService {
         }
         
         defer { if (!isErrorOccured) { onSuccess() } }
+    }
+    
+    func update(path: String, newValues: [String:Any], onSuccess: (()->Void)?, onError: ((Error)->(Void))?) {
+        dbRef.child(path).updateChildValues(newValues) { (error: Error?, dbRef: DatabaseReference) in
+            if (error != nil) { onError?(error!); return }
+            onSuccess?()
+        }
     }
     
     func update(path: String, updateDataBlock: @escaping ([String:Any])->([String:Any]),

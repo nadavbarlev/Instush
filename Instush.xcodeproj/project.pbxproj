@@ -52,6 +52,10 @@
 		05B747B721A5A385000FC9F7 /* FollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B747B621A5A385000FC9F7 /* FollowService.swift */; };
 		05B747B921AAD291000FC9F7 /* SearchPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B747B821AAD291000FC9F7 /* SearchPeopleViewController.swift */; };
 		05B747BC21AC1F3F000FC9F7 /* HashtagSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B747BB21AC1F3E000FC9F7 /* HashtagSearchViewController.swift */; };
+		05B747BE21AD4945000FC9F7 /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B747BD21AD4945000FC9F7 /* OtherProfileViewController.swift */; };
+		05B747C021AD5D53000FC9F7 /* HeaderOtherProfileCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B747BF21AD5D53000FC9F7 /* HeaderOtherProfileCollectionReusableView.swift */; };
+		05D7CB9221AFCDFE00C76EE6 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D7CB9121AFCDFE00C76EE6 /* EditProfileTableViewController.swift */; };
+		05D7CB9421B019F400C76EE6 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D7CB9321B019F400C76EE6 /* PostDetailsViewController.swift */; };
 		BF36150566A49BED32C4ECD9 /* Pods_Instush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038301CAC50DD33DCC813FE4 /* Pods_Instush.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +108,10 @@
 		05B747B621A5A385000FC9F7 /* FollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowService.swift; sourceTree = "<group>"; };
 		05B747B821AAD291000FC9F7 /* SearchPeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPeopleViewController.swift; sourceTree = "<group>"; };
 		05B747BB21AC1F3E000FC9F7 /* HashtagSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagSearchViewController.swift; sourceTree = "<group>"; };
+		05B747BD21AD4945000FC9F7 /* OtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
+		05B747BF21AD5D53000FC9F7 /* HeaderOtherProfileCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderOtherProfileCollectionReusableView.swift; sourceTree = "<group>"; };
+		05D7CB9121AFCDFE00C76EE6 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
+		05D7CB9321B019F400C76EE6 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		8FF334CC0820913C9A7B6019 /* Pods-Instush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instush.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instush/Pods-Instush.debug.xcconfig"; sourceTree = "<group>"; };
 		CFACE21F0ACB44FCBFA5EF6E /* Pods-Instush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instush.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instush/Pods-Instush.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -328,6 +336,8 @@
 				05B747AE21A4686D000FC9F7 /* PhotoCollectionViewCell.swift */,
 				05B747B221A588F0000FC9F7 /* FollowViewController.swift */,
 				05B747B421A58C12000FC9F7 /* FollowTableViewCell.swift */,
+				05D7CB9121AFCDFE00C76EE6 /* EditProfileTableViewController.swift */,
+				05D7CB9321B019F400C76EE6 /* PostDetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -363,6 +373,8 @@
 				0526F5FF21904E700028F1D9 /* SearchViewController.swift */,
 				05B747B821AAD291000FC9F7 /* SearchPeopleViewController.swift */,
 				05B747BB21AC1F3E000FC9F7 /* HashtagSearchViewController.swift */,
+				05B747BD21AD4945000FC9F7 /* OtherProfileViewController.swift */,
+				05B747BF21AD5D53000FC9F7 /* HeaderOtherProfileCollectionReusableView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -559,17 +571,21 @@
 				05B74798219D93AB000FC9F7 /* CommentsViewController.swift in Sources */,
 				0526F60221904E860028F1D9 /* HomeViewController.swift in Sources */,
 				05B74794219D7A33000FC9F7 /* FirebaseDatabaseService.swift in Sources */,
+				05D7CB9421B019F400C76EE6 /* PostDetailsViewController.swift in Sources */,
 				05B747B721A5A385000FC9F7 /* FollowService.swift in Sources */,
 				05B747AF21A4686D000FC9F7 /* PhotoCollectionViewCell.swift in Sources */,
 				05B747A0219EC759000FC9F7 /* CommentViewModel.swift in Sources */,
 				05B747B921AAD291000FC9F7 /* SearchPeopleViewController.swift in Sources */,
 				05B747B521A58C12000FC9F7 /* FollowTableViewCell.swift in Sources */,
 				05B7478C219B1D3F000FC9F7 /* UserService.swift in Sources */,
+				05B747BE21AD4945000FC9F7 /* OtherProfileViewController.swift in Sources */,
 				0526F5FE218F3E100028F1D9 /* SignUpViewController.swift in Sources */,
 				05B7479A219D93CB000FC9F7 /* CommentTableViewCell.swift in Sources */,
 				05B7479E219E1DE2000FC9F7 /* Comment.swift in Sources */,
 				05B7478A219B17DD000FC9F7 /* User.swift in Sources */,
 				05B747AD21A4344A000FC9F7 /* HeaderProfileCollectionReusableView.swift in Sources */,
+				05D7CB9221AFCDFE00C76EE6 /* EditProfileTableViewController.swift in Sources */,
+				05B747C021AD5D53000FC9F7 /* HeaderOtherProfileCollectionReusableView.swift in Sources */,
 				051BCEB821997CE400820B93 /* UIViewExtenstions.swift in Sources */,
 				05B747B321A588F0000FC9F7 /* FollowViewController.swift in Sources */,
 				0526F622219090620028F1D9 /* UIViewControllerExtensions.swift in Sources */,

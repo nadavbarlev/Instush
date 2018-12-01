@@ -11,9 +11,9 @@ import UIKit
 class FollowViewController: UIViewController {
 
     // MARK: Properties
+    var userToCheck: String?
     var isFollowers: Bool?      /* Following or Followers Controller */
     var usersFollow = [User]()
-    let appUserID = UserService.shared.getCurrentUserID()
     
     // MARK: Outlets
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -21,6 +21,7 @@ class FollowViewController: UIViewController {
     @IBOutlet weak var tableViewFollow: UITableView! {
         didSet {
             tableViewFollow.dataSource = self
+            tableViewFollow.delegate = self
             tableViewFollow.keyboardDismissMode = .onDrag
         }
     }
@@ -32,10 +33,19 @@ class FollowViewController: UIViewController {
         isFollowers ? configureFollowers() : configureFollowing()
     }
     
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FollowToOtherProfile" {
+            let otherProfileVC = segue.destination as! OtherProfileViewController
+            otherProfileVC.user = sender as? User
+            otherProfileVC.delegate = self
+        }
+    }
+    
     // MARK: Methods
     private func configureFollowers() {
         self.title = "Followers"
-        guard let userID = appUserID else { return }
+        guard let userID = userToCheck else { return }
         activityIndicator.startAnimating()
         FollowService.shared.getFollowers(after: userID) { (followingUser) in
             self.activityIndicator.stopAnimating()
@@ -52,7 +62,7 @@ class FollowViewController: UIViewController {
     
     private func configureFollowing() {
         self.title = "Following"
-        guard let userID = appUserID else { return }
+        guard let userID = userToCheck else { return }
         activityIndicator.startAnimating()
         FollowService.shared.getFollowing(of: userID) { (followedUser) in
             self.activityIndicator.stopAnimating()
@@ -69,7 +79,7 @@ class FollowViewController: UIViewController {
 }
 
 // MARK: Extension - Table View Data Source
-extension FollowViewController: UITableViewDataSource {
+extension FollowViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return usersFollow.count
     }
@@ -77,6 +87,18 @@ extension FollowViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowCell", for: indexPath) as! FollowTableViewCell
         cell.user = usersFollow[indexPath.row]
+        cell.selectionStyle = .none
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "FollowToOtherProfile", sender: usersFollow[indexPath.row])
+    }
+}
+
+extension FollowViewController: OtherProfileViewControllerDelegate {
+    func onFollowStateChanged(to isFollowing: Bool, of userID: String) {
+        usersFollow.first { $0.userID == userID }?.isAppUserFollowAfterMe = isFollowing
+        tableViewFollow.reloadData()
     }
 }
