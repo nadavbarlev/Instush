@@ -8,11 +8,14 @@
 
 import UIKit
 import SDWebImage
+import KILabel
 
 protocol PostTableViewCellDelegate {
     func onUpdate(post: Post) -> ()
     func onCommentPostClicked(postID: String)
     func onUsernameClicked(userID: String)
+    func onHashtagClicked(text: String)
+    func onMentionClicked(text: String)
 }
 
 class PostTableViewCell: UITableViewCell {
@@ -23,8 +26,18 @@ class PostTableViewCell: UITableViewCell {
     var delegate: PostTableViewCellDelegate?
     
     // MARK: Outlets
-    @IBOutlet weak var labelCaption: UILabel!
     @IBOutlet weak var labelLikes: UILabel!
+    @IBOutlet weak var labelTimestamp: UILabel!
+    @IBOutlet weak var labelCaption: KILabel! {
+        didSet {
+            labelCaption.hashtagLinkTapHandler = { (label, string, range) in
+                self.delegate?.onHashtagClicked(text: string)
+            }
+            labelCaption.userHandleLinkTapHandler = { (label, string, range) in
+                self.delegate?.onMentionClicked(text: string)
+            }
+        }
+    }
     @IBOutlet weak var labelUsername: UILabel! {
         didSet {
             labelUsername.onClick(target: self, action: #selector(onUsernameClicked))
@@ -69,7 +82,7 @@ class PostTableViewCell: UITableViewCell {
         PostService.shared.Like(postID: post.postID) { (post: Post) in
             guard let id = self.user?.userID else { return }
             let isLikedByUser = post.usersLike[id] != nil
-            self.updateLikeUI(count: String(post.likesCount), isUserLiked: isLikedByUser)
+            self.updateLike(count: String(post.likesCount), isUserLiked: isLikedByUser)
             self.delegate?.onUpdate(post: post)
         }
     }
@@ -96,14 +109,13 @@ class PostTableViewCell: UITableViewCell {
             self.labelUsername.text = user.username
             self.labelCaption.text  = post.caption
             self.imageViewPost.sd_setImage(with: URL(string: post.photoURL))
-            self.imageViewProfile.sd_setImage(with: URL(string: user.profileImgURL),
-                                         placeholderImage: UIImage(named: "Placeholder-ProfileImg"))
-            let isUserLiked = post.usersLike[user.userID] != nil
-            self.updateLikeUI(count: String(post.likesCount), isUserLiked: isUserLiked)
+            self.imageViewProfile.sd_setImage(with: URL(string: user.profileImgURL), placeholderImage: UIImage(named: "Placeholder-ProfileImg"))
+            self.updateLike(count: String(post.likesCount), isUserLiked: (post.usersLike[user.userID] != nil))
+            self.updateUploadDate(timestamp: post.timestamp)
         }
     }
     
-    func updateLikeUI(count: String, isUserLiked: Bool) {
+    func updateLike(count: String, isUserLiked: Bool) {
         let imageText: String
         let imageName = isUserLiked ? "like_Selected" : "like"
         if count == "0" {
@@ -116,6 +128,14 @@ class PostTableViewCell: UITableViewCell {
         DispatchQueue.main.async {
             self.labelLikes.text = imageText
             self.imageViewLike.image = UIImage(named: imageName)
+        }
+    }
+    
+    func updateUploadDate(timestamp: String) {
+        guard let timestampAsDouble = Double(timestamp) else { return }
+        let timestamp = Date(timeIntervalSince1970: timestampAsDouble)
+        DispatchQueue.main.async {
+            self.labelTimestamp.text = Date.differenceInStringFormat(from: timestamp, to: Date())
         }
     }
 }

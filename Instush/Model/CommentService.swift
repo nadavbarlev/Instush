@@ -34,6 +34,7 @@ class CommentService {
         guard let commentID = ServiceManager.database.getUniqueId(forPath: "comments") else { return }
         ServiceManager.database.setValue(path: "comments", dataID: commentID, data: ["userID": userID, "comment": comment]) { (error: Error?) in
             if error != nil { onError?(error!); return }
+            HashTagService.shared.extract(from: comment, postID: postID)
             ServiceManager.database.setValue(path: "post-comments/" + postID, dataID: commentID, data: "true", completion: { (error: Error?) in
                 if error != nil { onError?(error!); return }
                 onSuccess?()

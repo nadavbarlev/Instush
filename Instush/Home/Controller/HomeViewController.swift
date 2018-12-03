@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, PostTableViewCellDelegate {
+class HomeViewController: UIViewController {
    
     // MARK: Properties
     var user: User?
@@ -45,8 +45,8 @@ class HomeViewController: UIViewController, PostTableViewCellDelegate {
                 return
             }
             UserService.shared.getUser(by: feedPost.userID) { [weak self] (user: User) in
-                self?.users.append(user)
-                self?.posts.append(feedPost)
+                self?.users.insert(user, at: 0)
+                self?.posts.insert(feedPost, at: 0)
                 self?.indicatorView.stopAnimating()
                 self?.labelNoFeed.isHidden = true
                 self?.tableViewPosts.reloadData()
@@ -79,29 +79,10 @@ class HomeViewController: UIViewController, PostTableViewCellDelegate {
             guard let user = sender as? User else { return }
             guard let otherProfileVC = segue.destination as? OtherProfileViewController else { return }
             otherProfileVC.user = user
-        }
-    }
-    
-    // PostTableViewCellDelegate - Implementation
-    func onUpdate(post: Post) {
-        let updatedPost = posts.first { $0.postID == post.postID }
-        updatedPost?.likesCount = post.likesCount
-        updatedPost?.usersLike = post.usersLike
-    }
-    
-    func onCommentPostClicked(postID: String) {
-        self.performSegue(withIdentifier: "HomeToCommentsSegue", sender: postID)
-    }
-    
-    func onUsernameClicked(userID: String) {
-        if userID == UserService.shared.getCurrentUserID() {
-            let user = users.first { $0.userID == userID }
-            self.performSegue(withIdentifier: "HomeToProfileSegue", sender: user)
-            return
-        }
-        else  {
-            let user = users.first { $0.userID == userID }
-            self.performSegue(withIdentifier: "HomeToOtherProfileSegue", sender: user)
+        } else if segue.identifier == "HomeToHashtagSegue" {
+            guard let text = sender as? String else { return }
+            guard let hashtagVC = segue.destination as? HashtagViewController else { return }
+            hashtagVC.hashtagText = text
         }
     }
 }
@@ -120,5 +101,45 @@ extension HomeViewController: UITableViewDataSource {
         cell.updateUI()
         cell.delegate = self
         return cell
+    }
+}
+
+// MARK: Extension - TableView Events
+extension HomeViewController: PostTableViewCellDelegate {
+ 
+    func onUpdate(post: Post) {
+        let updatedPost = posts.first { $0.postID == post.postID }
+        updatedPost?.likesCount = post.likesCount
+        updatedPost?.usersLike = post.usersLike
+    }
+    
+    func onCommentPostClicked(postID: String) {
+        self.performSegue(withIdentifier: "HomeToCommentsSegue", sender: postID)
+    }
+    
+    func onUsernameClicked(userID: String) {
+        if userID == UserService.shared.getCurrentUserID() {
+            let user = users.first { $0.userID == userID }
+            self.performSegue(withIdentifier: "HomeToProfileSegue", sender: user)
+        }
+        else {
+            let user = users.first { $0.userID == userID }
+            self.performSegue(withIdentifier: "HomeToOtherProfileSegue", sender: user)
+        }
+    }
+    
+    func onHashtagClicked(text: String) {
+        self.performSegue(withIdentifier: "HomeToHashtagSegue", sender: text)
+    }
+    
+    func onMentionClicked(text: String) {
+        let username = text.dropFirst().lowercased()
+        UserService.shared.getUser(byUsername: username) { (user: User) in
+            if user.userID == UserService.shared.getCurrentUserID() {
+                self.performSegue(withIdentifier: "HomeToProfileSegue", sender: user)
+                return
+            }
+            self.performSegue(withIdentifier: "HomeToOtherProfileSegue", sender: user)
+        }
     }
 }

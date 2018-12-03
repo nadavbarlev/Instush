@@ -26,6 +26,7 @@ class SearchViewController: UIViewController {
         configureCarbonTabSwipeNavigation()
     }
     
+    
     // MARK: Methods
     private func configureSearchBar() {
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 18))
@@ -58,7 +59,7 @@ extension SearchViewController : UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+        searchBarListener?.onSearchClicked()
     }
 }
 
@@ -89,4 +90,5 @@ extension SearchViewController: CarbonTabSwipeNavigationDelegate {
 // MARK: Protocol - Search Bar Events
 protocol SearchBarLinstener {
     func onTextChanged(searchText: String)
+    func onSearchClicked()
 }

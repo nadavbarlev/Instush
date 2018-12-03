@@ -35,7 +35,7 @@ class CameraViewController: UIViewController {
             self.showBottomToast(onView: view, withMessage: "Please choose image to share")
             return
         }
-        guard let caption = textViewCaption.text, caption != placeholderCaption else {
+        guard let caption = textViewCaption.text, caption != placeholderCaption, caption != "" else {
             self.showBottomToast(onView: view, withMessage: "Please write a caption")
             return
         }

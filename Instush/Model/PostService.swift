@@ -52,9 +52,11 @@ class PostService {
     func share(imgPostID: String, imgPostData: Data, userID: String, caption: String, onSuccess:(()->(Void))?, onError:((String)->(Void))?) {
         ServiceManager.storage.save(path: "posts", dataID: imgPostID, data: imgPostData, onSuccess: { (imgUrl:URL) in
             guard let postID = ServiceManager.database.getUniqueId(forPath: "posts") else { return }
-            let dicPost = ["photoURL": imgUrl.absoluteString, "caption": caption, "userID": userID]
+            let postTimestamp = Int(NSDate().timeIntervalSince1970)
+            let dicPost = ["photoURL": imgUrl.absoluteString, "caption": caption, "userID": userID, "timestamp": String(postTimestamp)]
             ServiceManager.database.setValue(path: "posts", dataID: postID, data: dicPost) { (error: Error?) in
                 if error != nil { onError?(error!.localizedDescription); return  }
+                HashTagService.shared.extract(from: caption, postID: postID)
                 ServiceManager.database.setValue(path: "user-posts/" + userID, dataID: postID, data: "true", completion: { (error: Error?) in
                     if error != nil { onError?(error!.localizedDescription); return }
                     ServiceManager.database.setValue(path: "feed/" + userID, dataID: postID, data: "true", completion: { (error: Error?) in
@@ -86,6 +88,15 @@ class PostService {
         let userPostPath = String(format: "user-posts/%@", userID)
         ServiceManager.database.getChildCount(path: userPostPath) { (postCount: Int) in
             completion(postCount)
+        }
+    }
+    
+    func getPost(by postID: String, completion: @escaping (Post)->Void) {
+        let pathPostID = String(format: "posts/%@", postID)
+        ServiceManager.database.getValue(path: pathPostID) { (data: Dictionary<String, Any>?) in
+            guard let dicPost = data else { return }
+            guard let post = Post.transform(from: dicPost, id: postID) else { return }
+            completion(post)
         }
     }
     

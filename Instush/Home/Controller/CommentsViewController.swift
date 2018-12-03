@@ -21,6 +21,7 @@ class CommentsViewController: UIViewController {
             tableViewComments.rowHeight = 70
             tableViewComments.estimatedRowHeight = UITableView.automaticDimension
             tableViewComments.dataSource = self
+            tableViewComments.keyboardDismissMode = .onDrag
         }
     }
     @IBOutlet weak var textFieldComment: UITextField!
@@ -29,7 +30,7 @@ class CommentsViewController: UIViewController {
     
     // MARK: Actions and Events
     @IBAction func postComment(_ sender: UIButton) {
-        
+
         guard let postID = currentPostID else { return }
         guard let comment = textFieldComment.text, !comment.isEmpty else {
             self.showTopToast(onView: view, withMessage: "Comment is empty")
@@ -47,6 +48,23 @@ class CommentsViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CommentToHashtagSegue" {
+            guard let hashtagVC = segue.destination as? HashtagViewController else { return }
+            guard let text = sender as? String else { return }
+            hashtagVC.hashtagText = text
+        } else if segue.identifier == "CommentToProfileSegue" {
+            guard let profileVC = segue.destination as? ProfileViewController else { return }
+            guard let user = sender as? User else { return }
+            profileVC.user = user
+        } else if segue.identifier == "CommentToOtherProfileSegue" {
+            guard let otherProfileVC = segue.destination as? OtherProfileViewController else { return }
+            guard let user = sender as? User else { return }
+            otherProfileVC.user = user
+        }
     }
     
     // MARK: LifeCycle
@@ -77,18 +95,39 @@ class CommentsViewController: UIViewController {
 }
 
 // MARK: Extension - TableView Events
-extension CommentsViewController : UITableViewDataSource {
+extension CommentsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentTableViewCell
-        let commentVM =  CommentViewModel(comment: comments[indexPath.row], user: users[indexPath.row])
+        let commentVM = CommentViewModel(comment: comments[indexPath.row], user: users[indexPath.row])
         cell.updateUI(commentViewModel: commentVM)
+        cell.delegate = self
         return cell
     }
 }
+
+// MARK: Extension - Protocol CommentTableViewCellDelegate
+extension CommentsViewController: CommentTableViewCellDelegate {
+    func onHashtagClicked(text: String) {
+        let hasgtag = text.dropFirst().lowercased()
+        self.performSegue(withIdentifier: "CommentToHashtagSegue", sender: text)
+    }
+    
+    func onMentionClicked(text: String) {
+        let username = text.dropFirst().lowercased()
+        UserService.shared.getUser(byUsername: username) { (user: User) in
+            if user.userID == UserService.shared.getCurrentUserID() {
+                self.performSegue(withIdentifier: "CommentToProfileSegue", sender: user)
+                return
+            }
+            self.performSegue(withIdentifier: "CommentToOtherProfileSegue", sender: user)
+        }
+    }
+}
+
 
 // MARK: Extension - Keyboard Events
 extension CommentsViewController {

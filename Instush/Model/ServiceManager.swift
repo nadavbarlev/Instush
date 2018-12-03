@@ -42,7 +42,8 @@ protocol DatabaseService {
     func listenToValueAndKey(toPath path: String, listener: @escaping (String, Dictionary<String,Any>?)->Void)
     func update(path: String, newValues: [String:Any], onSuccess: (()->Void)?, onError: ((Error)->(Void))?)
     func update(path: String, updateDataBlock: @escaping ([String:Any])->([String:Any]), onSuccess: @escaping ([String:Any])->Void, onError: ((Error)->(Void))?)
-    func search(for text: String, in path: String, orderBy field: String, maxResults: Int, completion: @escaping (String,[String:Any])->Void)
+    func contains(text: String, in path: String, orderBy field: String, maxResults: Int, completion: @escaping (String,[String:Any])->Void)
+    func search(for text: String, in path: String, field: String, completion: @escaping (String,[String:Any])->Void)
 }
 
 protocol StorageService {

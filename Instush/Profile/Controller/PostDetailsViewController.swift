@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KILabel
 
 class PostDetailsViewController: UIViewController {
 
@@ -15,8 +16,18 @@ class PostDetailsViewController: UIViewController {
     var user: User?
     
     // MARK: Outlets
-    @IBOutlet weak var labelCaption: UILabel!
     @IBOutlet weak var labelLikes: UILabel!
+    @IBOutlet weak var labelTimestamp: UILabel!
+    @IBOutlet weak var labelCaption: KILabel! {
+        didSet {
+            labelCaption.hashtagLinkTapHandler = { [weak self] (label, string, range) in
+                self?.onHashtagClicked(text: string)
+            }
+            labelCaption.userHandleLinkTapHandler = { [weak self] (label, string, range) in
+                self?.onMentionClicked(text: string)
+            }
+        }
+    }
     @IBOutlet weak var labelUsername: UILabel! {
         didSet {
             labelUsername.onClick(target: self, action: #selector(onUsernameClicked))
@@ -62,6 +73,7 @@ class PostDetailsViewController: UIViewController {
         } else {
             let storyboardSearch = UIStoryboard(name: "Search", bundle: nil)
             let otherProfileVC = storyboardSearch.instantiateViewController(withIdentifier: "OtherProfileViewController") as! OtherProfileViewController
+            otherProfileVC.user = user
             self.show(otherProfileVC, sender: self)
         }
     }
@@ -71,7 +83,35 @@ class PostDetailsViewController: UIViewController {
         PostService.shared.Like(postID: post.postID) { (post: Post) in
             guard let id = ServiceManager.auth.getUserID() else { return }
             let isLikedByUser = post.usersLike[id] != nil
-            self.updateLikeUI(count: String(post.likesCount), isUserLiked: isLikedByUser)
+            self.updateLike(count: String(post.likesCount), isUserLiked: isLikedByUser)
+        }
+    }
+    
+    func onHashtagClicked(text: String) {
+         self.performSegue(withIdentifier: "PostDetailsToHashtagSegue", sender: text)
+    }
+    
+    func onMentionClicked(text: String) {
+        let username = text.dropFirst().lowercased()
+        UserService.shared.getUser(byUsername: username) { [weak self] (user: User) in
+            if user.userID == ServiceManager.auth.getUserID() {
+                let profileVC = self?.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+                self?.show(profileVC, sender: self)
+            } else {
+                let storyboardSearch = UIStoryboard(name: "Search", bundle: nil)
+                let otherProfileVC = storyboardSearch.instantiateViewController(withIdentifier: "OtherProfileViewController") as! OtherProfileViewController
+                otherProfileVC.user = user
+                self?.show(otherProfileVC, sender: self)
+            }
+        }
+    }
+    
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PostDetailsToHashtagSegue" {
+            guard let hashtagVC = segue.destination as? HashtagViewController else { return }
+            guard let text = sender as? String else { return }
+            hashtagVC.hashtagText = text
         }
     }
     
@@ -103,12 +143,12 @@ class PostDetailsViewController: UIViewController {
             self.imageViewPost.sd_setImage(with: URL(string: post.photoURL))
             self.imageViewProfile.sd_setImage(with: URL(string: user.profileImgURL),
                                               placeholderImage: UIImage(named: "Placeholder-ProfileImg"))
-            let isUserLiked = post.usersLike[user.userID] != nil
-            self.updateLikeUI(count: String(post.likesCount), isUserLiked: isUserLiked)
+            self.updateLike(count: String(post.likesCount), isUserLiked: (post.usersLike[user.userID] != nil))
+            self.updateUploadDate(timestamp: post.timestamp)
         }
     }
     
-    func updateLikeUI(count: String, isUserLiked: Bool) {
+    func updateLike(count: String, isUserLiked: Bool) {
         let imageText: String
         let imageName = isUserLiked ? "like_Selected" : "like"
         if count == "0" {
@@ -123,5 +163,12 @@ class PostDetailsViewController: UIViewController {
             self.imageViewLike.image = UIImage(named: imageName)
         }
     }
-
+    
+    func updateUploadDate(timestamp: String) {
+        guard let timestampAsDouble = Double(timestamp) else { return }
+        let timestamp = Date(timeIntervalSince1970: timestampAsDouble)
+        DispatchQueue.main.async {
+            self.labelTimestamp.text = Date.differenceInStringFormat(from: timestamp, to: Date())
+        }
+    }
 }

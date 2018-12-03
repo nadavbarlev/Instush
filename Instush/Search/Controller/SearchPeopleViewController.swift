@@ -67,6 +67,9 @@ extension SearchPeopleViewController: SearchBarLinstener {
             self.tableView.reloadData()
         }
     }
+    func onSearchClicked() {
+        view.endEditing(true)
+    }
 }
 
 extension SearchPeopleViewController: OtherProfileViewControllerDelegate {

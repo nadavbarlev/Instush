@@ -7,10 +7,20 @@
 //
 
 import UIKit
+import KILabel
+
+protocol CommentTableViewCellDelegate {
+    func onHashtagClicked(text: String)
+    func onMentionClicked(text: String)
+}
 
 class CommentTableViewCell: UITableViewCell {
 
+    // MARK: Properties
+    var delegate: CommentTableViewCellDelegate?
+    
     // MARK: Outlets
+    @IBOutlet weak var labelUsername: UILabel!
     @IBOutlet weak var imageViewProfile: UIImageView! {
         didSet {
             imageViewProfile.layer.masksToBounds = false
@@ -18,8 +28,16 @@ class CommentTableViewCell: UITableViewCell {
             imageViewProfile.clipsToBounds = true
         }
     }
-    @IBOutlet weak var labelUsername: UILabel!
-    @IBOutlet weak var labelComment: UILabel!
+    @IBOutlet weak var labelComment: KILabel! {
+        didSet {
+            labelComment.hashtagLinkTapHandler = { (label, string, range) in
+                self.delegate?.onHashtagClicked(text: string)
+            }
+            labelComment.userHandleLinkTapHandler = { (label, string, range) in
+                self.delegate?.onMentionClicked(text: string)
+            }
+        }
+    }
     
     // MARK: Methods
     func updateUI(commentViewModel: CommentViewModel) {

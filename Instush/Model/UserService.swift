@@ -69,8 +69,17 @@ class UserService {
         }
     }
     
+    func getUser(byUsername username: String, completion: @escaping (User)->Void) {
+        ServiceManager.database.search(for: username, in: "users", field: "username_lowercase") { (UserID:String, dicUser:[String : Any]) in
+            FollowService.shared.isAppUserFollowing(after: UserID) { (isFollowing: Bool) in
+                guard let userToReturn = User.transform(from: dicUser, key: UserID, isFollowing: isFollowing) else { return }
+                completion(userToReturn)
+            }
+        }
+    }
+    
     func searchUsers(withText text: String, completion: @escaping (User)->Void) {
-        ServiceManager.database.search(for: text, in: "users", orderBy: "username_lowercase", maxResults: 3) { (UserID:String, dicUser:[String : Any]) in
+        ServiceManager.database.contains(text: text, in: "users", orderBy: "username_lowercase", maxResults: 4) { (UserID:String, dicUser:[String : Any]) in
             FollowService.shared.isAppUserFollowing(after: UserID) { (isFollowing: Bool) in
                 guard let userToReturn = User.transform(from: dicUser, key: UserID, isFollowing: isFollowing) else { return }
                 completion(userToReturn)
