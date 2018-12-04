@@ -33,6 +33,12 @@ class PostDetailsViewController: UIViewController {
             labelUsername.onClick(target: self, action: #selector(onUsernameClicked))
         }
     }
+    @IBOutlet weak var labelCaptionUsername: UILabel! {
+        didSet {
+            labelCaptionUsername.onClick(target: self, action: #selector(onUsernameClicked))
+        }
+    }
+    
     @IBOutlet weak var imageViewPost: UIImageView! {
         didSet {
             imageViewPost.onDoubleClick(target: self, action: #selector(onLikeClicked))
@@ -139,11 +145,13 @@ class PostDetailsViewController: UIViewController {
         guard let user = user else { return }
         DispatchQueue.main.async {
             self.labelUsername.text = user.username
+            self.labelCaptionUsername.text = user.username
             self.labelCaption.text  = post.caption
             self.imageViewPost.sd_setImage(with: URL(string: post.photoURL))
             self.imageViewProfile.sd_setImage(with: URL(string: user.profileImgURL),
                                               placeholderImage: UIImage(named: "Placeholder-ProfileImg"))
-            self.updateLike(count: String(post.likesCount), isUserLiked: (post.usersLike[user.userID] != nil))
+            guard let appUserID = ServiceManager.auth.getUserID() else { return }
+            self.updateLike(count: String(post.likesCount), isUserLiked: (post.usersLike[appUserID] != nil))
             self.updateUploadDate(timestamp: post.timestamp)
         }
     }
@@ -152,7 +160,7 @@ class PostDetailsViewController: UIViewController {
         let imageText: String
         let imageName = isUserLiked ? "like_Selected" : "like"
         if count == "0" {
-            imageText = "Be the first to like this photo"
+            imageText = "Be the first to like this post"
         } else if count == "1" {
             imageText = count + " like"
         } else {

@@ -15,6 +15,7 @@ class WalkthroughContentViewController: UIViewController {
     var content: String?
     
     // MARK: Outlets
+    @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelContent: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var buttonStart: UIButton! {
@@ -39,7 +40,9 @@ class WalkthroughContentViewController: UIViewController {
         super.viewDidLoad()
         labelContent.text = content
         pageControl.currentPage = index
+        labelTitle.isHidden = (index != 0)
         buttonStart.isHidden = (index != 2)
+        
     }
     
 }

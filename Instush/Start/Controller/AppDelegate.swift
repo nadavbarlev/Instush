@@ -20,9 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure Firebase
         FirebaseApp.configure()
         
-        // Set the color of all tab bar items to black
-        UITabBar.appearance().tintColor = UIColor.purple
-        
         // Set Initial ViewController
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let storyboard = UIStoryboard(name: "Start", bundle: nil)
@@ -32,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
+        
+        // Set the color of all tab bar items to black
+        UITabBar.appearance().tintColor = UIColor.purple
         
         return true
     }

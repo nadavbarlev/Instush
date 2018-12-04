@@ -45,8 +45,8 @@ class HomeViewController: UIViewController {
                 return
             }
             UserService.shared.getUser(by: feedPost.userID) { [weak self] (user: User) in
-                self?.users.insert(user, at: 0)
-                self?.posts.insert(feedPost, at: 0)
+                self?.users.append(user)
+                self?.posts.append(feedPost)
                 self?.indicatorView.stopAnimating()
                 self?.labelNoFeed.isHidden = true
                 self?.tableViewPosts.reloadData()
@@ -96,8 +96,8 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
-        cell.user = users[indexPath.row]
         cell.post = posts[indexPath.row]
+        cell.user = users[indexPath.row]
         cell.updateUI()
         cell.delegate = self
         return cell

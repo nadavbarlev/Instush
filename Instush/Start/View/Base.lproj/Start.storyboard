@@ -60,8 +60,8 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MnN-Ky-miL">
-                                <rect key="frame" x="16" y="603" width="343" height="44"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                <rect key="frame" x="32" y="607" width="311" height="40"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                 <state key="normal" title="Get Start">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -72,8 +72,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="MnN-Ky-miL" firstAttribute="leading" secondItem="9O7-LJ-jSI" secondAttribute="leading" constant="16" id="1vC-wX-hQD"/>
-                            <constraint firstItem="9O7-LJ-jSI" firstAttribute="trailing" secondItem="MnN-Ky-miL" secondAttribute="trailing" constant="16" id="28L-F3-mXc"/>
+                            <constraint firstItem="MnN-Ky-miL" firstAttribute="leading" secondItem="9O7-LJ-jSI" secondAttribute="leading" constant="32" id="1vC-wX-hQD"/>
+                            <constraint firstItem="9O7-LJ-jSI" firstAttribute="trailing" secondItem="MnN-Ky-miL" secondAttribute="trailing" constant="32" id="28L-F3-mXc"/>
                             <constraint firstItem="9O7-LJ-jSI" firstAttribute="bottom" secondItem="MnN-Ky-miL" secondAttribute="bottom" constant="20" id="5Vl-MB-he0"/>
                             <constraint firstItem="TZR-o6-odu" firstAttribute="leading" secondItem="9O7-LJ-jSI" secondAttribute="leading" id="H7K-mA-gOX"/>
                             <constraint firstItem="TZR-o6-odu" firstAttribute="centerY" secondItem="9O7-LJ-jSI" secondAttribute="centerY" id="jxM-gM-Joe"/>
@@ -104,6 +104,7 @@
                     <connections>
                         <outlet property="buttonStart" destination="MnN-Ky-miL" id="fE2-GW-JPl"/>
                         <outlet property="labelContent" destination="zTl-md-R4p" id="FKb-Mf-iRU"/>
+                        <outlet property="labelTitle" destination="HIe-0v-ERX" id="6hH-YF-Vgy"/>
                         <outlet property="pageControl" destination="Bo8-mw-AVV" id="G4m-xF-Oo5"/>
                     </connections>
                 </viewController>
@@ -120,13 +121,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OW4-66-9O7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="626"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ghk-QC-8nm" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="626"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NLu-f5-Ya1" userLabel="CenterView">
-                                                <rect key="frame" x="0.0" y="201.5" width="375" height="223"/>
+                                                <rect key="frame" x="0.0" y="193.5" width="375" height="232"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instush" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGC-5l-4dA">
                                                         <rect key="frame" x="16" y="20" width="343" height="58"/>
@@ -135,20 +136,20 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jw2-wp-fk1">
-                                                        <rect key="frame" x="16" y="90" width="343" height="30"/>
+                                                        <rect key="frame" x="16" y="90" width="343" height="32"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E4O-Ez-0VQ">
-                                                        <rect key="frame" x="16" y="130" width="343" height="30"/>
+                                                        <rect key="frame" x="16" y="132" width="343" height="32"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6O-o0-oo6">
-                                                        <rect key="frame" x="16" y="170" width="343" height="33"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <rect key="frame" x="16" y="174" width="343" height="38"/>
+                                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="16"/>
                                                         <state key="normal" title="Sign In">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -195,8 +196,8 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5E-LO-xs2">
-                                <rect key="frame" x="16" y="626" width="343" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="619" width="343" height="40"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <state key="normal" title="Don't have an account?">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -257,13 +258,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="77t-ZR-2RX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="626"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T73-fJ-uCq" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="626"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdN-yo-Qlj" userLabel="CenterView">
-                                                <rect key="frame" x="0.0" y="170.5" width="375" height="285"/>
+                                                <rect key="frame" x="0.0" y="161.5" width="375" height="296"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder-ProfileImg" translatesAutoresizingMaskIntoConstraints="NO" id="Ik8-cv-CAG">
                                                         <rect key="frame" x="137.5" y="20" width="100" height="100"/>
@@ -273,26 +274,26 @@
                                                         </constraints>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rjJ-zF-55q">
-                                                        <rect key="frame" x="16" y="132" width="343" height="30"/>
+                                                        <rect key="frame" x="16" y="132" width="343" height="32"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GE1-OW-YRb">
-                                                        <rect key="frame" x="16" y="172" width="343" height="30"/>
+                                                        <rect key="frame" x="16" y="174" width="343" height="32"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Efs-Fp-Wpt">
-                                                        <rect key="frame" x="16" y="212" width="343" height="30"/>
+                                                        <rect key="frame" x="16" y="216" width="343" height="32"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCH-6j-E6l">
-                                                        <rect key="frame" x="16" y="252" width="343" height="33"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <rect key="frame" x="16" y="258" width="343" height="38"/>
+                                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="16"/>
                                                         <state key="normal" title="Sign Up">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -341,8 +342,8 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbf-IZ-eMh">
-                                <rect key="frame" x="16" y="626" width="343" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="619" width="343" height="40"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <state key="normal" title="Already have an account?">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
