@@ -67,7 +67,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.dismissKeyboardOnTapAround()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.registerKeyboardNotifications(willShowSelector: #selector(keyboardWillShow),

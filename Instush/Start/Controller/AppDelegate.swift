@@ -23,6 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set the color of all tab bar items to black
         UITabBar.appearance().tintColor = UIColor.purple
         
+        // Set Initial ViewController
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Start", bundle: nil)
+        var initialViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController")
+        if !UserDefaults.standard.bool(forKey: "isWalkthroughDisplayed") {
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "WalkthroughViewController")
+        }
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

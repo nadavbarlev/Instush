@@ -113,7 +113,7 @@ extension CommentsViewController: UITableViewDataSource {
 extension CommentsViewController: CommentTableViewCellDelegate {
     func onHashtagClicked(text: String) {
         let hasgtag = text.dropFirst().lowercased()
-        self.performSegue(withIdentifier: "CommentToHashtagSegue", sender: text)
+        self.performSegue(withIdentifier: "CommentToHashtagSegue", sender: hasgtag)
     }
     
     func onMentionClicked(text: String) {

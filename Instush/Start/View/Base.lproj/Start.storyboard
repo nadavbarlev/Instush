@@ -10,6 +10,107 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Walkthrough View Controller-->
+        <scene sceneID="FOU-Xn-fyP">
+            <objects>
+                <pageViewController storyboardIdentifier="WalkthroughViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="O3j-ea-kMz" customClass="WalkthroughViewController" customModule="Instush" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WSL-Dc-MC5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4135" y="151"/>
+        </scene>
+        <!--Walkthrough Content View Controller-->
+        <scene sceneID="pZO-2W-dlS">
+            <objects>
+                <viewController storyboardIdentifier="WalkthroughContentViewController" id="etZ-Wr-JW7" customClass="WalkthroughContentViewController" customModule="Instush" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w3C-T6-b6m" customClass="GradientView" customModule="Instush" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZR-o6-odu">
+                                <rect key="frame" x="0.0" y="231" width="375" height="225"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instush" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIe-0v-ERX">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="46"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instush is a simple way to capture and share the world’s moments." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTl-md-R4p">
+                                        <rect key="frame" x="16" y="94" width="343" height="64"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Bo8-mw-AVV">
+                                        <rect key="frame" x="16" y="188" width="343" height="37"/>
+                                    </pageControl>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="zTl-md-R4p" firstAttribute="top" secondItem="HIe-0v-ERX" secondAttribute="bottom" constant="20" id="6hZ-Jb-qLZ"/>
+                                    <constraint firstItem="Bo8-mw-AVV" firstAttribute="leading" secondItem="TZR-o6-odu" secondAttribute="leading" constant="16" id="8lf-hB-VAc"/>
+                                    <constraint firstItem="Bo8-mw-AVV" firstAttribute="top" secondItem="zTl-md-R4p" secondAttribute="bottom" constant="30" id="FAq-xi-xzr"/>
+                                    <constraint firstItem="zTl-md-R4p" firstAttribute="leading" secondItem="TZR-o6-odu" secondAttribute="leading" constant="16" id="HhY-lO-Qur"/>
+                                    <constraint firstAttribute="trailing" secondItem="HIe-0v-ERX" secondAttribute="trailing" id="J8l-cz-8SG"/>
+                                    <constraint firstAttribute="trailing" secondItem="zTl-md-R4p" secondAttribute="trailing" constant="16" id="LCi-vf-JAb"/>
+                                    <constraint firstItem="HIe-0v-ERX" firstAttribute="top" secondItem="TZR-o6-odu" secondAttribute="top" id="ZN7-f0-IP9"/>
+                                    <constraint firstItem="HIe-0v-ERX" firstAttribute="leading" secondItem="TZR-o6-odu" secondAttribute="leading" id="ex2-BC-BTo"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bo8-mw-AVV" secondAttribute="trailing" constant="16" id="wF0-iA-V9o"/>
+                                    <constraint firstAttribute="bottom" secondItem="Bo8-mw-AVV" secondAttribute="bottom" id="xSo-PG-sFj"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MnN-Ky-miL">
+                                <rect key="frame" x="16" y="603" width="343" height="44"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                <state key="normal" title="Get Start">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="start:" destination="etZ-Wr-JW7" eventType="touchUpInside" id="paY-lp-Q1o"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MnN-Ky-miL" firstAttribute="leading" secondItem="9O7-LJ-jSI" secondAttribute="leading" constant="16" id="1vC-wX-hQD"/>
+                            <constraint firstItem="9O7-LJ-jSI" firstAttribute="trailing" secondItem="MnN-Ky-miL" secondAttribute="trailing" constant="16" id="28L-F3-mXc"/>
+                            <constraint firstItem="9O7-LJ-jSI" firstAttribute="bottom" secondItem="MnN-Ky-miL" secondAttribute="bottom" constant="20" id="5Vl-MB-he0"/>
+                            <constraint firstItem="TZR-o6-odu" firstAttribute="leading" secondItem="9O7-LJ-jSI" secondAttribute="leading" id="H7K-mA-gOX"/>
+                            <constraint firstItem="TZR-o6-odu" firstAttribute="centerY" secondItem="9O7-LJ-jSI" secondAttribute="centerY" id="jxM-gM-Joe"/>
+                            <constraint firstItem="9O7-LJ-jSI" firstAttribute="trailing" secondItem="TZR-o6-odu" secondAttribute="trailing" id="ocv-2z-1SW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9O7-LJ-jSI"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                <color key="value" red="0.57243239879999996" green="0.2084523439" blue="0.54120045900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                <color key="value" red="0.49039441350000001" green="0.25000661610000002" blue="0.54512333869999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="buttonStart" destination="MnN-Ky-miL" id="fE2-GW-JPl"/>
+                        <outlet property="labelContent" destination="zTl-md-R4p" id="FKb-Mf-iRU"/>
+                        <outlet property="pageControl" destination="Bo8-mw-AVV" id="G4m-xF-Oo5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cqs-K3-mHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3311.1999999999998" y="150.67466266866569"/>
+        </scene>
         <!--Sign In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -150,7 +251,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="koa-2J-V9C">
             <objects>
-                <viewController id="Ufr-DB-a5D" customClass="SignUpViewController" customModule="Instush" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="Ufr-DB-a5D" customClass="SignUpViewController" customModule="Instush" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vuH-sI-h1R" userLabel="GradientView" customClass="GradientView" customModule="Instush" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -311,6 +412,6 @@
         <image name="Placeholder-ProfileImg" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NiT-c4-QHR"/>
+        <segue reference="z57-N3-aKD"/>
     </inferredMetricsTieBreakers>
 </document>

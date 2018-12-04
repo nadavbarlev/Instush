@@ -59,6 +59,8 @@
 		05D7CB9621B3D19800C76EE6 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D7CB9521B3D19800C76EE6 /* DateExtensions.swift */; };
 		05D7CB9821B3D84900C76EE6 /* HashTagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D7CB9721B3D84900C76EE6 /* HashTagService.swift */; };
 		05D7CB9A21B40C8F00C76EE6 /* HashtagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D7CB9921B40C8F00C76EE6 /* HashtagViewController.swift */; };
+		05D7CB9C21B5748900C76EE6 /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D7CB9B21B5748900C76EE6 /* WalkthroughViewController.swift */; };
+		05D7CB9E21B574C000C76EE6 /* WalkthroughContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D7CB9D21B574C000C76EE6 /* WalkthroughContentViewController.swift */; };
 		BF36150566A49BED32C4ECD9 /* Pods_Instush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038301CAC50DD33DCC813FE4 /* Pods_Instush.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +120,8 @@
 		05D7CB9521B3D19800C76EE6 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		05D7CB9721B3D84900C76EE6 /* HashTagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagService.swift; sourceTree = "<group>"; };
 		05D7CB9921B40C8F00C76EE6 /* HashtagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagViewController.swift; sourceTree = "<group>"; };
+		05D7CB9B21B5748900C76EE6 /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
+		05D7CB9D21B574C000C76EE6 /* WalkthroughContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughContentViewController.swift; sourceTree = "<group>"; };
 		8FF334CC0820913C9A7B6019 /* Pods-Instush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instush.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instush/Pods-Instush.debug.xcconfig"; sourceTree = "<group>"; };
 		CFACE21F0ACB44FCBFA5EF6E /* Pods-Instush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instush.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instush/Pods-Instush.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -298,6 +302,8 @@
 				0526F5E2218F15F10028F1D9 /* AppDelegate.swift */,
 				0526F5FD218F3E100028F1D9 /* SignUpViewController.swift */,
 				0526F5F7218F29B50028F1D9 /* SignInViewController.swift */,
+				05D7CB9B21B5748900C76EE6 /* WalkthroughViewController.swift */,
+				05D7CB9D21B574C000C76EE6 /* WalkthroughContentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				05B74786219AD05C000FC9F7 /* PostService.swift in Sources */,
 				0526F5F8218F29B50028F1D9 /* SignInViewController.swift in Sources */,
 				05B7477F2199D269000FC9F7 /* Post.swift in Sources */,
+				05D7CB9C21B5748900C76EE6 /* WalkthroughViewController.swift in Sources */,
 				05B74791219D79D9000FC9F7 /* FirebaseAuthService.swift in Sources */,
 				05B74798219D93AB000FC9F7 /* CommentsViewController.swift in Sources */,
 				0526F60221904E860028F1D9 /* HomeViewController.swift in Sources */,
@@ -600,6 +607,7 @@
 				05D7CB9221AFCDFE00C76EE6 /* EditProfileTableViewController.swift in Sources */,
 				05B747C021AD5D53000FC9F7 /* HeaderOtherProfileCollectionReusableView.swift in Sources */,
 				051BCEB821997CE400820B93 /* UIViewExtenstions.swift in Sources */,
+				05D7CB9E21B574C000C76EE6 /* WalkthroughContentViewController.swift in Sources */,
 				05B747B321A588F0000FC9F7 /* FollowViewController.swift in Sources */,
 				0526F622219090620028F1D9 /* UIViewControllerExtensions.swift in Sources */,
 				0526F60621904EB60028F1D9 /* CameraViewController.swift in Sources */,
