@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Start/Controller/WalkthroughContentViewController.swift"
-            timestampString = "565630731.381475"
+            filePath = "Instush/Others/FirebaseManager/FirebaseDatabaseService.swift"
+            timestampString = "565714911.428545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "start(_:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "listenToKey(toPath:orderBy:startFrom:limit:listener:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,61 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Home/Controller/PostTableViewCell.swift"
-            timestampString = "565630731.381575"
+            filePath = "Instush/Model/PostService.swift"
+            timestampString = "565714911.429176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "onLikeClicked()"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "getFeedPosts(ofUser:recent:from:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Instush.PostService.getFeedPosts(ofUser: Swift.String, recent: Swift.Int, from: Swift.Optional&lt;Swift.Int&gt;, completion: (Swift.Optional&lt;Swift.Array&lt;(Instush.Post, Instush.User)&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Model/PostService.swift"
+                  timestampString = "565714044.277678"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Swift.String&gt;) -&gt; () in closure #1 (Swift.Bool) -&gt; () in Instush.PostService.getFeedPosts(ofUser: Swift.String, recent: Swift.Int, from: Swift.Optional&lt;Swift.Int&gt;, completion: (Swift.Optional&lt;Swift.Array&lt;(Instush.Post, Instush.User)&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Model/PostService.swift"
+                  timestampString = "565714044.279498"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Model/PostService.swift"
+            timestampString = "565714911.429388"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "getFeedPosts(ofUser:recent:from:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +89,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Home/Controller/PostTableViewCell.swift"
-            timestampString = "565630731.381641"
+            filePath = "Instush/Model/PostService.swift"
+            timestampString = "565714911.429449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "onLikeClicked()"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "getFeedPosts(ofUser:recent:from:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Model/PostService.swift"
+            timestampString = "565714911.429504"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "getFeedPosts(ofUser:recent:from:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Instush/Home/Controller/HomeViewController.swift"
-            timestampString = "565630731.3817"
+            timestampString = "565714911.429557"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "loadMorePosts()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +137,445 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Home/Model/PostViewModel.swift"
-            timestampString = "565630099.865394"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.4297791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "init(post:user:userID:)"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "loadMorePosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.429841"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "loadMorePosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.429897"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "loadMorePosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.429952"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "loadMorePosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Others/FirebaseManager/FirebaseDatabaseService.swift"
+            timestampString = "565714911.430006"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "getKeys(path:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.430252"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "loadMorePosts()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Instush.HomeViewController.(loadMorePosts in _47B71CD6357B247CB569A7F1D5FD8F77)() -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Home/Controller/HomeViewController.swift"
+                  timestampString = "565711328.665123"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "596">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;(Instush.Post, Instush.User)&gt;&gt;) -&gt; () in Instush.HomeViewController.(loadMorePosts in _47B71CD6357B247CB569A7F1D5FD8F77)() -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Home/Controller/HomeViewController.swift"
+                  timestampString = "565711328.667145"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Others/FirebaseManager/FirebaseDatabaseService.swift"
+            timestampString = "565714911.430311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "getKeys(from:orderBy:end:limit:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Instush.FirebaseDatabaseService.getKeys(from: Swift.String, orderBy: Swift.String, end: Swift.Optional&lt;Swift.Int&gt;, limit: Swift.Int, completion: (Swift.Array&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Others/FirebaseManager/FirebaseDatabaseService.swift"
+                  timestampString = "565711214.5143321"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in Instush.FirebaseDatabaseService.getKeys(from: Swift.String, orderBy: Swift.String, end: Swift.Optional&lt;Swift.Int&gt;, limit: Swift.Int, completion: (Swift.Array&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Others/FirebaseManager/FirebaseDatabaseService.swift"
+                  timestampString = "565711214.516618"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.43054"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "refreshPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.430596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.4306591"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "loadPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.4307081"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "loadPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.430755"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "loadPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.430802"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "loadPosts()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Instush.HomeViewController.(loadPosts in _47B71CD6357B247CB569A7F1D5FD8F77)() -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Home/Controller/HomeViewController.swift"
+                  timestampString = "565714841.4630949"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;(Instush.Post, Instush.User)&gt;&gt;) -&gt; () in Instush.HomeViewController.(loadPosts in _47B71CD6357B247CB569A7F1D5FD8F77)() -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Home/Controller/HomeViewController.swift"
+                  timestampString = "565714841.464878"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Model/PostService.swift"
+            timestampString = "565714911.430851"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "getFeedPosts(ofUser:recent:from:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.4308929"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "loadPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.430938"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "loadPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.4309829"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "loadPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Others/FirebaseManager/FirebaseDatabaseService.swift"
+            timestampString = "565714911.431028"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "getKeys(from:orderBy:startFrom:limit:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Instush.FirebaseDatabaseService.getKeys(from: Swift.String, orderBy: Swift.String, startFrom: Swift.Optional&lt;Swift.Int&gt;, limit: Swift.Int, completion: (Swift.Array&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Others/FirebaseManager/FirebaseDatabaseService.swift"
+                  timestampString = "565714841.479926"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in Instush.FirebaseDatabaseService.getKeys(from: Swift.String, orderBy: Swift.String, startFrom: Swift.Optional&lt;Swift.Int&gt;, limit: Swift.Int, completion: (Swift.Array&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Others/FirebaseManager/FirebaseDatabaseService.swift"
+                  timestampString = "565714841.481721"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Others/FirebaseManager/FirebaseDatabaseService.swift"
+            timestampString = "565714911.431251"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "getKeys(from:orderBy:startFrom:limit:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Home/Controller/HomeViewController.swift"
+            timestampString = "565714911.43147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "loadMorePosts()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

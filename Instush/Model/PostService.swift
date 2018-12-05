@@ -53,13 +53,13 @@ class PostService {
         ServiceManager.storage.save(path: "posts", dataID: imgPostID, data: imgPostData, onSuccess: { (imgUrl:URL) in
             guard let postID = ServiceManager.database.getUniqueId(forPath: "posts") else { return }
             let postTimestamp = Int(NSDate().timeIntervalSince1970)
-            let dicPost = ["photoURL": imgUrl.absoluteString, "caption": caption, "userID": userID, "timestamp": String(postTimestamp)]
+            let dicPost: [String : Any] = ["photoURL": imgUrl.absoluteString, "caption": caption, "userID": userID, "timestamp": postTimestamp]
             ServiceManager.database.setValue(path: "posts", dataID: postID, data: dicPost) { (error: Error?) in
                 if error != nil { onError?(error!.localizedDescription); return  }
                 HashTagService.shared.extract(from: caption, postID: postID)
                 ServiceManager.database.setValue(path: "user-posts/" + userID, dataID: postID, data: "true", completion: { (error: Error?) in
                     if error != nil { onError?(error!.localizedDescription); return }
-                    ServiceManager.database.setValue(path: "feed/" + userID, dataID: postID, data: "true", completion: { (error: Error?) in
+                    ServiceManager.database.setValue(path: "feed/" + userID, dataID: postID, data: ["timestamp": -postTimestamp], completion: { (error: Error?) in
                         if error != nil { onError?(error!.localizedDescription); return }
                         onSuccess?()
                         return
@@ -99,12 +99,14 @@ class PostService {
             completion(post)
         }
     }
-    
-    func getFeedPosts(ofUser userID: String, onAddPost: @escaping (Post?)->Void, onRemovePost: @escaping (String)->Void) {
+   
+/*
+    func getFeedPosts(ofUser userID: String, recent count: Int, onAddPost: @escaping (Post?)->Void, onRemovePost: @escaping (String)->Void) {
+        
+        
         let userFeedPostsPath = String(format: "feed/%@", userID)
-        ServiceManager.database.isExist(path: userFeedPostsPath) { (isPathExist: Bool) in
-            if (!isPathExist) { onAddPost(nil) }
-            ServiceManager.database.listenToKey(toPath: userFeedPostsPath) { (postID: String) in
+        ServiceManager.database.isExist(path: userFeedPostsPath) { (isPathExist: Bool) in if (!isPathExist) { onAddPost(nil) }
+            ServiceManager.database.listenToKey(toPath: userFeedPostsPath, orderBy: "timestamp", limit: count) { (postID: String) in
                 let postPath = String(format: "posts/%@", postID)
                 ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
                     guard let dicPost = data else { return }
@@ -116,7 +118,65 @@ class PostService {
                 onRemovePost(postID)
             }
         }
+        
     }
+*/
+    
+
+    func getFeedPosts(ofUser userID: String, recent count: Int, from timestamp: Int?, completion: @escaping ([(Post, User)]?)->Void) {
+        let userFeedPostsPath = String(format: "feed/%@", userID)
+        ServiceManager.database.isExist(path: userFeedPostsPath) { (isPathExist: Bool) in
+            if (!isPathExist) { completion(nil); return }
+            let dispatchGroup = DispatchGroup()
+            var feedData = [(Post, User)]()
+            ServiceManager.database.getKeys(from: userFeedPostsPath, orderBy: "timestamp", startFrom: nil, limit: 2) { (postsID: [String]) in
+                for postID in postsID {
+                    dispatchGroup.enter()
+                    let postPath = String(format: "posts/%@", postID)
+                    ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
+                        guard let dicPost = data else { return }
+                        guard let post = Post.transform(from: dicPost, id: postID) else { return }
+                        UserService.shared.getUser(by: post.userID) { [weak self] (user: User) in
+                            feedData.append((post, user))
+                            dispatchGroup.leave()
+                        }
+                    })
+                }
+                
+                dispatchGroup.notify(queue: DispatchQueue.main, execute: {
+                    completion(feedData)
+                })
+            }
+        }
+    }
+    
+    func getFeedPosts(ofUser userID: String, recent count: Int, end timestamp: Int?, completion: @escaping ([(Post, User)]?)->Void) {
+        let userFeedPostsPath = String(format: "feed/%@", userID)
+        ServiceManager.database.isExist(path: userFeedPostsPath) { (isPathExist: Bool) in
+            if (!isPathExist) { completion(nil); return }
+            let dispatchGroup = DispatchGroup()
+            var feedData = [(Post, User)]()
+            ServiceManager.database.getKeys(from: userFeedPostsPath, orderBy: "timestamp", end: timestamp, limit: 2) { (postsID: [String]) in
+                for postID in postsID {
+                    dispatchGroup.enter()
+                    let postPath = String(format: "posts/%@", postID)
+                    ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
+                        guard let dicPost = data else { return }
+                        guard let post = Post.transform(from: dicPost, id: postID) else { return }
+                        UserService.shared.getUser(by: post.userID) { [weak self] (user: User) in
+                            feedData.append((post, user))
+                            dispatchGroup.leave()
+                        }
+                    })
+                }
+                
+                dispatchGroup.notify(queue: DispatchQueue.main, execute: {
+                    completion(feedData)
+                })
+            }
+        }
+    }
+
    
     // MARK: Private Methods
     private func updatePostLike(userID: String, postData: [String:Any]) -> [String:Any] {

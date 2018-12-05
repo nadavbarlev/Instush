@@ -138,8 +138,8 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
-    func updateUploadDate(timestamp: String) {
-        guard let timestampAsDouble = Double(timestamp) else { return }
+    func updateUploadDate(timestamp: Int) {
+        let timestampAsDouble = Double(timestamp)
         let timestamp = Date(timeIntervalSince1970: timestampAsDouble)
         DispatchQueue.main.async {
             self.labelTimestamp.text = Date.differenceInStringFormat(from: timestamp, to: Date())

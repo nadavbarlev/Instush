@@ -25,7 +25,7 @@ class FollowService {
             ServiceManager.database.setValue(path: followingPath, dataID: followedUserID, data: "true", completion: { (error: Error?) in
                 if error != nil { onError?(error!); return }
                 PostService.shared.getPosts(ofUser: followedUserID){ (post: Post) in
-                    ServiceManager.database.setValue(path: "feed/" + followingUserID, dataID: post.postID, data: "true", completion: {(error: Error?) in
+                    ServiceManager.database.setValue(path: "feed/" + followingUserID, dataID: post.postID, data: ["timestamp": -post.timestamp], completion: { (error: Error?) in
                         if error != nil { onError?(error!); return }
                         onSuccess?()
                     })

@@ -14,6 +14,8 @@ class HomeViewController: UIViewController {
     var user: User?
     var posts = Array<Post>()
     var users = Array<User>()
+    var isFeedLoading = false
+    let refreshControl = UIRefreshControl()
     
     // MARK: Outlets
     @IBOutlet weak var labelNoFeed: UILabel!
@@ -23,6 +25,8 @@ class HomeViewController: UIViewController {
             tableViewPosts.estimatedRowHeight = 500
             tableViewPosts.rowHeight = UITableView.automaticDimension
             tableViewPosts.dataSource = self
+            tableViewPosts.delegate = self
+            tableViewPosts.addSubview(refreshControl)
         }
     }
     
@@ -30,6 +34,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refreshControl.addTarget(self, action: #selector(refreshPosts), for: .valueChanged)
         guard let userID = UserService.shared.getCurrentUserID() else { return }
         UserService.shared.getUser(by: userID) { self.user = $0 }
         
@@ -37,14 +42,18 @@ class HomeViewController: UIViewController {
         labelNoFeed.isHidden = true
         indicatorView.startAnimating()
 
-        /* Listen for add and remove FEED posts */
-        PostService.shared.getFeedPosts(ofUser: userID, onAddPost: { [weak self] (newPost: Post?) in
+        /* Listen for add and remove FEED posts
+        PostService.shared.getFeedPosts(ofUser: userID, recent: 2, from:0, onAddPost: { [weak self] (newPost: Post?) in
             guard let feedPost = newPost else {
                 self?.indicatorView.stopAnimating()
                 self?.labelNoFeed.isHidden = false
                 return
             }
             UserService.shared.getUser(by: feedPost.userID) { [weak self] (user: User) in
+            
+               // self?.users.insert(user, at: 0)
+                // self?.posts.insert(feedPost, at: 0)
+ 
                 self?.users.append(user)
                 self?.posts.append(feedPost)
                 self?.indicatorView.stopAnimating()
@@ -57,7 +66,25 @@ class HomeViewController: UIViewController {
                 self.users.remove(at: indexToRemove)
                 self.tableViewPosts.reloadData()
             }
-        })
+        }) */
+        
+        isFeedLoading = true
+        PostService.shared.getFeedPosts(ofUser: userID, recent: 2, from: nil) { [weak self] (feedData: [(Post, User)]?) in
+            self?.indicatorView.stopAnimating()
+            guard let feedData = feedData else {
+                self?.labelNoFeed.isHidden = false
+                return
+            }
+            
+            self?.labelNoFeed.isHidden = true
+            for (post, user) in feedData {
+                self?.users.append(user)
+                self?.posts.append(post)
+            }
+            
+            self?.isFeedLoading = false
+            self?.tableViewPosts.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,10 +112,60 @@ class HomeViewController: UIViewController {
             hashtagVC.hashtagText = text
         }
     }
+    
+    // MARK: Private Methods
+    private func loadPosts() {
+        isFeedLoading = true
+        guard let userID = user?.userID else { return }
+        PostService.shared.getFeedPosts(ofUser: userID, recent: 2, from: nil) { [weak self] (feedData: [(Post, User)]?) in
+            self?.indicatorView.stopAnimating()
+            guard let feedData = feedData else {
+                self?.labelNoFeed.isHidden = false
+                return
+            }
+            
+            self?.labelNoFeed.isHidden = true
+            for (post, user) in feedData {
+                self?.users.append(user)
+                self?.posts.append(post)
+            }
+            
+            self?.isFeedLoading = false
+            if self!.refreshControl.isRefreshing {
+                self?.refreshControl.endRefreshing()
+            }
+            self?.tableViewPosts.reloadData()
+        }
+    }
+    
+    private func loadMorePosts() {
+        guard !isFeedLoading else { return }
+        isFeedLoading = true
+        guard let latestPostTimestamp = self.posts.last?.timestamp else {
+            isFeedLoading = false
+            return
+        }
+        guard let userID = user?.userID else { return }
+        PostService.shared.getFeedPosts(ofUser: userID, recent: 2, end: -latestPostTimestamp+1) { [weak self] (feedData: [(Post, User)]?) in
+            guard let feedData = feedData else { return }
+            for (post, user) in feedData {
+                self?.users.append(user)
+                self?.posts.append(post)
+            }
+            self?.isFeedLoading = false
+            self?.tableViewPosts.reloadData()
+        }
+    }
+    
+    @objc func refreshPosts() {
+        self.users.removeAll()
+        self.posts.removeAll()
+        loadPosts()
+    }
 }
 
 // MARK: Extension - TableView Events
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
@@ -96,15 +173,23 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
-        cell.post = posts[indexPath.row]
-        cell.user = users[indexPath.row]
-        cell.updateUI()
-        cell.delegate = self
+        if !users.isEmpty && !posts.isEmpty {
+            cell.post = posts[indexPath.row]
+            cell.user = users[indexPath.row]
+            cell.updateUI()
+            cell.delegate = self
+        }
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + view.frame.height >= scrollView.contentSize.height {
+           loadMorePosts()
+        }
     }
 }
 
-// MARK: Extension - TableView Events
+// MARK: Extension - Post Cell Delegate
 extension HomeViewController: PostTableViewCellDelegate {
  
     func onUpdate(post: Post) {
@@ -121,11 +206,10 @@ extension HomeViewController: PostTableViewCellDelegate {
         if userID == UserService.shared.getCurrentUserID() {
             let user = users.first { $0.userID == userID }
             self.performSegue(withIdentifier: "HomeToProfileSegue", sender: user)
+            return
         }
-        else {
-            let user = users.first { $0.userID == userID }
-            self.performSegue(withIdentifier: "HomeToOtherProfileSegue", sender: user)
-        }
+        let user = users.first { $0.userID == userID }
+        self.performSegue(withIdentifier: "HomeToOtherProfileSegue", sender: user)
     }
     
     func onHashtagClicked(text: String) {

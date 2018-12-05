@@ -10,7 +10,7 @@ import Foundation
 import FirebaseDatabase
 
 class FirebaseDatabaseService: DatabaseService {
-    
+
     // MARK: Computed Properties
     let dbRef = Database.database().reference()
     
@@ -33,8 +33,21 @@ class FirebaseDatabaseService: DatabaseService {
         }
     }
     
+    func listenToValue(toPath path: String, orderBy field: String, listener: @escaping (Dictionary<String,Any>?)->Void) {
+        dbRef.child(path).queryOrdered(byChild: field).observe(.value) { (snapshot: DataSnapshot) in
+            let dicToReturn = snapshot.value as? [String:Any]
+            listener(dicToReturn)
+        }
+    }
+    
     func listenToKey(toPath path: String, listener: @escaping (String)->Void) {
         dbRef.child(path).observe(.childAdded) { (snapshot: DataSnapshot) in
+            listener(snapshot.key)
+        }
+    }
+    
+    func listenToKey(toPath path: String, orderBy field: String, startFrom value: Int, limit num: Int, listener: @escaping (String)->Void) {
+        dbRef.child(path).queryOrdered(byChild: field).queryLimited(toFirst: UInt(num)).observeSingleEvent(of: .childAdded) { (snapshot: DataSnapshot) in
             listener(snapshot.key)
         }
     }
@@ -68,8 +81,32 @@ class FirebaseDatabaseService: DatabaseService {
     }
     
     func getKeys(path: String, completion: @escaping ([String])->Void) {
+        
+        
         var keys = [String]()
         dbRef.child(path).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+            for child in snapshot.children {
+                let keyToAdd = (child as! DataSnapshot).key
+                keys.append(keyToAdd)
+            }
+            completion(keys)
+        }
+    }
+  
+    func getKeys(from path: String, orderBy field: String, startFrom value: Int?, limit num: Int, completion: @escaping ([String])->Void) {
+        var keys = [String]()
+        dbRef.child(path).queryOrdered(byChild: field).queryLimited(toFirst: UInt(num)).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+            for child in snapshot.children {
+                let keyToAdd = (child as! DataSnapshot).key
+                keys.append(keyToAdd)
+            }
+            completion(keys)
+        }
+    }
+    
+    func getKeys(from path: String, orderBy field: String, end value: Int?, limit num: Int, completion: @escaping ([String])->Void) {
+        var keys = [String]()
+        dbRef.child(path).queryOrdered(byChild: field).queryStarting(atValue: value).queryLimited(toFirst: UInt(num)).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
             for child in snapshot.children {
                 let keyToAdd = (child as! DataSnapshot).key
                 keys.append(keyToAdd)
@@ -92,7 +129,7 @@ class FirebaseDatabaseService: DatabaseService {
         }
     }
     
-    func setValue(path: String, dataID: String, data: [String:String], completion: @escaping (Error?)->Void) {
+    func setValue(path: String, dataID: String, data: [String:Any], completion: @escaping (Error?)->Void) {
         let fullPathDatabaseRef = dbRef.child(path).child(dataID)
         fullPathDatabaseRef.setValue(data) { (error, dbRef) in
             completion(error)
@@ -126,7 +163,7 @@ class FirebaseDatabaseService: DatabaseService {
             }
         }
         
-        defer { if (!isErrorOccured) { onSuccess() } }
+        defer { if (!isErrorOccured) { onSuccess() } } // TODONADAV
     }
     
     func update(path: String, newValues: [String:Any], onSuccess: (()->Void)?, onError: ((Error)->(Void))?) {
