@@ -163,7 +163,7 @@ class FirebaseDatabaseService: DatabaseService {
             }
         }
         
-        defer { if (!isErrorOccured) { onSuccess() } } // TODONADAV
+        defer { if (!isErrorOccured) { onSuccess() } }
     }
     
     func update(path: String, newValues: [String:Any], onSuccess: (()->Void)?, onError: ((Error)->(Void))?) {

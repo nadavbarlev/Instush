@@ -100,57 +100,14 @@ class PostService {
         }
     }
    
-/*
-    func getFeedPosts(ofUser userID: String, recent count: Int, onAddPost: @escaping (Post?)->Void, onRemovePost: @escaping (String)->Void) {
-        
-        
-        let userFeedPostsPath = String(format: "feed/%@", userID)
-        ServiceManager.database.isExist(path: userFeedPostsPath) { (isPathExist: Bool) in if (!isPathExist) { onAddPost(nil) }
-            ServiceManager.database.listenToKey(toPath: userFeedPostsPath, orderBy: "timestamp", limit: count) { (postID: String) in
-                let postPath = String(format: "posts/%@", postID)
-                ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
-                    guard let dicPost = data else { return }
-                    guard let newPost = Post.transform(from: dicPost, id: postID) else { return }
-                    onAddPost(newPost)
-                })
-            }
-            ServiceManager.database.listenForRemoveKey(toPath: userFeedPostsPath) { (postID: String) in
-                onRemovePost(postID)
-            }
-        }
-        
-    }
-*/
-    
-
-    func getFeedPosts(ofUser userID: String, recent count: Int, from timestamp: Int?, completion: @escaping ([(Post, User)]?)->Void) {
-        let userFeedPostsPath = String(format: "feed/%@", userID)
-        ServiceManager.database.isExist(path: userFeedPostsPath) { (isPathExist: Bool) in
-            if (!isPathExist) { completion(nil); return }
-            let dispatchGroup = DispatchGroup()
-            var feedData = [(Post, User)]()
-            ServiceManager.database.getKeys(from: userFeedPostsPath, orderBy: "timestamp", startFrom: nil, limit: 2) { (postsID: [String]) in
-                for postID in postsID {
-                    dispatchGroup.enter()
-                    let postPath = String(format: "posts/%@", postID)
-                    ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
-                        guard let dicPost = data else { return }
-                        guard let post = Post.transform(from: dicPost, id: postID) else { return }
-                        UserService.shared.getUser(by: post.userID) { [weak self] (user: User) in
-                            feedData.append((post, user))
-                            dispatchGroup.leave()
-                        }
-                    })
-                }
-                
-                dispatchGroup.notify(queue: DispatchQueue.main, execute: {
-                    completion(feedData)
-                })
-            }
+    func onPostFeedRemove(userID: String, completion: @escaping (String)->Void) {
+         let userFeedPostsPath = String(format: "feed/%@", userID)
+        ServiceManager.database.listenForRemoveKey(toPath: userFeedPostsPath) { (postID: String) in
+            completion(postID)
         }
     }
     
-    func getFeedPosts(ofUser userID: String, recent count: Int, end timestamp: Int?, completion: @escaping ([(Post, User)]?)->Void) {
+    func getFeedPosts(of userID: String, recent count: Int, end timestamp: Int?, completion: @escaping ([(Post, User)]?)->Void) {
         let userFeedPostsPath = String(format: "feed/%@", userID)
         ServiceManager.database.isExist(path: userFeedPostsPath) { (isPathExist: Bool) in
             if (!isPathExist) { completion(nil); return }
@@ -163,7 +120,7 @@ class PostService {
                     ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
                         guard let dicPost = data else { return }
                         guard let post = Post.transform(from: dicPost, id: postID) else { return }
-                        UserService.shared.getUser(by: post.userID) { [weak self] (user: User) in
+                        UserService.shared.getUser(by: post.userID) { (user: User) in
                             feedData.append((post, user))
                             dispatchGroup.leave()
                         }
@@ -171,13 +128,13 @@ class PostService {
                 }
                 
                 dispatchGroup.notify(queue: DispatchQueue.main, execute: {
+                    feedData.sort(by: { $0.0.timestamp > $1.0.timestamp })
                     completion(feedData)
                 })
             }
         }
     }
 
-   
     // MARK: Private Methods
     private func updatePostLike(userID: String, postData: [String:Any]) -> [String:Any] {
         var changedPostData = postData

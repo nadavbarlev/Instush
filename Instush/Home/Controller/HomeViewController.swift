@@ -10,8 +10,11 @@ import UIKit
 
 class HomeViewController: UIViewController {
    
+    // MARK: Contants
+    let CHUNK_OF_POSTS_TO_LOAD = 3
+    
     // MARK: Properties
-    var user: User?
+    var appUserID: String?
     var posts = Array<Post>()
     var users = Array<User>()
     var isFeedLoading = false
@@ -34,61 +37,35 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshControl.addTarget(self, action: #selector(refreshPosts), for: .valueChanged)
-        guard let userID = UserService.shared.getCurrentUserID() else { return }
-        UserService.shared.getUser(by: userID) { self.user = $0 }
+        /* Get current user app */
+        appUserID = UserService.shared.getCurrentUserID()
+        guard let userID = appUserID else { return }
+        
+        /* Add Target when refresh table posts */
+        refreshControl.addTarget(self, action: #selector(refreshFeedPosts(userID:)), for: .valueChanged)
         
         /* Start indicator (appears just on animation) */
         labelNoFeed.isHidden = true
         indicatorView.startAnimating()
 
-        /* Listen for add and remove FEED posts
-        PostService.shared.getFeedPosts(ofUser: userID, recent: 2, from:0, onAddPost: { [weak self] (newPost: Post?) in
-            guard let feedPost = newPost else {
-                self?.indicatorView.stopAnimating()
-                self?.labelNoFeed.isHidden = false
-                return
-            }
-            UserService.shared.getUser(by: feedPost.userID) { [weak self] (user: User) in
-            
-               // self?.users.insert(user, at: 0)
-                // self?.posts.insert(feedPost, at: 0)
- 
-                self?.users.append(user)
-                self?.posts.append(feedPost)
-                self?.indicatorView.stopAnimating()
-                self?.labelNoFeed.isHidden = true
-                self?.tableViewPosts.reloadData()
-            }
-        }, onRemovePost: { (postID: String) in
+        /* Get chunck of feed posts */
+        loadFeedPosts(of: userID)
+        
+        /* Listen for removing feed post */
+        PostService.shared.onPostFeedRemove(userID: userID) { (postID: String) in
             if let indexToRemove = self.posts.firstIndex(where: { $0.postID == postID }) {
                 self.posts.remove(at: indexToRemove)
                 self.users.remove(at: indexToRemove)
                 self.tableViewPosts.reloadData()
             }
-        }) */
-        
-        isFeedLoading = true
-        PostService.shared.getFeedPosts(ofUser: userID, recent: 2, from: nil) { [weak self] (feedData: [(Post, User)]?) in
-            self?.indicatorView.stopAnimating()
-            guard let feedData = feedData else {
-                self?.labelNoFeed.isHidden = false
-                return
-            }
-            
-            self?.labelNoFeed.isHidden = true
-            for (post, user) in feedData {
-                self?.users.append(user)
-                self?.posts.append(post)
-            }
-            
-            self?.isFeedLoading = false
-            self?.tableViewPosts.reloadData()
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    // MARK: Action and Events
+    @objc func refreshFeedPosts(userID: String) {
+        self.users.removeAll()
+        self.posts.removeAll()
+        loadFeedPosts(of: userID)
     }
     
     // MARK: Segue
@@ -114,53 +91,43 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: Private Methods
-    private func loadPosts() {
+    private func loadFeedPosts(of UserID: String) {
         isFeedLoading = true
-        guard let userID = user?.userID else { return }
-        PostService.shared.getFeedPosts(ofUser: userID, recent: 2, from: nil) { [weak self] (feedData: [(Post, User)]?) in
-            self?.indicatorView.stopAnimating()
+        PostService.shared.getFeedPosts(of: UserID, recent: CHUNK_OF_POSTS_TO_LOAD, end: nil) { (feedData: [(Post, User)]?) in
+            self.indicatorView.stopAnimating()
             guard let feedData = feedData else {
-                self?.labelNoFeed.isHidden = false
+                self.labelNoFeed.isHidden = false
                 return
             }
-            
-            self?.labelNoFeed.isHidden = true
+    
+            self.labelNoFeed.isHidden = true
             for (post, user) in feedData {
-                self?.users.append(user)
-                self?.posts.append(post)
+                self.users.append(user)
+                self.posts.append(post)
             }
             
-            self?.isFeedLoading = false
-            if self!.refreshControl.isRefreshing {
-                self?.refreshControl.endRefreshing()
+            self.isFeedLoading = false
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
             }
-            self?.tableViewPosts.reloadData()
+            self.tableViewPosts.reloadData()
         }
     }
     
-    private func loadMorePosts() {
+    private func loadMoreFeedPosts(of userID: String) {
         guard !isFeedLoading else { return }
+        guard let latestPostTimestamp = self.posts.last?.timestamp else { return }
+        
         isFeedLoading = true
-        guard let latestPostTimestamp = self.posts.last?.timestamp else {
-            isFeedLoading = false
-            return
-        }
-        guard let userID = user?.userID else { return }
-        PostService.shared.getFeedPosts(ofUser: userID, recent: 2, end: -latestPostTimestamp+1) { [weak self] (feedData: [(Post, User)]?) in
+        PostService.shared.getFeedPosts(of: userID, recent: CHUNK_OF_POSTS_TO_LOAD, end: -latestPostTimestamp+1) { (feedData: [(Post, User)]?) in
             guard let feedData = feedData else { return }
             for (post, user) in feedData {
-                self?.users.append(user)
-                self?.posts.append(post)
+                self.users.append(user)
+                self.posts.append(post)
             }
-            self?.isFeedLoading = false
-            self?.tableViewPosts.reloadData()
+            self.isFeedLoading = false
+            self.tableViewPosts.reloadData()
         }
-    }
-    
-    @objc func refreshPosts() {
-        self.users.removeAll()
-        self.posts.removeAll()
-        loadPosts()
     }
 }
 
@@ -184,7 +151,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y + view.frame.height >= scrollView.contentSize.height {
-           loadMorePosts()
+            loadMoreFeedPosts(of: appUserID!)
         }
     }
 }
