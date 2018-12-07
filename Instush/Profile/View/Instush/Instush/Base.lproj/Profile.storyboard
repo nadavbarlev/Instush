@@ -492,6 +492,18 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bH-tV-17f">
+                                        <rect key="frame" x="333" y="13" width="30" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="3nV-MO-rno"/>
+                                            <constraint firstAttribute="width" constant="30" id="q4f-mi-Jms"/>
+                                        </constraints>
+                                        <state key="normal" image="more"/>
+                                        <connections>
+                                            <action selector="more:" destination="Sfl-d7-HML" eventType="touchUpInside" id="wcx-ZU-pLm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -500,7 +512,9 @@
                                     <constraint firstItem="mJw-Ya-r11" firstAttribute="centerY" secondItem="flK-Ca-Nwn" secondAttribute="centerY" id="YDo-SD-NjC"/>
                                     <constraint firstItem="mJw-Ya-r11" firstAttribute="leading" secondItem="flK-Ca-Nwn" secondAttribute="trailing" constant="12" id="gD7-P5-LFB"/>
                                     <constraint firstAttribute="bottom" secondItem="flK-Ca-Nwn" secondAttribute="bottom" id="lEy-BT-JZR"/>
+                                    <constraint firstItem="6bH-tV-17f" firstAttribute="centerY" secondItem="mJw-Ya-r11" secondAttribute="centerY" id="tBe-bt-IcX"/>
                                     <constraint firstItem="flK-Ca-Nwn" firstAttribute="top" secondItem="H2E-8v-HwI" secondAttribute="top" constant="10" id="vGF-zT-hMX"/>
+                                    <constraint firstAttribute="trailing" secondItem="6bH-tV-17f" secondAttribute="trailing" constant="12" id="zWw-dF-5k8"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5uj-3b-Le3" userLabel="Post ImageView">
@@ -603,6 +617,7 @@
                         <viewLayoutGuide key="safeArea" id="wBP-A3-pd0"/>
                     </view>
                     <connections>
+                        <outlet property="buttonMore" destination="6bH-tV-17f" id="ezx-lc-2l4"/>
                         <outlet property="imageViewComment" destination="p0V-yz-lR6" id="Vyx-JQ-h5V"/>
                         <outlet property="imageViewLike" destination="hZs-WD-7yw" id="LIY-Oh-pXn"/>
                         <outlet property="imageViewPost" destination="5uj-3b-Le3" id="gXr-Ou-AtC"/>
@@ -642,6 +657,7 @@
         <image name="Profile" width="20" height="21"/>
         <image name="Profile_Selected" width="20" height="21"/>
         <image name="like" width="46" height="41"/>
+        <image name="more" width="128" height="128"/>
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>

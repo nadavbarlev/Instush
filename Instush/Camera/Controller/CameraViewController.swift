@@ -53,10 +53,16 @@ class CameraViewController: UIViewController {
         let spinnerView = self.spinnerOn(self.view, withText: "Sharing...")
         let photoID = NSUUID().uuidString
         
-        PostService.shared.share(imgPostID: photoID, imgPostData: uploadImgData, userID: userID, caption: caption, onSuccess: {
+        PostService.shared.share(imgPostID: photoID, imgPostData: uploadImgData, userID: userID, caption: caption, onSuccess: { (postID) in
             self.spinnerOff(spinnerView)
             self.showBottomToast(onView: self.view, withMessage: "Post shared successfully")
             self.setDefaultComponentsValue()
+            
+            // Get homeVC and raise onPostShared Event
+            let homeNavigation = self.tabBarController?.viewControllers![0] as? UINavigationController
+            let homeVC = homeNavigation?.viewControllers.first as? HomeViewController
+            homeVC?.onUserSharedPost(postID: postID)
+            
         }, onError: { (errorMsg: String) in
             self.spinnerOff(spinnerView)
             self.showBottomToast(onView: self.view, withMessage: errorMsg)

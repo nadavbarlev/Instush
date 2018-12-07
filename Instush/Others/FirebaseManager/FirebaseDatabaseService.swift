@@ -47,7 +47,7 @@ class FirebaseDatabaseService: DatabaseService {
     }
     
     func listenToKey(toPath path: String, orderBy field: String, startFrom value: Int, limit num: Int, listener: @escaping (String)->Void) {
-        dbRef.child(path).queryOrdered(byChild: field).queryLimited(toFirst: UInt(num)).observeSingleEvent(of: .childAdded) { (snapshot: DataSnapshot) in
+        dbRef.child(path).queryOrdered(byChild: field).queryLimited(toFirst: UInt(num)).observeSingleEvent(of: .childChanged) { (snapshot: DataSnapshot) in
             listener(snapshot.key)
         }
     }
@@ -81,8 +81,6 @@ class FirebaseDatabaseService: DatabaseService {
     }
     
     func getKeys(path: String, completion: @escaping ([String])->Void) {
-        
-        
         var keys = [String]()
         dbRef.child(path).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
             for child in snapshot.children {

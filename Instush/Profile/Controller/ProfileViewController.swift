@@ -60,6 +60,7 @@ class ProfileViewController: UIViewController {
         } else if segue.identifier == "HomeToPostDetailsSegue" {
             let postDetailsVC = segue.destination as! PostDetailsViewController
             postDetailsVC.post = sender as? Post
+            postDetailsVC.delegate = self
         }
     }
 }
@@ -110,8 +111,9 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 }
 
+// MARK: Extension - Header Collection Delegate
 extension ProfileViewController: HeaderProfileCollectionReusableViewDelegate {
-
+    
     func moveToFollowers() {
         self.performSegue(withIdentifier: "ProfileToFollowersSegue", sender: self)
     }
@@ -124,3 +126,14 @@ extension ProfileViewController: HeaderProfileCollectionReusableViewDelegate {
         self.performSegue(withIdentifier: "ProfileToEditSegue", sender: self)
     }
 }
+
+// MARK: Extension - Post Details Cell Delegate
+extension ProfileViewController: PostDetailsViewControllerDelegate {
+    func onPostDeleted(postID: String) {
+        if let indexToRemove = self.userPosts.firstIndex(where: { $0.postID == postID }) {
+            self.userPosts.remove(at: indexToRemove)
+            self.collectionView.reloadData()
+        }
+    }
+}
+

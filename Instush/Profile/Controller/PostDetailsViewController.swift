@@ -9,15 +9,21 @@
 import UIKit
 import KILabel
 
+protocol PostDetailsViewControllerDelegate {
+    func onPostDeleted(postID: String)
+}
+
 class PostDetailsViewController: UIViewController {
 
     // MARK: Properties
     var post: Post?
     var user: User?
+    var delegate: PostDetailsViewControllerDelegate?
     
     // MARK: Outlets
     @IBOutlet weak var labelLikes: UILabel!
     @IBOutlet weak var labelTimestamp: UILabel!
+    @IBOutlet weak var buttonMore: UIButton!
     @IBOutlet weak var labelCaption: KILabel! {
         didSet {
             labelCaption.hashtagLinkTapHandler = { [weak self] (label, string, range) in
@@ -63,6 +69,25 @@ class PostDetailsViewController: UIViewController {
     }
     
     // MARK: Actions and Events
+    @IBAction func more(_ sender: UIButton) {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (UIAlertAction) in
+            guard let post = self.post else { return }
+            let spinnerView = self.spinnerOn(self.view, withText: "Deleting...")
+            PostService.shared.delete(post: post, onSuccess: {
+                self.spinnerOff(spinnerView)
+                self.delegate?.onPostDeleted(postID: post.postID)
+                self.navigationController?.popViewController(animated: true)
+            }, onError: { (errorMsg: String) in
+                print(errorMsg)
+            })
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    
     @objc func onCommmentClicked() {
         guard let post = post else { return }
         let storyboardHome = UIStoryboard(name: "Home", bundle: nil)
@@ -127,12 +152,14 @@ class PostDetailsViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        guard let post = post else { return }
         self.navigationItem.title = "photo"
+        
+        guard let post = post else { return }
         UserService.shared.getUser(by: post.userID) { [weak self] in
             self?.user = $0
             self?.updateUI()
         }
+        
         PostService.shared.listener(to: post.postID) { [weak self] (changedPost: Post) in
             self?.post = changedPost
             self?.updateUI()
@@ -151,6 +178,7 @@ class PostDetailsViewController: UIViewController {
             self.imageViewProfile.sd_setImage(with: URL(string: user.profileImgURL),
                                               placeholderImage: UIImage(named: "Placeholder-ProfileImg"))
             guard let appUserID = ServiceManager.auth.getUserID() else { return }
+            self.buttonMore.isHidden = (user.userID != appUserID)
             self.updateLike(count: String(post.likesCount), isUserLiked: (post.usersLike[appUserID] != nil))
             self.updateUploadDate(timestamp: post.timestamp)
         }

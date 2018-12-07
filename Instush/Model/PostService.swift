@@ -49,7 +49,7 @@ class PostService {
         }
     }
     
-    func share(imgPostID: String, imgPostData: Data, userID: String, caption: String, onSuccess:(()->(Void))?, onError:((String)->(Void))?) {
+    func share(imgPostID: String, imgPostData: Data, userID: String, caption: String, onSuccess:((String)->(Void))?, onError:((String)->(Void))?) {
         ServiceManager.storage.save(path: "posts", dataID: imgPostID, data: imgPostData, onSuccess: { (imgUrl:URL) in
             guard let postID = ServiceManager.database.getUniqueId(forPath: "posts") else { return }
             let postTimestamp = Int(NSDate().timeIntervalSince1970)
@@ -61,10 +61,27 @@ class PostService {
                     if error != nil { onError?(error!.localizedDescription); return }
                     ServiceManager.database.setValue(path: "feed/" + userID, dataID: postID, data: ["timestamp": -postTimestamp], completion: { (error: Error?) in
                         if error != nil { onError?(error!.localizedDescription); return }
-                        onSuccess?()
+                        onSuccess?(postID)
                         return
                     })
                 })
+            }
+        }, onError: { (error: Error) in
+            onError?(error.localizedDescription)
+        })
+    }
+    
+    func delete(post: Post, onSuccess:(()->(Void))?, onError:((String)->(Void))?) {
+        ServiceManager.storage.delete(url: post.photoURL, onSuccess: {
+            ServiceManager.database.removeValue(path: "posts", dataID: post.postID) { (error: Error?) in
+                if (error != nil) { onError?(error!.localizedDescription); return }
+                ServiceManager.database.removeValue(path: "user-posts/" + post.userID, dataID: post.postID) { (error: Error?) in
+                    if (error != nil) { onError?(error!.localizedDescription); return }
+                    ServiceManager.database.removeValue(path: "feed/" + post.userID, dataID: post.postID) { (error: Error?) in
+                        if (error != nil) { onError?(error!.localizedDescription); return }
+                        onSuccess?()
+                    }
+                }
             }
         }, onError: { (error: Error) in
             onError?(error.localizedDescription)
@@ -99,9 +116,9 @@ class PostService {
             completion(post)
         }
     }
-   
-    func onPostFeedRemove(userID: String, completion: @escaping (String)->Void) {
-         let userFeedPostsPath = String(format: "feed/%@", userID)
+    
+    func onPostFeedRemove(from userID: String, completion: @escaping (String)->Void) {
+        let userFeedPostsPath = String(format: "feed/%@", userID)
         ServiceManager.database.listenForRemoveKey(toPath: userFeedPostsPath) { (postID: String) in
             completion(postID)
         }
@@ -113,7 +130,7 @@ class PostService {
             if (!isPathExist) { completion(nil); return }
             let dispatchGroup = DispatchGroup()
             var feedData = [(Post, User)]()
-            ServiceManager.database.getKeys(from: userFeedPostsPath, orderBy: "timestamp", end: timestamp, limit: 2) { (postsID: [String]) in
+            ServiceManager.database.getKeys(from: userFeedPostsPath, orderBy: "timestamp", end: timestamp, limit: count) { (postsID: [String]) in
                 for postID in postsID {
                     dispatchGroup.enter()
                     let postPath = String(format: "posts/%@", postID)

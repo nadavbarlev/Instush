@@ -52,4 +52,6 @@ protocol DatabaseService {
 
 protocol StorageService {
     func save(path: String, dataID: String, data: Data, onSuccess: ((URL)->(Void))?, onError: ((Error)->(Void))?)
+    func delete(path: String, dataID: String, onSuccess: (()->(Void))?, onError: ((Error)->(Void))?)
+    func delete(url: String, onSuccess: (()->(Void))?, onError: ((Error)->(Void))?)
 }

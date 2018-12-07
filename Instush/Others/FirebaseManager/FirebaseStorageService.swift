@@ -12,17 +12,33 @@ import FirebaseStorage
 class FirebaseStorageService: StorageService {
     
     // MARK: Properties
-    let storageRef = Storage.storage().reference()
+    let storage = Storage.storage()
     
     // MARK: API Methods
     func save(path: String, dataID: String, data: Data, onSuccess: ((URL)->(Void))?, onError: ((Error)->(Void))?) {
-        let fullPathStorageRef = storageRef.child(path).child(dataID)
+        let fullPathStorageRef = storage.reference().child(path).child(dataID)
         fullPathStorageRef.putData(data, metadata: nil) { (metadata: StorageMetadata?, error: Error?) in
             if error != nil { onError?(error!); return }
             fullPathStorageRef.downloadURL { (url: URL?, error: Error?) in
                 if error != nil { onError?(error!); return }
                 onSuccess?(url!)
             }
+        }
+    }
+    
+    func delete(path: String, dataID: String, onSuccess: (()->(Void))?, onError: ((Error)->(Void))?) {
+        let fullPathStorageRef = storage.reference().child(path).child(dataID)
+        fullPathStorageRef.delete { (error: Error?) in
+            if (error != nil) { onError?(error!); return }
+            onSuccess?()
+        }
+    }
+    
+    func delete(url: String, onSuccess: (()->(Void))?, onError: ((Error)->(Void))?) {
+        let fullPathStorageRef = storage.reference(forURL: url)
+        fullPathStorageRef.delete { (error: Error?) in
+            if (error != nil) { onError?(error!); return }
+            onSuccess?()
         }
     }
 }

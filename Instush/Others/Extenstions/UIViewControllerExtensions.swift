@@ -49,7 +49,7 @@ extension UIViewController {
         
         let labelMsg = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
         labelMsg.text = text
-        labelMsg.font = .systemFont(ofSize: 20, weight: .medium)
+        labelMsg.font = .systemFont(ofSize: 18, weight: .medium)
         labelMsg.textColor = UIColor(white: 1, alpha: 0.9)
         labelMsg.center = viewWithSpinner.center
         labelMsg.translatesAutoresizingMaskIntoConstraints = false

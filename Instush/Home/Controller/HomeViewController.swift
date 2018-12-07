@@ -12,13 +12,13 @@ class HomeViewController: UIViewController {
    
     // MARK: Contants
     let CHUNK_OF_POSTS_TO_LOAD = 3
+    let refreshControl = UIRefreshControl()
     
     // MARK: Properties
     var appUserID: String?
     var posts = Array<Post>()
     var users = Array<User>()
     var isFeedLoading = false
-    let refreshControl = UIRefreshControl()
     
     // MARK: Outlets
     @IBOutlet weak var labelNoFeed: UILabel!
@@ -42,7 +42,7 @@ class HomeViewController: UIViewController {
         guard let userID = appUserID else { return }
         
         /* Add Target when refresh table posts */
-        refreshControl.addTarget(self, action: #selector(refreshFeedPosts(userID:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshFeedPosts), for: .valueChanged)
         
         /* Start indicator (appears just on animation) */
         labelNoFeed.isHidden = true
@@ -52,7 +52,7 @@ class HomeViewController: UIViewController {
         loadFeedPosts(of: userID)
         
         /* Listen for removing feed post */
-        PostService.shared.onPostFeedRemove(userID: userID) { (postID: String) in
+        PostService.shared.onPostFeedRemove(from: userID) { (postID: String) in
             if let indexToRemove = self.posts.firstIndex(where: { $0.postID == postID }) {
                 self.posts.remove(at: indexToRemove)
                 self.users.remove(at: indexToRemove)
@@ -62,10 +62,21 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: Action and Events
-    @objc func refreshFeedPosts(userID: String) {
+    @objc func refreshFeedPosts() {
+        guard let userID = appUserID else { return }
         self.users.removeAll()
         self.posts.removeAll()
         loadFeedPosts(of: userID)
+    }
+    
+    func onUserSharedPost(postID: String) {
+        PostService.shared.getPost(by: postID) { (post: Post) in
+            UserService.shared.getUser(by: post.userID, completion: { (user: User) in
+                self.users.insert(user, at: 0)
+                self.posts.insert(post, at: 0)
+                self.tableViewPosts.reloadData()
+            })
+        }
     }
     
     // MARK: Segue
