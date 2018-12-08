@@ -27,6 +27,12 @@ class HashtagSearchViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        hashtagPosts.removeAll()
+        collectionView.reloadData()
+    }
+    
     // MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchToPostDetailsSegue" {

@@ -61,13 +61,13 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Photo" id="FVu-4z-Grc">
                         <barButtonItem key="leftBarButtonItem" systemItem="trash" id="Njm-tK-xtU">
-                            <color key="tintColor" red="0.57243239879999996" green="0.2084523439" blue="0.54120045900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <action selector="clearUI:" destination="UqH-t2-TLZ" id="yof-0r-anH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="RLp-JA-ZoD">
-                            <color key="tintColor" red="0.57243239879999996" green="0.2084523439" blue="0.54120045900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <action selector="sharePost:" destination="UqH-t2-TLZ" id="Oij-yn-cF4"/>
                             </connections>
@@ -106,4 +106,5 @@
         <image name="Photo" width="22" height="23"/>
         <image name="Placeholder-UplaodImg" width="840" height="600"/>
     </resources>
+    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

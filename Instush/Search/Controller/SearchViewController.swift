@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
     // MARK: Properties
     let navItems = ["People", "Hashtag"]        /* CarbonTabSwipeNavigation items title */
     var navVC = [SearchBarLinstener]()          /* CarbonTabSwipeNavigation ViewControllers */
+    var searchBar: UISearchBar!
     var searchBarListener: SearchBarLinstener?
     
     // MARK: Outlets
@@ -29,7 +30,7 @@ class SearchViewController: UIViewController {
     
     // MARK: Methods
     private func configureSearchBar() {
-        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 18))
+        searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 18))
         searchBar.searchBarStyle = .minimal
         searchBar.placeholder = "Search"
         searchBar.delegate = self
@@ -84,6 +85,8 @@ extension SearchViewController: CarbonTabSwipeNavigationDelegate {
     
     func carbonTabSwipeNavigation(_ carbonTabSwipeNavigation: CarbonTabSwipeNavigation, willMoveAt index: UInt) {
         self.searchBarListener = navVC[Int(index)]
+        guard let text = searchBar.text, text != "" else { return }
+        self.searchBarListener?.onTextChanged(searchText: text)
     }
 }
 

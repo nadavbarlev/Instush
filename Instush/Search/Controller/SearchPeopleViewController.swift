@@ -12,6 +12,7 @@ class SearchPeopleViewController: UIViewController {
 
     // MARK: Properties
     var users = [User]()
+    var currentSearchText = ""
    
     // MARK: Outlets
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
@@ -28,10 +29,18 @@ class SearchPeopleViewController: UIViewController {
         super.viewDidLoad()
         indicatorView.startAnimating()
         UserService.shared.searchUsers(withText: "") { (user: User) in
-            self.indicatorView.stopAnimating()
-            self.users.append(user)
-            self.tableView.reloadData()
+            if (user.userID != UserService.shared.getCurrentUserID()) {
+                self.indicatorView.stopAnimating()
+                self.users.append(user)
+                self.tableView.reloadData()
+            }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.users.removeAll()
+        self.tableView.reloadData()
     }
 }
 
@@ -60,11 +69,15 @@ extension SearchPeopleViewController: UITableViewDataSource, UITableViewDelegate
 // MARK: Extension - Search Bar Events
 extension SearchPeopleViewController: SearchBarLinstener {
     func onTextChanged(searchText: String) {
+        currentSearchText = searchText
         self.users.removeAll()
         self.tableView.reloadData()
         UserService.shared.searchUsers(withText: searchText.lowercased()) { (user: User) in
-            self.users.append(user)
-            self.tableView.reloadData()
+            if (user.userID != UserService.shared.getCurrentUserID() &&
+                searchText == self.currentSearchText ) {
+                self.users.append(user)
+                self.tableView.reloadData()
+            }
         }
     }
     func onSearchClicked() {

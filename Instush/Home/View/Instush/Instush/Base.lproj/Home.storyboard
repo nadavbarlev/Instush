@@ -370,8 +370,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="fNs-lJ-f1y"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Post">
-                                    <color key="titleColor" red="0.57243239879999996" green="0.2084523439" blue="0.54120045900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
                                     <action selector="postComment:" destination="rkZ-LW-YV1" eventType="touchUpInside" id="K7v-pU-uej"/>
@@ -450,9 +451,9 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zHE-xI-Ciz"/>
-        <segue reference="dqX-aD-QJ6"/>
-        <segue reference="H23-er-Z7i"/>
+        <segue reference="bZF-Tt-Vtw"/>
+        <segue reference="zjd-ld-1h3"/>
+        <segue reference="O0Y-mL-Pzj"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.49039441350000001" green="0.25000661610000002" blue="0.54512333869999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>
