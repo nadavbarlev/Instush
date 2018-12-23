@@ -11,6 +11,7 @@ import UIKit
 class SignInViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Outlets
+    @IBOutlet weak var consScrollViewBottom: NSLayoutConstraint!
     @IBOutlet weak var textFieldEmail: UITextField! {
         didSet {
             textFieldEmail.backgroundColor = UIColor(white: 1, alpha: 0.2)
@@ -20,7 +21,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             textFieldEmail.delegate = self
         }
     }
-    
     @IBOutlet weak var textFieldPassword: UITextField! {
         didSet {
             textFieldPassword.backgroundColor = UIColor(white: 1, alpha: 0.2)
@@ -30,7 +30,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             textFieldPassword.delegate = self
         }
     }
-    
     @IBOutlet weak var buttonSignIn: UIButton! {
         didSet {
             buttonSignIn.backgroundColor = .clear
@@ -39,8 +38,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             buttonSignIn.layer.borderColor = UIColor.white.cgColor
         }
     }
-    @IBOutlet weak var consScrollViewBottom: NSLayoutConstraint!
-    
+   
     // MARK: Actions
     @IBAction func signIn(_ sender: UIButton) {
         guard let email = textFieldEmail.text, !email.isEmpty else {

@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Configure Firebase
         FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = true
         
         // Set Initial ViewController
         self.window = UIWindow(frame: UIScreen.main.bounds)

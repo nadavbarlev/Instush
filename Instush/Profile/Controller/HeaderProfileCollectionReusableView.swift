@@ -64,7 +64,12 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     
     // MARK: Actions and Events
     @IBAction func editProfile(_ sender: UIButton) {
-        delegate?.moveToEditProfile()
+      // delegate?.moveToEditProfile()
+        UserService.shared.signOut(onSuccess: {
+         
+        }, onError: { (error: Error) in
+            print(error.localizedDescription)
+        })
     }
     
     @objc func showFollowers() {

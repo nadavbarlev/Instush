@@ -184,8 +184,8 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nhF-95-E6r">
                                 <rect key="frame" x="177.5" y="331" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Posts to Show" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8F-b6-Ruj">
-                                <rect key="frame" x="117.5" y="330.5" width="140" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Posts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8F-b6-Ruj">
+                                <rect key="frame" x="152" y="330.5" width="71.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -451,9 +451,9 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bZF-Tt-Vtw"/>
-        <segue reference="zjd-ld-1h3"/>
-        <segue reference="O0Y-mL-Pzj"/>
+        <segue reference="zHE-xI-Ciz"/>
+        <segue reference="dqX-aD-QJ6"/>
+        <segue reference="H23-er-Z7i"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.49039441350000001" green="0.25000661610000002" blue="0.54512333869999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

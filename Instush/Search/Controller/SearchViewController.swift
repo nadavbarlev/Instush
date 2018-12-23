@@ -85,7 +85,7 @@ extension SearchViewController: CarbonTabSwipeNavigationDelegate {
     
     func carbonTabSwipeNavigation(_ carbonTabSwipeNavigation: CarbonTabSwipeNavigation, willMoveAt index: UInt) {
         self.searchBarListener = navVC[Int(index)]
-        guard let text = searchBar.text, text != "" else { return }
+        guard let text = searchBar.text else { return }
         self.searchBarListener?.onTextChanged(searchText: text)
     }
 }

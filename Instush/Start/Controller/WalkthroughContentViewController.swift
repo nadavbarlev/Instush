@@ -32,7 +32,7 @@ class WalkthroughContentViewController: UIViewController {
         UserDefaults.standard.set(true, forKey: "isWalkthroughDisplayed")
         guard let signInVC = storyboard?.instantiateViewController(withIdentifier: "SignInViewController")
                 as? SignInViewController else { return }
-            self.present(signInVC, animated: true, completion: nil)
+        self.present(signInVC, animated: true, completion: nil)
     }
     
     // MARK: LifeCycle
@@ -42,7 +42,5 @@ class WalkthroughContentViewController: UIViewController {
         pageControl.currentPage = index
         labelTitle.isHidden = (index != 0)
         buttonStart.isHidden = (index != 2)
-        
     }
-    
 }

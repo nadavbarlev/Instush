@@ -11,6 +11,8 @@ import UIKit
 class SearchPeopleViewController: UIViewController {
 
     // MARK: Properties
+    var followObserver: NSObjectProtocol?
+    var unfollowObserver: NSObjectProtocol?
     var users = [User]()
     var currentSearchText = ""
    
@@ -24,7 +26,7 @@ class SearchPeopleViewController: UIViewController {
         }
     }
     
-    // MARK: LifeCycle
+    // MARK: Destructor and LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         indicatorView.startAnimating()
@@ -35,12 +37,30 @@ class SearchPeopleViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+        setObservers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.users.removeAll()
-        self.tableView.reloadData()
+    }
+    
+    deinit {
+        NotificationManager.followNotification.remove(observer: followObserver)
+        NotificationManager.unfollowNotification.remove(observer: unfollowObserver)
+    }
+    
+    // MARK: Private Methods
+    private func setObservers() {
+        followObserver = NotificationManager.followNotification.observe { [weak self] (userID: String) in
+            let userChanged = self?.users.first { $0.userID == userID }
+            userChanged?.isAppUserFollowAfterMe = true
+            self?.tableView.reloadData()
+        }
+        unfollowObserver = NotificationManager.unfollowNotification.observe { [weak self] (userID: String) in
+            let userChanged = self?.users.first { $0.userID == userID }
+            userChanged?.isAppUserFollowAfterMe = false
+            self?.tableView.reloadData()
+        }
     }
 }
 
@@ -69,6 +89,7 @@ extension SearchPeopleViewController: UITableViewDataSource, UITableViewDelegate
 // MARK: Extension - Search Bar Events
 extension SearchPeopleViewController: SearchBarLinstener {
     func onTextChanged(searchText: String) {
+        if tableView == nil { return }
         currentSearchText = searchText
         self.users.removeAll()
         self.tableView.reloadData()

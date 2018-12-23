@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search View Controller-->
+        <!-- -->
         <scene sceneID="sLV-6c-Bnr">
             <objects>
                 <viewController id="d0O-Tp-ruo" customClass="SearchViewController" customModule="Instush" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,7 +32,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y9A-N9-UvO"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VTM-Dv-rk0">
+                    <navigationItem key="navigationItem" title=" " id="VTM-Dv-rk0">
                         <barButtonItem key="backBarButtonItem" title=" " id="aOa-no-0d9"/>
                     </navigationItem>
                     <connections>
@@ -252,13 +252,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EKF-Pu-FYC">
                                     <size key="itemSize" width="127" height="122"/>
-                                    <size key="headerReferenceSize" width="50" height="175"/>
+                                    <size key="headerReferenceSize" width="50" height="155"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="9GY-Jr-7AU" customClass="PhotoCollectionViewCell" customModule="Instush" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="175" width="127" height="122"/>
+                                        <rect key="frame" x="0.0" y="155" width="127" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="127" height="122"/>
@@ -281,7 +281,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderOtherProfileCollection" id="lnV-0E-Eex" customClass="HeaderOtherProfileCollectionReusableView" customModule="Instush" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder-ProfileImg" translatesAutoresizingMaskIntoConstraints="NO" id="xbs-Nx-p12">
@@ -373,18 +373,24 @@
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnF-c5-Qed">
                                             <rect key="frame" x="15" y="117" width="345" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="1bL-Bq-qu9"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-F7-hpP">
-                                            <rect key="frame" x="15" y="138" width="345" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Counts your blessings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-F7-hpP">
+                                            <rect key="frame" x="15" y="138" width="345" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="Gqa-Re-LHI"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GC3-L4-uYD">
-                                            <rect key="frame" x="0.0" y="174" width="375" height="1"/>
+                                            <rect key="frame" x="0.0" y="158" width="375" height="1"/>
                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="C59-0C-P6W"/>
@@ -395,7 +401,7 @@
                                         <constraint firstItem="cWQ-F7-hpP" firstAttribute="top" secondItem="mnF-c5-Qed" secondAttribute="bottom" constant="4" id="2Ab-JH-c0l"/>
                                         <constraint firstItem="cWQ-F7-hpP" firstAttribute="leading" secondItem="mnF-c5-Qed" secondAttribute="leading" id="2ey-1G-haY"/>
                                         <constraint firstAttribute="bottom" secondItem="GC3-L4-uYD" secondAttribute="bottom" id="KKR-fP-hFz"/>
-                                        <constraint firstItem="GC3-L4-uYD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cWQ-F7-hpP" secondAttribute="bottom" id="OZ9-pj-ukG"/>
+                                        <constraint firstItem="GC3-L4-uYD" firstAttribute="top" secondItem="cWQ-F7-hpP" secondAttribute="bottom" constant="4" id="OZ9-pj-ukG"/>
                                         <constraint firstItem="fet-Ra-LMi" firstAttribute="leading" secondItem="xbs-Nx-p12" secondAttribute="trailing" constant="20" id="OpF-sS-pqF"/>
                                         <constraint firstAttribute="trailing" secondItem="cWQ-F7-hpP" secondAttribute="trailing" constant="15" id="Q3Y-WD-gv0"/>
                                         <constraint firstAttribute="trailing" secondItem="mnF-c5-Qed" secondAttribute="trailing" constant="15" id="Q4k-6O-Qhv"/>
@@ -436,7 +442,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHu-pj-Yjr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1812" y="261"/>
+            <point key="canvasLocation" x="1812" y="260.41979010494754"/>
         </scene>
         <!--PostDetailsViewController-->
         <scene sceneID="lut-YO-al4">

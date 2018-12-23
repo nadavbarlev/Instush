@@ -6,48 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Home/Controller/HomeViewController.swift"
-            timestampString = "565964031.200193"
+            filePath = "Instush/Profile/Controller/FollowTableViewCell.swift"
+            timestampString = "567283232.433403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Instush/Home/Controller/HomeViewController.swift"
-            timestampString = "565964031.2004761"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "onUserSharedPost(postID:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Instush/Home/Controller/HomeViewController.swift"
-            timestampString = "565964031.200526"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "onUserSharedPost(postID:)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "setFollowButton()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,29 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Others/FirebaseManager/FirebaseStorageService.swift"
-            timestampString = "565964031.200581"
+            filePath = "Instush/Profile/Controller/FollowTableViewCell.swift"
+            timestampString = "567283232.433496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "delete(url:onSuccess:onError:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Instush/Model/PostService.swift"
-            timestampString = "565964031.200761"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "delete(post:onSuccess:onError:)"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "setUnfollowButton()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,109 +41,125 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Model/PostService.swift"
-            timestampString = "565964031.200932"
+            filePath = "Instush/Profile/Controller/FollowTableViewCell.swift"
+            timestampString = "567283232.4335589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "delete(post:onSuccess:onError:)"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "unfollow()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Profile/Controller/PostDetailsViewController.swift"
-            timestampString = "565964031.200979"
+            filePath = "Instush/Profile/Controller/FollowTableViewCell.swift"
+            timestampString = "567283232.433796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "more(_:)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "follow()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Search/Controller/SearchViewController.swift"
-            timestampString = "565964031.201148"
+            filePath = "Instush/Profile/Controller/FollowViewController.swift"
+            timestampString = "567283232.433858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "carbonTabSwipeNavigation(_:willMoveAt:)"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "setObservers()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Search/Controller/SearchViewController.swift"
-            timestampString = "565964031.201309"
+            filePath = "Instush/Profile/Controller/FollowViewController.swift"
+            timestampString = "567283232.434058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "carbonTabSwipeNavigation(_:viewControllerAt:)"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "setObservers()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Instush.FollowViewController.onFollowStateChanged(to: Swift.Bool, of: Swift.String) -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Profile/Controller/FollowViewController.swift"
+                  timestampString = "567282798.301953"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "55">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Instush.User) -&gt; Swift.Bool in Instush.FollowViewController.onFollowStateChanged(to: Swift.Bool, of: Swift.String) -&gt; ()"
+                  moduleName = "Instush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadavbarlev/BarLev/iOS%20Project/Instush/Instush/Profile/Controller/FollowViewController.swift"
+                  timestampString = "567282798.303702"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "30">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Instush/Profile/Controller/FollowViewController.swift"
+            timestampString = "567283232.4341151"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "configureFollowing()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instush/Search/Controller/SearchViewController.swift"
-            timestampString = "565964031.201355"
+            filePath = "Instush/Profile/Controller/FollowViewController.swift"
+            timestampString = "567283232.434175"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "carbonTabSwipeNavigation(_:willMoveAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Instush/Search/Controller/SearchViewController.swift"
-            timestampString = "565964031.201395"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "searchBar(_:textDidChange:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Instush/Search/Controller/SearchPeopleViewController.swift"
-            timestampString = "565964031.201436"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "configureFollowers()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

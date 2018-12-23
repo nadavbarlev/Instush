@@ -11,6 +11,9 @@ import UIKit
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Outlets
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var buttonHaveAccount: UIButton!
+    @IBOutlet weak var consScrollViewBottom: NSLayoutConstraint!
     @IBOutlet weak var textFieldUsername: UITextField! {
         didSet {
             textFieldUsername.delegate = self
@@ -21,7 +24,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         }
     }
-    
     @IBOutlet weak var textFieldEmail: UITextField! {
         didSet {
             textFieldEmail.delegate = self
@@ -32,7 +34,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         }
     }
-    
     @IBOutlet weak var textFieldPassword: UITextField! {
         didSet {
             textFieldPassword.delegate = self
@@ -43,7 +44,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         }
     }
-    
     @IBOutlet weak var buttonSignUp: UIButton! {
         didSet {
             buttonSignUp.backgroundColor = .clear 
@@ -52,7 +52,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             buttonSignUp.layer.borderColor = UIColor.white.cgColor
         }
     }
-    
     @IBOutlet weak var imgProfile: UIImageView! {
         didSet{
             imgProfile.layer.borderWidth = 1.5
@@ -66,16 +65,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                action: #selector(SignUpViewController.onProfileImageClicked))
         }
     }
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var buttonHaveAccount: UIButton!
-    @IBOutlet weak var consScrollViewBottom: NSLayoutConstraint!
-    
+  
     // MARK: Actions
     @IBAction func haveAccount(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func signUp(_ sender: UIButton) {
+        
+        if imgProfile.image == UIImage.init(named: "Placeholder-ProfileImg") {
+            self.showTopToast(onView: view, withMessage: "Please choose profile image")
+            return
+        }
         guard let username = textFieldUsername.text, !username.isEmpty else {
             self.showTopToast(onView: view, withMessage: "Please enter your username")
             return
@@ -89,7 +90,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             return
         }
         guard let profileImgData = imgProfile.image?.jpegData(compressionQuality: 0.2) else {
-            self.showTopToast(onView: view, withMessage: "Please choose profile image")
+            print("Failed to compress image")
             return
         }
        

@@ -9,9 +9,9 @@
 import Foundation
 
 class ServiceManager {
-    static let auth    : AuthService     = FirebaseAuthService()
-    static let database: DatabaseService = FirebaseDatabaseService()
-    static let storage : StorageService  = FirebaseStorageService()
+    static let auth    : AuthService     = AuthFactory.create(.firebase)
+    static let database: DatabaseService = DatabaseFactory.create(.firebase)
+    static let storage : StorageService  = StorageFactory.create(.firebase)
 }
 
 // MARK: Protocols

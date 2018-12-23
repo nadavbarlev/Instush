@@ -74,6 +74,7 @@ class HomeViewController: UIViewController {
             UserService.shared.getUser(by: post.userID, completion: { (user: User) in
                 self.users.insert(user, at: 0)
                 self.posts.insert(post, at: 0)
+                self.labelNoFeed.isHidden = true
                 self.tableViewPosts.reloadData()
             })
         }

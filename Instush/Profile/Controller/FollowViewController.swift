@@ -11,6 +11,8 @@ import UIKit
 class FollowViewController: UIViewController {
 
     // MARK: Properties
+    var followObserver: NSObjectProtocol?
+    var unfollowObserver: NSObjectProtocol?
     var userToCheck: String?
     var isFollowers: Bool?      /* Following or Followers Controller */
     var usersFollow = [User]()
@@ -24,6 +26,12 @@ class FollowViewController: UIViewController {
             tableViewFollow.delegate = self
             tableViewFollow.keyboardDismissMode = .onDrag
         }
+    }
+    
+    // MARK: Destructor
+    deinit {
+        NotificationManager.followNotification.remove(observer: followObserver)
+        NotificationManager.followNotification.remove(observer: unfollowObserver)
     }
     
     // MARK: LifeCycle
@@ -55,9 +63,12 @@ class FollowViewController: UIViewController {
                 return
             }
             self.labelNoContent.isHidden = true
-            self.usersFollow.append(followingUser)
+            if !self.usersFollow.contains { $0.userID == followingUser.userID } {
+                self.usersFollow.append(followingUser)
+            }
             self.tableViewFollow.reloadData()
         }
+        setObservers()
     }
     
     private func configureFollowing() {
@@ -72,8 +83,24 @@ class FollowViewController: UIViewController {
                 return
             }
             self.labelNoContent.isHidden = true
-            self.usersFollow.append(followedUser)
+            if !self.usersFollow.contains { $0.userID == followedUser.userID } {
+                 self.usersFollow.append(followedUser)
+            }
             self.tableViewFollow.reloadData()
+        }
+        setObservers()
+    }
+    
+    private func setObservers() {
+        followObserver = NotificationManager.followNotification.observe { [weak self] (userID: String) in
+            let userChanged = self?.usersFollow.first { $0.userID == userID }
+            userChanged?.isAppUserFollowAfterMe = true
+            self?.tableViewFollow.reloadData()
+        }
+        unfollowObserver = NotificationManager.unfollowNotification.observe { [weak self] (userID: String) in
+            let userChanged = self?.usersFollow.first { $0.userID == userID }
+            userChanged?.isAppUserFollowAfterMe = false
+            self?.tableViewFollow.reloadData()
         }
     }
 }

@@ -151,6 +151,55 @@ class PostService {
             }
         }
     }
+    
+    func getMostPopularPosts(count: Int, completion: @escaping ([Post])->Void) {
+        let dispatchGroup = DispatchGroup()
+        var popularPosts = [Post]()
+        ServiceManager.database.getKeys(from: "posts", orderBy: "likesCount", end: nil, limit: count) { (postsID: [String]) in
+            for postID in postsID {
+                dispatchGroup.enter()
+                let postPath = String(format: "posts/%@", postID)
+                ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
+                    guard let dicPost = data else { return }
+                    guard let post = Post.transform(from: dicPost, id: postID) else { return }
+                    popularPosts.append(post)
+                    dispatchGroup.leave()
+                })
+            }
+            dispatchGroup.notify(queue: DispatchQueue.main, execute: {
+                completion(popularPosts)
+            })
+        }
+        
+        /*
+        ServiceManager.database.isExist(path: userFeedPostsPath) { (isPathExist: Bool) in
+            if (!isPathExist) { completion(nil); return }
+            let dispatchGroup = DispatchGroup()
+            var feedData = [(Post, User)]()
+            
+            
+            ServiceManager.database.getKeys(from: userFeedPostsPath, orderBy: "timestamp", end: timestamp, limit: count) { (postsID: [String]) in
+                for postID in postsID {
+                    dispatchGroup.enter()
+                    let postPath = String(format: "posts/%@", postID)
+                    ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
+                        guard let dicPost = data else { return }
+                        guard let post = Post.transform(from: dicPost, id: postID) else { return }
+                        UserService.shared.getUser(by: post.userID) { (user: User) in
+                            feedData.append((post, user))
+                            dispatchGroup.leave()
+                        }
+                    })
+                }
+                
+                dispatchGroup.notify(queue: DispatchQueue.main, execute: {
+                    feedData.sort(by: { $0.0.timestamp > $1.0.timestamp })
+                    completion(feedData)
+                })
+            }
+        }
+ */
+    }
 
     // MARK: Private Methods
     private func updatePostLike(userID: String, postData: [String:Any]) -> [String:Any] {

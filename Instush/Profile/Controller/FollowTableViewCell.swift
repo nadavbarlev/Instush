@@ -34,8 +34,8 @@ class FollowTableViewCell: UITableViewCell {
     @objc func follow() {
         guard let cellUserID = self.user?.userID else { return }
         guard let appUserID = UserService.shared.getCurrentUserID() else { return }
-        FollowService.shared.follow(after: cellUserID, by: appUserID, onSuccess: { [weak self] in
-            self?.setUnfollowButton()
+        FollowService.shared.follow(after: cellUserID, by: appUserID, onSuccess: {
+              NotificationManager.followNotification.notify(data: cellUserID)
         }, onError: { (error: Error) in 
             print(error.localizedDescription)
         })
@@ -44,14 +44,14 @@ class FollowTableViewCell: UITableViewCell {
     @objc func unfollow() {
         guard let cellUserID = self.user?.userID else { return }
         guard let appUserID = UserService.shared.getCurrentUserID() else { return }
-        FollowService.shared.unfollow(from: cellUserID, by: appUserID, onSuccess: { [weak self] in
-            self?.setFollowButton()
+        FollowService.shared.unfollow(from: cellUserID, by: appUserID, onSuccess: {
+            NotificationManager.unfollowNotification.notify(data: cellUserID)
         }, onError: { (error: Error) in
             print(error.localizedDescription)
         })
     }
     
-    // MARK: Methods
+    // MARK: LifeCycle and Destructor
     override func awakeFromNib() {
         super.awakeFromNib()
     }

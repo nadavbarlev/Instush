@@ -11,6 +11,7 @@ import UIKit
 class HashtagSearchViewController: UIViewController {
     
     // MARK: Properties
+    var popularPosts = [Post]()
     var hashtagPosts = [Post]()
     
     // MARK: Outlets
@@ -25,12 +26,15 @@ class HashtagSearchViewController: UIViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        PostService.shared.getMostPopularPosts(count: 10) {
+            self.popularPosts = $0
+            self.hashtagPosts = self.popularPosts
+            self.collectionView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        hashtagPosts.removeAll()
-        collectionView.reloadData()
     }
     
     // MARK: Segue
@@ -46,8 +50,16 @@ class HashtagSearchViewController: UIViewController {
 // MARK: Extension - Search Bar Events
 extension HashtagSearchViewController: SearchBarLinstener {
     func onTextChanged(searchText: String) {
+        if collectionView == nil { return }
         self.hashtagPosts.removeAll()
         self.collectionView.reloadData()
+        
+        if searchText == "" {
+            self.hashtagPosts = self.popularPosts
+            self.collectionView.reloadData()
+            return
+        }
+        
         HashTagService.shared.search(for: searchText.lowercased()) { (post: Post) in
             self.hashtagPosts.append(post)
             self.collectionView.reloadData()
