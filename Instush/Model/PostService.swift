@@ -173,23 +173,26 @@ class PostService {
     }
     
     // MARK: API Methods - Cache
-    func createTable()  {
-        ServiceManager.cache.create(name: "POSTS", data: "(POST_ID TEXT PRIMARY KEY, USER_ID TEXT, PHOTO_URL TEXT, CAPTION TEXT, TIMESTAMP INTEGER, LIKE_COUNT INTEGER)", onSuccess: {
-            print("Success - createTable")
+    func createTable(completion: ((Bool)->Void)? = nil)   {
+        let tableName   = "POSTS"
+        let tableColumn = "(POST_ID TEXT PRIMARY KEY, USER_ID TEXT, PHOTO_URL TEXT, CAPTION TEXT, TIMESTAMP INTEGER, LIKE_COUNT INTEGER)"
+        ServiceManager.cache.create(name: tableName, data: tableColumn, onSuccess: {
+            completion?(true)
         }, onError: {
-            print("Error - createTable")
+            completion?(false)
         })
     }
     
-    func dropTable() {
-        ServiceManager.cache.delete(name: "POSTS", onSuccess: {
-            print("Success - dropTable")
+    func dropTable(completion: ((Bool)->Void)? = nil)  {
+        let tableName = "POSTS"
+        ServiceManager.cache.delete(name: tableName, onSuccess: {
+            completion?(true)
         }, onError: {
-             print("Errpr - dropTable")
+            completion?(false)
         })
     }
     
-    func saveCache(posts: [Post]) {
+    func saveCache(posts: [Post], completion: ((Bool)->Void)? = nil) {
         for post in posts {
             var postAsString = [String]()
             postAsString.append(post.postID)
@@ -199,9 +202,9 @@ class PostService {
             postAsString.append(String(post.timestamp))
             postAsString.append(String(post.likesCount))
             ServiceManager.cache.save(name: "POSTS", dataToSave: postAsString, onSuccess: {
-                print("Post saved locally")
+                 completion?(true)
             }, onError: {
-                print("Faild to save post locally")
+                completion?(false)
             })
         }
     }

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: Auth Factory
 class AuthFactory {
     enum authType {
         case firebase
@@ -20,6 +21,7 @@ class AuthFactory {
     }
 }
 
+// MARK: Database Factory
 class DatabaseFactory {
     enum databaseType {
         case firebase
@@ -32,6 +34,7 @@ class DatabaseFactory {
     }
 }
 
+// MARK: Storage Factory
 class StorageFactory {
     enum storageType {
         case firebase
@@ -44,7 +47,7 @@ class StorageFactory {
     }
 }
 
-
+// MARK: Cache Factory
 class CacheFactory {
     enum cacheType {
         case sqlite
