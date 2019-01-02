@@ -33,4 +33,9 @@ class User {
         guard let profileImgURL = dic["profileImagePath"] as? String else { return nil }
         return User(userID: key, username: username, email: email, profileImgURL: profileImgURL, isAppUserFollowAfterMe: isFollowing)
     }
+    
+    static func transform(from array: [String]) -> User? {
+        let isAppUserFollow = array[4] == "TRUE" ? true : false
+        return User(userID: array[0], username: array[1], email: array[2], profileImgURL: array[3], isAppUserFollowAfterMe: isAppUserFollow)
+    }
 }

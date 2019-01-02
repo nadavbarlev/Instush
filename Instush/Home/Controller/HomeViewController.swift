@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
    
     // MARK: Contants
-    let CHUNK_OF_POSTS_TO_LOAD = 3
+    let CHUNK_OF_POSTS_TO_LOAD  = 3
     let refreshControl = UIRefreshControl()
     
     // MARK: Properties
@@ -48,9 +48,17 @@ class HomeViewController: UIViewController {
         labelNoFeed.isHidden = true
         indicatorView.startAnimating()
 
-        /* Get chunck of feed posts */
-        loadFeedPosts(of: userID)
-        
+        /* Get local feed posts if exists */
+        PostService.shared.getCache { (feedData: [(Post, User)]?) in
+            guard let feedData = feedData else { self.loadFeedPosts(of: userID); return }
+            for (post, user) in feedData {
+                self.indicatorView.stopAnimating()
+                self.users.append(user)
+                self.posts.append(post)
+            }
+            self.tableViewPosts.reloadData()
+        }
+ 
         /* Listen for removing feed post */
         PostService.shared.onPostFeedRemove(from: userID) { (postID: String) in
             if let indexToRemove = self.posts.firstIndex(where: { $0.postID == postID }) {
@@ -59,6 +67,12 @@ class HomeViewController: UIViewController {
                 self.tableViewPosts.reloadData()
             }
         }
+        
+        /* Observe to application terminate for save feed locally */
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(appWillTerminateSelector),
+                                               name: UIApplication.willTerminateNotification,
+                                               object: nil)
     }
     
     // MARK: Action and Events
@@ -78,6 +92,15 @@ class HomeViewController: UIViewController {
                 self.tableViewPosts.reloadData()
             })
         }
+    }
+    
+    @objc func appWillTerminateSelector(notification: Notification) {
+        PostService.shared.dropTable()
+        PostService.shared.createTable()
+        PostService.shared.saveCache(posts: posts)
+        UserService.shared.dropTable()
+        UserService.shared.createTable()
+        UserService.shared.saveCache(users: users)
     }
     
     // MARK: Segue
@@ -102,7 +125,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    // MARK: Private Methods
+    // MARK: Methods
     private func loadFeedPosts(of UserID: String) {
         isFeedLoading = true
         PostService.shared.getFeedPosts(of: UserID, recent: CHUNK_OF_POSTS_TO_LOAD, end: nil) { (feedData: [(Post, User)]?) in

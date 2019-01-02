@@ -8,7 +8,6 @@
 
 import Foundation
 
-// MARK: Factory Design Pattern
 class AuthFactory {
     enum authType {
         case firebase
@@ -24,13 +23,11 @@ class AuthFactory {
 class DatabaseFactory {
     enum databaseType {
         case firebase
-        case sqlite
     }
     
     static func create(_ type: databaseType) -> DatabaseService {
         switch type {
         case .firebase: return FirebaseDatabaseService()
-        case .sqlite:   return SqliteDatabaseService()
         }
     }
 }
@@ -38,13 +35,24 @@ class DatabaseFactory {
 class StorageFactory {
     enum storageType {
         case firebase
-        case sqlite
     }
     
     static func create(_ type: storageType) -> StorageService {
         switch type {
         case .firebase: return FirebaseStorageService()
-        case .sqlite:   return SqliteStorageService()
+        }
+    }
+}
+
+
+class CacheFactory {
+    enum cacheType {
+        case sqlite
+    }
+    
+    static func create(_ type: cacheType) -> CacheService {
+        switch type {
+        case .sqlite: return SqliteCacheService()
         }
     }
 }

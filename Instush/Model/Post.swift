@@ -20,7 +20,7 @@ class Post {
     var usersLike: Dictionary<String, Bool>
     
     // MARK: Constructor
-    private init(postID: String, userID: String, photoURL: String, caption: String, timestamp: Int, likesCount: Int, usersLike: [String:Bool]) {
+    init(postID: String, userID: String, photoURL: String, caption: String, timestamp: Int, likesCount: Int, usersLike: [String:Bool]) {
         self.postID = postID
         self.userID = userID
         self.photoURL = photoURL
@@ -39,5 +39,11 @@ class Post {
         let likeCount = dic["likesCount"] as? Int ?? 0
         let usersLike = dic["likes"] as? [String:Bool] ?? [:]
         return Post(postID: id, userID: userID, photoURL: photoURL, caption: caption, timestamp: timestamp, likesCount: likeCount, usersLike: usersLike)
+    }
+    
+    static func transform(from array: [String]) -> Post? {
+        guard let timestamp =  Int(array[4]) else { return nil }
+        guard let likesCount = Int(array[5]) else { return nil }
+        return Post(postID: array[0], userID: array[1], photoURL: array[2], caption: array[3], timestamp: timestamp, likesCount: likesCount, usersLike: [:])
     }
 }

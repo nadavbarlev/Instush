@@ -19,7 +19,7 @@ class PostService {
     // MARK: Constructor
     private init() {}
     
-    // MARK: API Methods
+    // MARK: API Methods - Sever
     func listener(onGetNewPost: @escaping (Post)->Void) {
         ServiceManager.database.listenToValueAndKey(toPath: "posts") { (key: String, data: Dictionary<String, Any>?) in
             guard let dicPost = data else { return }
@@ -170,37 +170,63 @@ class PostService {
                 completion(popularPosts)
             })
         }
-        
-        /*
-        ServiceManager.database.isExist(path: userFeedPostsPath) { (isPathExist: Bool) in
-            if (!isPathExist) { completion(nil); return }
-            let dispatchGroup = DispatchGroup()
-            var feedData = [(Post, User)]()
-            
-            
-            ServiceManager.database.getKeys(from: userFeedPostsPath, orderBy: "timestamp", end: timestamp, limit: count) { (postsID: [String]) in
-                for postID in postsID {
-                    dispatchGroup.enter()
-                    let postPath = String(format: "posts/%@", postID)
-                    ServiceManager.database.getValue(path: postPath, completion: { (data: Dictionary<String, Any>?) in
-                        guard let dicPost = data else { return }
-                        guard let post = Post.transform(from: dicPost, id: postID) else { return }
-                        UserService.shared.getUser(by: post.userID) { (user: User) in
-                            feedData.append((post, user))
-                            dispatchGroup.leave()
-                        }
-                    })
-                }
-                
-                dispatchGroup.notify(queue: DispatchQueue.main, execute: {
-                    feedData.sort(by: { $0.0.timestamp > $1.0.timestamp })
-                    completion(feedData)
-                })
-            }
-        }
- */
     }
-
+    
+    // MARK: API Methods - Cache
+    func createTable()  {
+        ServiceManager.cache.create(name: "POSTS", data: "(POST_ID TEXT PRIMARY KEY, USER_ID TEXT, PHOTO_URL TEXT, CAPTION TEXT, TIMESTAMP INTEGER, LIKE_COUNT INTEGER)", onSuccess: {
+            print("Success - createTable")
+        }, onError: {
+            print("Error - createTable")
+        })
+    }
+    
+    func dropTable() {
+        ServiceManager.cache.delete(name: "POSTS", onSuccess: {
+            print("Success - dropTable")
+        }, onError: {
+             print("Errpr - dropTable")
+        })
+    }
+    
+    func saveCache(posts: [Post]) {
+        for post in posts {
+            var postAsString = [String]()
+            postAsString.append(post.postID)
+            postAsString.append(post.userID)
+            postAsString.append(post.photoURL)
+            postAsString.append(post.caption)
+            postAsString.append(String(post.timestamp))
+            postAsString.append(String(post.likesCount))
+            ServiceManager.cache.save(name: "POSTS", dataToSave: postAsString, onSuccess: {
+                print("Post saved locally")
+            }, onError: {
+                print("Faild to save post locally")
+            })
+        }
+    }
+    
+    func getCache(completion: @escaping ([(Post, User)]?)->Void) {
+        
+        /* Gets Posts and users local data */
+        var feedData = [(Post, User)]()
+        ServiceManager.cache.get(name: "POSTS", onSuccess: { (postsAsString : Array<[String]>) in
+            let posts = postsAsString.map { Post.transform(from: $0) }
+            ServiceManager.cache.get(name: "USERS", onSuccess: { (usersAsString: Array<[String]>) in
+                let users = usersAsString.map { User.transform(from: $0) }.filter { $0 != nil }
+    
+                /* Insert post and corresponding user into FeedData */
+                for post in posts {
+                    let user = users.first { $0?.userID == post?.userID }
+                    guard let post = post else { return }
+                    guard let correspondUser = user else { return }
+                    feedData.append((post, correspondUser!))
+                }
+                completion(feedData)
+            },onError: { completion(nil) })
+        },onError: { completion(nil) })
+    }
+  
     // MARK: Private Methods
     private func updatePostLike(userID: String, postData: [String:Any]) -> [String:Any] {
         var changedPostData = postData

@@ -12,6 +12,7 @@ class ServiceManager {
     static let auth    : AuthService     = AuthFactory.create(.firebase)
     static let database: DatabaseService = DatabaseFactory.create(.firebase)
     static let storage : StorageService  = StorageFactory.create(.firebase)
+    static let cache   : CacheService    = CacheFactory.create(.sqlite)
 }
 
 // MARK: Protocols
@@ -54,4 +55,11 @@ protocol StorageService {
     func save(path: String, dataID: String, data: Data, onSuccess: ((URL)->(Void))?, onError: ((Error)->(Void))?)
     func delete(path: String, dataID: String, onSuccess: (()->(Void))?, onError: ((Error)->(Void))?)
     func delete(url: String, onSuccess: (()->(Void))?, onError: ((Error)->(Void))?)
+}
+
+protocol CacheService {
+    func create(name: String, data: String?, onSuccess: ()->Void, onError: ()->Void)
+    func delete(name: String, onSuccess: ()->Void, onError: ()->Void)
+    func get(name: String, onSuccess: (Array<[String]>)->Void, onError: ()->Void)
+    func save(name: String, dataToSave: [String], onSuccess: ()->Void, onError: ()->Void)
 }

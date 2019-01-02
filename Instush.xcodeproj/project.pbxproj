@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0514135121CD0B1500E8E268 /* FactoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514135021CD0B1500E8E268 /* FactoryManager.swift */; };
-		0514135321CD0C9F00E8E268 /* SqliteStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514135221CD0C9F00E8E268 /* SqliteStorageService.swift */; };
 		0514135621CD0E0500E8E268 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0514135521CD0E0400E8E268 /* libsqlite3.0.tbd */; };
 		0514135D21CEBE6E00E8E268 /* CustomNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514135C21CEBE6E00E8E268 /* CustomNotification.swift */; };
 		0514135F21CFF8CA00E8E268 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514135E21CFF8CA00E8E268 /* NotificationManager.swift */; };
-		0514136121D00E6800E8E268 /* SqliteDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514136021D00E6800E8E268 /* SqliteDatabaseService.swift */; };
 		051BCEB821997CE400820B93 /* UIViewExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BCEB721997CE400820B93 /* UIViewExtenstions.swift */; };
+		0524277021DBC84800629D36 /* SqliteCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524276F21DBC84800629D36 /* SqliteCacheService.swift */; };
 		0526F5E3218F15F10028F1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E2218F15F10028F1D9 /* AppDelegate.swift */; };
 		0526F5E8218F15F10028F1D9 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526F5E6218F15F10028F1D9 /* Start.storyboard */; };
 		0526F5EB218F15F10028F1D9 /* Instush.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0526F5E9218F15F10028F1D9 /* Instush.xcdatamodeld */; };
@@ -72,13 +71,12 @@
 /* Begin PBXFileReference section */
 		038301CAC50DD33DCC813FE4 /* Pods_Instush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instush.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0514135021CD0B1500E8E268 /* FactoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryManager.swift; sourceTree = "<group>"; };
-		0514135221CD0C9F00E8E268 /* SqliteStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStorageService.swift; sourceTree = "<group>"; };
 		0514135521CD0E0400E8E268 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		0514135721CD0E5F00E8E268 /* Instush-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Instush-Bridging-Header.h"; sourceTree = "<group>"; };
 		0514135C21CEBE6E00E8E268 /* CustomNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotification.swift; sourceTree = "<group>"; };
 		0514135E21CFF8CA00E8E268 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		0514136021D00E6800E8E268 /* SqliteDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteDatabaseService.swift; sourceTree = "<group>"; };
 		051BCEB721997CE400820B93 /* UIViewExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtenstions.swift; sourceTree = "<group>"; };
+		0524276F21DBC84800629D36 /* SqliteCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCacheService.swift; sourceTree = "<group>"; };
 		0526F5DF218F15F10028F1D9 /* Instush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0526F5E2218F15F10028F1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0526F5E7218F15F10028F1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
@@ -153,8 +151,7 @@
 		0514135421CD0CAA00E8E268 /* SqliteManager */ = {
 			isa = PBXGroup;
 			children = (
-				0514135221CD0C9F00E8E268 /* SqliteStorageService.swift */,
-				0514136021D00E6800E8E268 /* SqliteDatabaseService.swift */,
+				0524276F21DBC84800629D36 /* SqliteCacheService.swift */,
 			);
 			path = SqliteManager;
 			sourceTree = "<group>";
@@ -607,13 +604,11 @@
 				0514135D21CEBE6E00E8E268 /* CustomNotification.swift in Sources */,
 				05B74796219D7A6A000FC9F7 /* FirebaseStorageService.swift in Sources */,
 				058BCAC52192E84B00FACA3F /* ServiceManager.swift in Sources */,
-				0514136121D00E6800E8E268 /* SqliteDatabaseService.swift in Sources */,
 				05B74788219AE6CC000FC9F7 /* PostTableViewCell.swift in Sources */,
 				0526F60021904E700028F1D9 /* SearchViewController.swift in Sources */,
 				05B747BC21AC1F3F000FC9F7 /* HashtagSearchViewController.swift in Sources */,
 				0514135121CD0B1500E8E268 /* FactoryManager.swift in Sources */,
 				0526F5E3218F15F10028F1D9 /* AppDelegate.swift in Sources */,
-				0514135321CD0C9F00E8E268 /* SqliteStorageService.swift in Sources */,
 				0526F60821904EC20028F1D9 /* ProfileViewController.swift in Sources */,
 				0526F5EB218F15F10028F1D9 /* Instush.xcdatamodeld in Sources */,
 				05B7479C219DA0DF000FC9F7 /* CommentService.swift in Sources */,
@@ -623,6 +618,7 @@
 				0526F5F8218F29B50028F1D9 /* SignInViewController.swift in Sources */,
 				05B7477F2199D269000FC9F7 /* Post.swift in Sources */,
 				05D7CB9C21B5748900C76EE6 /* WalkthroughViewController.swift in Sources */,
+				0524277021DBC84800629D36 /* SqliteCacheService.swift in Sources */,
 				05B74791219D79D9000FC9F7 /* FirebaseAuthService.swift in Sources */,
 				05B74798219D93AB000FC9F7 /* CommentsViewController.swift in Sources */,
 				0526F60221904E860028F1D9 /* HomeViewController.swift in Sources */,

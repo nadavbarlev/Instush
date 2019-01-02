@@ -87,4 +87,37 @@ class UserService {
         }
     }
     
+    // MARK: Methods Cache
+    func dropTable() {
+        ServiceManager.cache.delete(name: "USERS", onSuccess: {
+            print("Success - dropTable")
+        }, onError: {
+            print("Error - dropTable")
+        })
+    }
+    
+    func createTable()  {
+        ServiceManager.cache.create(name: "USERS", data: "(USER_ID TEXT PRIMARY KEY, USER_NAME TEXT, EMAIL TEXT, PROFILE_IMG_URL TEXT, IS_APP_USER_FOLLOW TEXT)",
+        onSuccess: {
+            print("Success - createTable")
+        }, onError: {
+            print("Error - createTable")
+        })
+    }
+    
+    func saveCache(users: [User]) {
+        for user in users {
+            var userAsString = [String]()
+            userAsString.append(user.userID)
+            userAsString.append(user.username)
+            userAsString.append(user.email)
+            userAsString.append(user.profileImgURL)
+            userAsString.append(user.isAppUserFollowAfterMe ? "TRUE" : "FALSE")
+            ServiceManager.cache.save(name: "USERS", dataToSave: userAsString, onSuccess: {
+                print("User saved locally")
+            }, onError: {
+                print("Faild to save post locally")
+            })
+        }
+    }
 }

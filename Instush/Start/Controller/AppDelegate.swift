@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Configure Firebase
         FirebaseApp.configure()
-        Database.database().isPersistenceEnabled = true
+        
+        // Local Cache
+        /* Database.database().isPersistenceEnabled = true */
         
         // Set Initial ViewController
         self.window = UIWindow(frame: UIScreen.main.bounds)

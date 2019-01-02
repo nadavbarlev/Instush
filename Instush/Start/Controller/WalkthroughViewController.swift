@@ -11,7 +11,7 @@ import UIKit
 class WalkthroughViewController: UIPageViewController {
 
     // MARK: Outlets
-    var pageContent = ["Instagram is a simple way to capture and share the world’s moments.",
+    var pageContent = ["Instush is a simple way to capture and share the world’s moments.",
                        "Follow your friends and family to see what they’re up to, and discover accounts from all over the world that are sharing things you love.",
                        "Join the community of over 1 billion people and express yourself by sharing all the moments of your day — the highlights and everything in between, too."]
     
